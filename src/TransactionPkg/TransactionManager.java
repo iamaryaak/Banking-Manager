@@ -18,11 +18,13 @@ public class TransactionManager {
             String command = inputArr[0];
 
             // figure out commands
-            if(command.equals("Q")){
-                System.out.println("Transaction processing completed.");
-                break;
-            }else{
-                System.out.print("Command: " + command + "\n");
+            try {
+                if (command.equals("Q")) {
+                    System.out.println("Transaction processing completed.");
+                    break;
+                }
+            }catch(Exception e){
+                System.out.println("Invalid");
             }
 
         }
