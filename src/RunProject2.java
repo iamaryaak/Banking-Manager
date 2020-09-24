@@ -5,7 +5,7 @@
 
 public class RunProject2 {
     /**
-     * Main method to run the genral program
+     * Main method to run the general program
      * @param args Command Line Arguments
      */
     public static void main(String[] args) {
