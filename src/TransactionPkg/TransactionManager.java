@@ -24,7 +24,17 @@ public class TransactionManager {
                 }else if(command.length() == 2){
                     System.out.println("Okay");
                 }
+
+                if (command == "1")
+                {
+                    throw new Exception();
+                }
             }catch(InputMismatchException e){
+                System.out.println(e.getMessage());
+                System.out.println("Invalid Input");
+            }
+            catch(Exception e)
+            {
                 System.out.println(e.getMessage());
             }
 
