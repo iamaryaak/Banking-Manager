@@ -22,7 +22,17 @@ public class TransactionManager {
                     System.out.println("Transaction processing completed.");
                     break;
                 }
+
+                if (command == "1")
+                {
+                    throw new Exception();
+                }
             }catch(InputMismatchException e){
+                System.out.println(e.getMessage());
+                System.out.println("Invalid Input");
+            }
+            catch(Exception e)
+            {
                 System.out.println(e.getMessage());
             }
 
