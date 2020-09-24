@@ -13,19 +13,17 @@ public class TransactionManager {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
         do{
-
-            // figure out commands
+            String in = sc.nextLine();
             try {
-                String in = sc.nextLine();
-                String inputArr[] = in.split("\\s+");
+                String []inputArr = in.split("\\s+");
                 String command = inputArr[0];
 
                 if (command.equals("Q")) {
                     System.out.println("Transaction processing completed.");
                     break;
                 }
-            }catch(Exception e){
-                System.out.println("Invalid");
+            }catch(InputMismatchException e){
+                System.out.println(e.getMessage());
             }
 
         }while(sc.hasNext()) ;
