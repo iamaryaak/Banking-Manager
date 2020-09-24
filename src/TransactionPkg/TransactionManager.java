@@ -12,23 +12,28 @@ public class TransactionManager {
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
-        do{
+
+        do {
             String in = sc.nextLine();
             try {
-                String []inputArr = in.split("\\s+");
+                String[] inputArr = in.split("\\s+");
                 String command = inputArr[0];
 
                 if (command.equals("Q")) {
                     System.out.println("Transaction processing completed.");
                     break;
-                }else if(command.length() == 2){
+                } else if (command.length() == 2) {
                     System.out.println("Okay");
                 }
-            }catch(InputMismatchException e){
-                System.out.println(e.getMessage());
+
+                if (command.equals("1"))
+                {
+                    throw new InputMismatchException();
+                }
+            } catch (InputMismatchException e) {
+                //System.out.println(e.getMessage());
+                System.out.println("Invalid input!");
             }
-
-
-        }while(sc.hasNext()) ;
+        }while(sc.hasNextLine());
     }
 }
