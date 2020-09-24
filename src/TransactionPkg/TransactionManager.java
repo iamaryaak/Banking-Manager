@@ -26,7 +26,7 @@ public class TransactionManager {
                     System.out.println("Okay");
                 }
 
-                if (command.equals("1"))
+                if (command.matches("^[0-9]+$"))
                 {
                     throw new InputMismatchException();
                 }
