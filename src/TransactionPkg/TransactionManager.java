@@ -21,6 +21,8 @@ public class TransactionManager {
                 if (command.equals("Q")) {
                     System.out.println("Transaction processing completed.");
                     break;
+                }else if(command.length() == 2){
+                    System.out.println("Okay");
                 }
             }catch(InputMismatchException e){
                 System.out.println(e.getMessage());
