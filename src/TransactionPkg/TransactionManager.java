@@ -10,10 +10,21 @@ public class TransactionManager {
      * the transaction type and account type followed by data tokens
      */
     public void run() {
+        System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
         while(sc.hasNext()) {
-            String in = sc.next();
-            System.out.println(in);
+            String in = sc.nextLine();
+            String inputArr[] = in.split("\\s+");
+            String command = inputArr[0];
+
+            // figure out commands
+            if(command.equals("Q")){
+                System.out.println("Transaction processing completed.");
+                break;
+            }else{
+                System.out.print("Command: " + command + "\n");
+            }
+
         }
     }
 }
