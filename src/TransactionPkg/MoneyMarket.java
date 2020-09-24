@@ -1,6 +1,7 @@
-public class Checking extends Account {
+package TransactionPkg;
 
-    private boolean directDeposit;
+public class MoneyMarket extends Account {
+    private int withdrawals;
 
     @Override
     public double monthlyInterest() {

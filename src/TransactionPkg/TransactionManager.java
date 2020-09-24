@@ -1,3 +1,6 @@
+package TransactionPkg;
+
+import java.util.*;
 public class TransactionManager {
     /**
      * User Interface class that handles transactions and displays
@@ -7,6 +10,10 @@ public class TransactionManager {
      * the transaction type and account type followed by data tokens
      */
     public void run() {
-        System.out.println("Run method is called");
+        Scanner sc = new Scanner (System.in);
+        while(sc.hasNext()) {
+            String in = sc.next();
+            System.out.println(in);
+        }
     }
 }

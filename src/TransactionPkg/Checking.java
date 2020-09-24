@@ -1,5 +1,8 @@
-public class Savings extends Account {
-    private boolean isLoyal;
+package TransactionPkg;
+
+public class Checking extends Account {
+
+    private boolean directDeposit;
 
     @Override
     public double monthlyInterest() {

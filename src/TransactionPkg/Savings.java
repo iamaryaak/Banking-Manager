@@ -1,5 +1,7 @@
-public class MoneyMarket extends Account {
-    private int withdrawals;
+package TransactionPkg;
+
+public class Savings extends Account {
+    private boolean isLoyal;
 
     @Override
     public double monthlyInterest() {

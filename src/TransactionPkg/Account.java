@@ -1,3 +1,5 @@
+package TransactionPkg;
+
 public abstract class Account {
     private Profile holder;
     private double balance;
@@ -16,8 +18,5 @@ public abstract class Account {
     }
 
     public abstract double monthlyInterest();
-
-    public abstract double monthlyFee();{
-
-    }
+    public abstract double monthlyFee();
 }
