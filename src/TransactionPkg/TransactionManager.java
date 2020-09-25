@@ -24,40 +24,57 @@ public class TransactionManager {
                     break;
                 } else if (command.length() == 2) {
                     // figure out which command it is
+
+                    // C commands – close an existing account
                     if (command.equals("CC")) {
 
                     } else if (command.equals("CS")) {
 
                     } else if (command.equals("CM")) {
 
-                    } else if (command.equals("OC")) {
+                    }
+
+                    // O commands – open a new checking (C), savings (S) or money market (M) account
+                    else if (command.equals("OC")) {
 
                     } else if (command.equals("OS")) {
 
                     } else if (command.equals("OM")) {
 
-                    } else if (command.equals("DC")) {
+                    }
+
+                    // D commands – deposit funds to an existing account
+                    else if (command.equals("DC")) {
 
                     } else if (command.equals("DS")) {
 
                     } else if (command.equals("DM")) {
 
-                    } else if (command.equals("WC")) {
+                    }
+
+                    // W commands – withdraw funds from an existing account
+                    else if (command.equals("WC")) {
 
                     } else if (command.equals("WS")) {
 
                     } else if (command.equals("WM")) {
 
-                    } else if (command.equals("PA")) {
+                    }
+
+                    // P commands – print the list of accounts or print account statements
+                    else if (command.equals("PA")) {
 
                     } else if (command.equals("PD")) {
 
                     } else if (command.equals("PN")) {
 
-                    }else {
-                        throw new InputMismatchException();
                     }
                 }
+
+                // Throws catch exceptions for invalid input
+                if (command.matches("^[0-9]+$"))
+                    throw new InputMismatchException();
+
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input!");
             }catch (NumberFormatException n){
