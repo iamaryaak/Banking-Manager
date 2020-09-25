@@ -78,7 +78,7 @@ public class TransactionManager {
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input!");
             }catch (NumberFormatException n){
-                System.out.println("Invalid numbers");
+                System.out.println("Invalid numbers!");
             }
         }while(sc.hasNextLine());
     }
