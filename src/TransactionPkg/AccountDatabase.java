@@ -5,6 +5,15 @@ public class AccountDatabase {
     private Account[] accounts;
     private int size;
 
+    /**
+     * Default constructor for AccountDatabase class
+     * Initializes variables to starting values as described below to create an Accounts Database
+     */
+    public AccountDatabase(Account[] accounts, int size){
+        this.accounts = new Account[]{null,null,null,null,null};
+        this.size = 0;
+    }
+
     private int find(Account account) {
         return 0;
     }

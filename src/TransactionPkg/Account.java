@@ -1,6 +1,9 @@
 package TransactionPkg;
 
 public abstract class Account {
+    /**
+     * Declare variables here
+     */
     private Profile holder;
     private double balance;
     private Date dateOpen;

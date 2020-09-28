@@ -15,9 +15,11 @@ public class TransactionManager {
 
         do {
             String in = sc.nextLine();
+            // grab command from user input
+            String[] inputArr = in.split("\\s+");
+            String command = inputArr[0];
+
             try {
-                String[] inputArr = in.split("\\s+");
-                String command = inputArr[0];
 
                 if (command.equals("Q")) {
                     System.out.println("Transaction processing completed.");
@@ -25,48 +27,75 @@ public class TransactionManager {
                 } else if (command.length() == 2) {
                     // figure out which command it is
 
-                    // C commands – close an existing account
                     if (command.equals("CC")) {
+                        System.out.println("Clone a new Checking Account");
 
                     } else if (command.equals("CS")) {
+                        System.out.println("Clone a new Savings Account");
+
 
                     } else if (command.equals("CM")) {
+                        System.out.println("Clone a new Money Market Account");
+
 
                     }
-
-                    // O commands – open a new checking (C), savings (S) or money market (M) account
                     else if (command.equals("OC")) {
+                        System.out.println("Open a new Checking Account");
+
 
                     } else if (command.equals("OS")) {
+                        System.out.println("Open a new Savings Account");
+
 
                     } else if (command.equals("OM")) {
+                        System.out.println("Open a new Money Market Account");
+
 
                     }
 
                     // D commands – deposit funds to an existing account
                     else if (command.equals("DC")) {
+                        System.out.println("Deposit to a Checking Account");
+
 
                     } else if (command.equals("DS")) {
+                        System.out.println("Deposit to a Savings Account");
+
 
                     } else if (command.equals("DM")) {
+                        System.out.println("Deposit to a Money Market Account");
+
 
                     }
 
                     // W commands – withdraw funds from an existing account
                     else if (command.equals("WC")) {
+                        System.out.println("Withdraw from a Checking Account");
+
 
                     } else if (command.equals("WS")) {
+                        System.out.println("Withdraw from a Savings Account");
+
 
                     } else if (command.equals("WM")) {
+                        System.out.println("Withdraw from a Money Market Account");
+
 
                     }
 
                     // P commands – print the list of accounts or print account statements
                     else if (command.equals("PA")) {
+                        System.out.println("Print the list of accounts in the database");
+
 
                     } else if (command.equals("PD")) {
+                        System.out.println("Calculate the monthly interest fees, print account statements" +
+                                "and sort by dates opened in ascending order");
+
 
                     } else if (command.equals("PN")) {
+                        System.out.println("Same as PD but sort by last names in ascending order");
+
 
                     }else{
                         throw new InputMismatchException(); // throw exception
@@ -76,10 +105,10 @@ public class TransactionManager {
                 }
 
             } catch (InputMismatchException e) {
-                System.out.println("Invalid input!");
+                System.out.println("Command '" + command + "' not supported!");
             }catch (NumberFormatException n){
                 System.out.println("Invalid numbers!");
             }
-        }while(sc.hasNextLine());
+        }while(sc.hasNext());
     }
 }
