@@ -68,12 +68,12 @@ public class TransactionManager {
 
                     } else if (command.equals("PN")) {
 
+                    }else{
+                        throw new InputMismatchException(); // throw exception
                     }
+                }else{
+                    throw new InputMismatchException(); // throw exception
                 }
-
-                // Throws catch exceptions for invalid input
-                if (command.matches("^[0-9]+$"))
-                    throw new InputMismatchException();
 
             } catch (InputMismatchException e) {
                 System.out.println("Invalid input!");
