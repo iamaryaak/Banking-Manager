@@ -59,6 +59,7 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         String amount = inputArr[3];
                         Boolean isLoyal = Boolean.parseBoolean(inputArr[4]);
+                        Profile user = new Profile(firstName, lastName);
 
                     } else if (command.equals("OM")) {
                         System.out.println("Open a new Money Market Account");
