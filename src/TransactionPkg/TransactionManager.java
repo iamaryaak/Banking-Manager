@@ -28,17 +28,17 @@ public class TransactionManager {
                     // figure out which command it is
 
                     if (command.equals("CC")) {
-                        System.out.println("Clone a new Checking Account");
+                        System.out.println("Close a new Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
                     } else if (command.equals("CS")) {
-                        System.out.println("Clone a new Savings Account");
+                        System.out.println("Close a new Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
                     } else if (command.equals("CM")) {
-                        System.out.println("Clone a new Money Market Account");
+                        System.out.println("Close a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
@@ -68,7 +68,7 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         int amount = Integer.parseInt(inputArr[3]);
                         Profile user = new Profile(firstName, lastName);
-                        MoneyMarket userMM = new MoneyMarket(amount);:
+                        MoneyMarket userMM = new MoneyMarket(amount);
                     }
 
                     // D commands – deposit funds to an existing account
