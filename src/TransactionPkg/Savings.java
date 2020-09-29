@@ -4,6 +4,10 @@ public class Savings extends Account {
 
     private boolean isLoyal;
 
+    public Savings(Boolean iL){
+        this.isLoyal = iL;
+    }
+
     @Override
     public double monthlyInterest() {
         return 0;
