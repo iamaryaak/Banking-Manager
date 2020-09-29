@@ -6,12 +6,12 @@ public class Profile {
 
     /**
      * Default Constructor
-     * @param fname
-     * @param lname
+     * @param firstName
+     * @param lastName
      */
-    public Profile(String fname, String lname){
-        this.fname = fname;
-        this.lname = lname;
+    public Profile(String firstName, String lastName){
+        this.fname = firstName;
+        this.lname = lastName;
     }
 
 }
