@@ -29,14 +29,18 @@ public class TransactionManager {
 
                     if (command.equals("CC")) {
                         System.out.println("Clone a new Checking Account");
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
 
                     } else if (command.equals("CS")) {
                         System.out.println("Clone a new Savings Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
 
                     } else if (command.equals("CM")) {
                         System.out.println("Clone a new Money Market Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
 
                     }
                     else if (command.equals("OC")) {
@@ -49,45 +53,59 @@ public class TransactionManager {
                         Boolean directDeposit = Boolean.parseBoolean(inputArr[4]);
                         Profile user = new Profile(firstName, lastName);
 
-
-
                     } else if (command.equals("OS")) {
                         System.out.println("Open a new Savings Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
+                        Boolean isLoyal = Boolean.parseBoolean(inputArr[4]);
 
                     } else if (command.equals("OM")) {
                         System.out.println("Open a new Money Market Account");
-
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
                     }
 
                     // D commands – deposit funds to an existing account
                     else if (command.equals("DC")) {
                         System.out.println("Deposit to a Checking Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
 
                     } else if (command.equals("DS")) {
                         System.out.println("Deposit to a Savings Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
 
                     } else if (command.equals("DM")) {
                         System.out.println("Deposit to a Money Market Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
 
                     }
 
                     // W commands – withdraw funds from an existing account
                     else if (command.equals("WC")) {
                         System.out.println("Withdraw from a Checking Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
 
                     } else if (command.equals("WS")) {
                         System.out.println("Withdraw from a Savings Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
 
                     } else if (command.equals("WM")) {
                         System.out.println("Withdraw from a Money Market Account");
-
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
 
                     }
 
