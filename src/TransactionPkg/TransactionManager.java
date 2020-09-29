@@ -66,7 +66,9 @@ public class TransactionManager {
                         System.out.println("Open a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
+                        int amount = Integer.parseInt(inputArr[3]);
+                        Profile user = new Profile(firstName, lastName);
+                        MoneyMarket userMM = new MoneyMarket(amount);
                     }
 
                     // D commands – deposit funds to an existing account
