@@ -1,6 +1,7 @@
 package TransactionPkg;
 
 public class MoneyMarket extends Account {
+
     private int withdrawals;
 
     @Override

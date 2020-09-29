@@ -11,6 +11,7 @@ public class Date implements Comparable<Date> {
         return (month + "/" + day + "/" + year);
     } //in the format mm/dd/yyyy
     public boolean isValid() {
+        // check if date is valid
         return false;
     }
 }
