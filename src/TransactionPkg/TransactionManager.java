@@ -52,6 +52,8 @@ public class TransactionManager {
                         String amount = inputArr[3];
                         Boolean directDeposit = Boolean.parseBoolean(inputArr[4]);
                         Profile user = new Profile(firstName, lastName);
+                        Checking user_checking = new Checking(directDeposit);
+                        System.out.println(user_checking.toString());
 
                     } else if (command.equals("OS")) {
                         System.out.println("Open a new Savings Account");

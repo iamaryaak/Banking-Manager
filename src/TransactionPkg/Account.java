@@ -18,7 +18,10 @@ public abstract class Account {
         balance = balance + amount;
     }
 
+    @Override
     public String toString() {
+
+        String dateOpen = "September 29, 2020";
         return (holder + " " + "$" + balance + " " + dateOpen.toString());
     }
 
