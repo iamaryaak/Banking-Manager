@@ -4,8 +4,8 @@ public class Savings extends Account {
 
     private boolean isLoyal;
 
-    public Savings(Boolean iL){
-        this.isLoyal = iL;
+    public Savings (boolean i){
+        this.isLoyal = i;
     }
 
     @Override
@@ -17,4 +17,5 @@ public class Savings extends Account {
     public double monthlyFee() {
         return 0;
     }
+
 }
