@@ -14,7 +14,13 @@ public class AccountDatabase {
         this.size = 0;
     }
 
+    /**
+     *
+     * @param account
+     * @return int - finds the index at which the account is
+     */
     private int find(Account account) {
+
         return 0;
     }
 

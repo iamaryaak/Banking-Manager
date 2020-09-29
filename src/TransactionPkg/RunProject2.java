@@ -5,6 +5,11 @@ package TransactionPkg;
  * @author Arya Kulkarni, Jesse Barbieri
  */
 
+/**
+ * Notes :
+ *  deal with leap year
+ *
+ */
 public class RunProject2 {
     /**
      * Main method to run the general program
