@@ -10,10 +10,12 @@ public abstract class Account {
 
     public void debit(double amount) {
         //decrease the balance by amount
+        balance = balance - amount;
     }
 
     public void credit(double amount) {
         // increase the balance by amount
+        balance = balance + amount;
     }
 
     public String toString() {

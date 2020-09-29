@@ -41,6 +41,14 @@ public class TransactionManager {
                     }
                     else if (command.equals("OC")) {
                         System.out.println("Open a new Checking Account");
+                        //Example input: OC John Doe 300 false
+                        //What it does: open a checking account with $300, non-direct deposit
+                        String firstName = inputArr[1];
+                        String lastName = inputArr[2];
+                        String amount = inputArr[3];
+                        Boolean directDeposit = Boolean.parseBoolean(inputArr[4]);
+                        Profile user = new Profile(firstName, lastName);
+
 
 
                     } else if (command.equals("OS")) {
@@ -107,7 +115,7 @@ public class TransactionManager {
             } catch (InputMismatchException e) {
                 System.out.println("Command '" + command + "' not supported!");
             }catch (NumberFormatException n){
-                System.out.println("Invalid numbers!");
+                System.out.println("Input data type mismatch.");
             }
         }while(sc.hasNext());
     }
