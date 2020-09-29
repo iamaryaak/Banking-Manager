@@ -19,7 +19,7 @@ public abstract class Account {
     }
 
     public String toString() {
-        return null;
+        return (holder + " " + "$" + balance + " " + dateOpen.toString());
     }
 
     public abstract double monthlyInterest();
