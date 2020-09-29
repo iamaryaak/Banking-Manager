@@ -68,7 +68,7 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         int amount = Integer.parseInt(inputArr[3]);
                         Profile user = new Profile(firstName, lastName);
-                        MoneyMarket userMM = new MoneyMarket(amount);
+                        MoneyMarket userMM = new MoneyMarket(amount);:
                     }
 
                     // D commands – deposit funds to an existing account

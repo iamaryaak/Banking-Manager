@@ -10,7 +10,7 @@ public class AccountDatabase {
      * Initializes variables to starting values as described below to create an Accounts Database
      */
     public AccountDatabase(Account[] accounts, int size){
-        this.accounts = new Account[]{null,null,null,null,null};
+        this.accounts = new Account[5];
         this.size = 0;
     }
 
