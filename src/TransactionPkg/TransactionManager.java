@@ -13,6 +13,8 @@ public class TransactionManager {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
 
+        AccountDatabase database = new AccountDatabase();
+
         do {
             String in = sc.nextLine();
             // grab command from user input
@@ -59,6 +61,7 @@ public class TransactionManager {
                         Boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                        database.add(accC);
                         System.out.println(accC.toString());
 
                     } else if (command.equals("OS")) {

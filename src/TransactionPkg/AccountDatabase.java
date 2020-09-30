@@ -9,7 +9,7 @@ public class AccountDatabase {
      * Default constructor for AccountDatabase class
      * Initializes variables to starting values as described below to create an Accounts Database
      */
-    public AccountDatabase(Account[] accounts, int size){
+    public AccountDatabase(){
         this.accounts = new Account[5];
         this.size = 0;
     }
@@ -28,7 +28,14 @@ public class AccountDatabase {
     }
 
     public boolean add(Account account) {
-        //return false if account exists
+        size++;
+        // adding an account to the database
+        accounts[size-1] = account;
+
+        // just to test if it work
+            System.out.println("Account added to the database");
+            System.out.println(size);
+
         return false;
     }
 
