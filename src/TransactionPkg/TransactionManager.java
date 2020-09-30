@@ -86,9 +86,9 @@ public class TransactionManager {
                         int amount = Integer.parseInt(inputArr[3]);
                         String date = inputArr[4];
                         String splitDate[] = date.split("/");
-                        int month = Integer.parseInt(splitDate[0]);
-                        int day = Integer.parseInt(splitDate[1]);
-                        int year = Integer.parseInt(splitDate[2]);
+                            int month = Integer.parseInt(splitDate[0]);
+                            int day = Integer.parseInt(splitDate[1]);
+                            int year = Integer.parseInt(splitDate[2]);
                         Date dateOpen = new Date(year, month, day);
                         Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
