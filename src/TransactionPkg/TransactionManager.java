@@ -49,8 +49,14 @@ public class TransactionManager {
                         //What it does: open a checking account with $300, non-direct deposit
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
-                        Boolean directDeposit = Boolean.parseBoolean(inputArr[4]);
+                        double amount = Double.parseDouble(inputArr[3]);
+                        String date = inputArr[4];
+                        String splitDate[] = date.split("/");
+                            int month = Integer.parseInt(splitDate[0]);
+                            int day = Integer.parseInt(splitDate[1]);
+                            int year = Integer.parseInt(splitDate[2]);
+                        Date dateOpen = new Date(year, month, day);
+                        Boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Checking user_checking = new Checking(directDeposit);
                         System.out.println(user_checking.toString());

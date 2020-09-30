@@ -8,6 +8,7 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
+
     public void debit(double amount) {
         //decrease the balance by amount
         balance = balance - amount;
@@ -21,7 +22,7 @@ public abstract class Account {
     @Override
     public String toString() {
 
-        String dateOpen = "September 29, 2020";
+        String dateOpen = "filler";
         return (holder + " " + "$" + balance + " " + dateOpen.toString());
     }
 
