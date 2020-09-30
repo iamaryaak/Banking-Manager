@@ -58,8 +58,8 @@ public class TransactionManager {
                         Date dateOpen = new Date(year, month, day);
                         Boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
-                        Account acc = new Checking(user, amount, dateOpen, directDeposit);
-                        System.out.println(acc.toString());
+                        Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                        System.out.println(accC.toString());
 
                     } else if (command.equals("OS")) {
                         System.out.println("Open a new Savings Account");
@@ -74,7 +74,7 @@ public class TransactionManager {
                         Date dateOpen = new Date(year, month, day);
                         Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
-                        Account acc = new Savings(user, amount, dateOpen, isLoyal);
+                        Account accS = new Savings(user, amount, dateOpen, isLoyal);
 
                     } else if (command.equals("OM")) {
                         System.out.println("Open a new Money Market Account");
@@ -88,7 +88,7 @@ public class TransactionManager {
                         int year = Integer.parseInt(splitDate[2]);
                         Date dateOpen = new Date(year, month, day);
                         Profile user = new Profile(firstName, lastName);
-                        Account acc = new MoneyMarket(user, amount, dateOpen);
+                        Account accM = new MoneyMarket(user, amount, dateOpen);
                     }
 
                     // D commands – deposit funds to an existing account

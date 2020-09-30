@@ -1,5 +1,7 @@
 package TransactionPkg;
 
+import java.text.DecimalFormat;
+
 public abstract class Account {
     /**
      * Declare variables here
@@ -27,7 +29,8 @@ public abstract class Account {
 
     @Override
     public String toString() {
-        return (holder + " " + "$" + balance + " " + dateOpen.toString());
+        DecimalFormat df = new DecimalFormat("#.00");
+        return (holder + " " + "$" + df.format(balance) + " " + dateOpen.toString());
     }
 
     public abstract double monthlyInterest();
