@@ -15,4 +15,9 @@ public class Profile {
         this.lname = lastName;
     }
 
+    @Override
+    public String toString(){
+        return (fname + " " + lname);
+    }
+
 }

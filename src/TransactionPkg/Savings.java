@@ -4,7 +4,8 @@ public class Savings extends Account {
 
     private boolean isLoyal;
 
-    public Savings (boolean i){
+    public Savings (Profile user, double amount, Date dateOpen, boolean i){
+        super(user, amount, dateOpen);
         this.isLoyal = i;
     }
 

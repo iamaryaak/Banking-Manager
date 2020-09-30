@@ -4,8 +4,9 @@ public class MoneyMarket extends Account {
 
     private int withdrawals;
 
-    public MoneyMarket (int w){
-        this.withdrawals = w;
+    public MoneyMarket (Profile user, double amount, Date dateOpen){
+        super(user, amount, dateOpen);
+
     }
 
     @Override

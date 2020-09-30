@@ -58,25 +58,37 @@ public class TransactionManager {
                         Date dateOpen = new Date(year, month, day);
                         Boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
-                        Checking user_checking = new Checking(directDeposit);
-                        System.out.println(user_checking.toString());
+                        Account acc = new Checking(user, amount, dateOpen, directDeposit);
+                        System.out.println(acc.toString());
 
                     } else if (command.equals("OS")) {
                         System.out.println("Open a new Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
-                        Boolean isLoyal = Boolean.parseBoolean(inputArr[4]);
+                        double amount = Double.parseDouble(inputArr[3]);
+                        String date = inputArr[4];
+                        String splitDate[] = date.split("/");
+                            int month = Integer.parseInt(splitDate[0]);
+                            int day = Integer.parseInt(splitDate[1]);
+                            int year = Integer.parseInt(splitDate[2]);
+                        Date dateOpen = new Date(year, month, day);
+                        Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
-                        Savings user_savings = new Savings(isLoyal);
+                        Account acc = new Savings(user, amount, dateOpen, isLoyal);
 
                     } else if (command.equals("OM")) {
                         System.out.println("Open a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         int amount = Integer.parseInt(inputArr[3]);
+                        String date = inputArr[4];
+                        String splitDate[] = date.split("/");
+                        int month = Integer.parseInt(splitDate[0]);
+                        int day = Integer.parseInt(splitDate[1]);
+                        int year = Integer.parseInt(splitDate[2]);
+                        Date dateOpen = new Date(year, month, day);
                         Profile user = new Profile(firstName, lastName);
-                        MoneyMarket userMM = new MoneyMarket(amount);
+                        Account acc = new MoneyMarket(user, amount, dateOpen);
                     }
 
                     // D commands – deposit funds to an existing account

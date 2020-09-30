@@ -8,7 +8,7 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
-    public Account (Profile h, double b, Date d)
+    public Account(Profile h, double b, Date d)
     {
         this.holder = h;
         this.balance = b;
@@ -27,8 +27,6 @@ public abstract class Account {
 
     @Override
     public String toString() {
-
-        String dateOpen = "filler";
         return (holder + " " + "$" + balance + " " + dateOpen.toString());
     }
 
