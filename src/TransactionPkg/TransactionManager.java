@@ -78,6 +78,8 @@ public class TransactionManager {
                         Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accS = new Savings(user, amount, dateOpen, isLoyal);
+                        database.add(accS);
+                        System.out.println(accS.toString());
 
                     } else if (command.equals("OM")) {
                         System.out.println("Open a new Money Market Account");
@@ -92,6 +94,8 @@ public class TransactionManager {
                         Date dateOpen = new Date(year, month, day);
                         Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
+                        database.add(accM);
+                        System.out.println(accM.toString());
                     }
 
                     // D commands – deposit funds to an existing account
@@ -139,7 +143,7 @@ public class TransactionManager {
                     // P commands – print the list of accounts or print account statements
                     else if (command.equals("PA")) {
                         System.out.println("Print the list of accounts in the database");
-
+                        database.printAccounts();
 
                     } else if (command.equals("PD")) {
                         System.out.println("Calculate the monthly interest fees, print account statements" +

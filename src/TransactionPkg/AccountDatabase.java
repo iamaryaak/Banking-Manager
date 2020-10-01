@@ -36,7 +36,6 @@ public class AccountDatabase {
             }
             accounts = moreAcc;
         }
-
     }
 
     public boolean add(Account account) {
@@ -82,6 +81,17 @@ public class AccountDatabase {
     }
 
     public void printAccounts() {
+
+        if (size == 0)
+        {
+            System.out.println("There are no accounts in the database");
+        }
+
+        else {
+            for (int i = 0; i < size; i++) {
+                System.out.println(accounts[i].toString());
+            }
+        }
     }
 
 }
