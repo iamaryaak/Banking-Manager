@@ -6,6 +6,7 @@ public class Savings extends Account {
 
     public Savings (Profile user, double amount, Date dateOpen, boolean i){
         super(user, amount, dateOpen);
+        acc_type = "OS";
         this.isLoyal = i;
     }
 

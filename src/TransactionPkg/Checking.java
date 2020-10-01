@@ -9,6 +9,7 @@ public class Checking extends Account {
 
     public Checking(Profile user, double amount, Date dateOpen, boolean d) {
         super(user, amount, dateOpen);
+        acc_type = "OC";
         this.directDeposit = d;
     }
 

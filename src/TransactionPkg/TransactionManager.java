@@ -62,7 +62,7 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Account accC = new Checking(user, amount, dateOpen, directDeposit);
                         database.add(accC);
-                        System.out.println(accC.toString());
+
 
                     } else if (command.equals("OS")) {
                         System.out.println("Open a new Savings Account");
@@ -79,7 +79,7 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Account accS = new Savings(user, amount, dateOpen, isLoyal);
                         database.add(accS);
-                        System.out.println(accS.toString());
+
 
                     } else if (command.equals("OM")) {
                         System.out.println("Open a new Money Market Account");
@@ -95,7 +95,7 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
                         database.add(accM);
-                        System.out.println(accM.toString());
+
                     }
 
                     // D commands – deposit funds to an existing account

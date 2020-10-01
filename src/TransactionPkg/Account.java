@@ -10,6 +10,8 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
+    public String acc_type;
+
     public Account(Profile h, double b, Date d)
     {
         this.holder = h;
@@ -30,11 +32,21 @@ public abstract class Account {
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.00");
-
         // i.e. *Checking*John Doe* $500.00*1/1/2010*direct deposit account*
-        // need to figure out how to differentiate account types here
+        // maybe this a valid way to do this?
 
-        return (holder + " " + "$" + df.format(balance) + " " + dateOpen.toString());
+        String out = "";
+        if (acc_type == "OC")
+        {
+            out = "*Checking*" + holder + "* "+ "$" + df.format(balance) + "*" + dateOpen.toString() + "*direct deposit account*";
+        }
+
+        else if (acc_type == "OS")
+        {
+            out = "*Savings*" + holder + "* " + "$" + df.format(balance) + "*"+ dateOpen.toString() +"*special Savings account*";
+        }
+
+        return out;
     }
 
     public abstract double monthlyInterest();
