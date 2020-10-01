@@ -4,16 +4,14 @@ public class AccountDatabase {
 
     private Account[] accounts;
     private int size;
-    private int capacity;
 
     /**
      * Default constructor for AccountDatabase class
      * Initializes variables to starting values as described below to create an Accounts Database
      */
     public AccountDatabase(){
-        this.capacity = 5;
         this.size = 0;
-        this.accounts = new Account[capacity];
+        this.accounts = new Account[5];
     }
 
     /**
@@ -28,10 +26,11 @@ public class AccountDatabase {
 
     private void grow() {
 
+        int capacity = 0;
+        capacity = accounts.length;
         // if the size of the database is 5, increase the capacity by 5
-        if (size == capacity) {
-            capacity += 5;
-            Account[] moreAcc = new Account[capacity];
+        if (size == accounts.length) {
+            Account[] moreAcc = new Account[capacity + 5];
             for (int i = 0; i < size; i++) {
                 moreAcc[i] = accounts[i];
             }
@@ -48,7 +47,7 @@ public class AccountDatabase {
 
         // just to test if it work
             System.out.println("Account added to the database");
-            System.out.println("Capacity: " + capacity);
+            System.out.println("Capacity: " + accounts.length);
             System.out.println("Size: " + size);
 
         return false;
