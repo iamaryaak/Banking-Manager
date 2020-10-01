@@ -35,6 +35,8 @@ public abstract class Account {
         // i.e. *Checking*John Doe* $500.00*1/1/2010*direct deposit account*
         // maybe this a valid way to do this?
 
+        // if(this instanceof Checking) <---- THE REAL WAY BOI
+
         String out = "";
         if (acc_type == "OC")
         {
