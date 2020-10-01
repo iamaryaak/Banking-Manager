@@ -10,8 +10,6 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
-    public String acc_type;
-
     public Account(Profile h, double b, Date d)
     {
         this.holder = h;
@@ -38,14 +36,14 @@ public abstract class Account {
         // if(this instanceof Checking) <---- THE REAL WAY BOI
 
         String out = "";
-        if (acc_type == "OC")
+        if (this instanceof Checking)
         {
-            out = "*Checking*" + holder + "* "+ "$" + df.format(balance) + "*" + dateOpen.toString() + "*direct deposit account*";
+            out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) + "*" + dateOpen.toString() + "*direct deposit account*");
         }
 
-        else if (acc_type == "OS")
+        else if (this instanceof Savings)
         {
-            out = "*Savings*" + holder + "* " + "$" + df.format(balance) + "*"+ dateOpen.toString() +"*special Savings account*";
+            out = ("*Savings*" + holder + "* " + "$" + df.format(balance) + "*"+ dateOpen.toString() +"*special Savings account*");
         }
 
         return out;

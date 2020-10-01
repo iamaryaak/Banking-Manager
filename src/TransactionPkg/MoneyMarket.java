@@ -6,7 +6,7 @@ public class MoneyMarket extends Account {
 
     public MoneyMarket (Profile user, double amount, Date dateOpen){
         super(user, amount, dateOpen);
-        acc_type = "OM";
+
 
     }
 
