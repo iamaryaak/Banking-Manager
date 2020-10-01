@@ -30,6 +30,10 @@ public abstract class Account {
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.00");
+
+        // i.e. *Checking*John Doe* $500.00*1/1/2010*direct deposit account*
+        // need to figure out how to differentiate account types here
+
         return (holder + " " + "$" + df.format(balance) + " " + dateOpen.toString());
     }
 

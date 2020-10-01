@@ -1,5 +1,7 @@
 package TransactionPkg;
 
+import java.text.DecimalFormat;
+
 public class Checking extends Account {
 
     private boolean directDeposit;
@@ -9,6 +11,7 @@ public class Checking extends Account {
         super(user, amount, dateOpen);
         this.directDeposit = d;
     }
+
 
     @Override
     public double monthlyInterest() {
