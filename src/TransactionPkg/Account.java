@@ -38,12 +38,14 @@ public abstract class Account {
         String out = "";
         if (this instanceof Checking)
         {
-            out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) + "*" + dateOpen.toString() + "*direct deposit account*");
+            out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
+                    "*" + dateOpen.toString() + "*direct deposit account*");
         }
 
         else if (this instanceof Savings)
         {
-            out = ("*Savings*" + holder + "* " + "$" + df.format(balance) + "*"+ dateOpen.toString() +"*special Savings account*");
+            out = ("*Savings*" + holder + "* " + "$" + df.format(balance) +
+                    "*"+ dateOpen.toString() +"*special Savings account*");
         }
 
         return out;

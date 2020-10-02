@@ -58,13 +58,14 @@ public class AccountDatabase {
     }
 
     public boolean deposit(Account account, double amount) {
-        //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
+
         return false;
     }
 
     public int withdrawal(Account account, double amount) {
         return 0;
     }
+    //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
 
     private void sortByDateOpen() {
         //sort in ascending order
