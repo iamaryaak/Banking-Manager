@@ -32,14 +32,13 @@ public abstract class Account {
         DecimalFormat df = new DecimalFormat("#.00");
         // i.e. *Checking*John Doe* $500.00*1/1/2010*direct deposit account*
         // maybe this a valid way to do this?
-
         // if(this instanceof Checking) <---- THE REAL WAY BOI
 
         String out = "";
         if (this instanceof Checking)
         {
             out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
-                    "*" + dateOpen.toString() + "*direct deposit account*");
+                    "*" + dateOpen.toString() + " " + "what's supposed to be a bool");
         }
 
         else if (this instanceof Savings)
