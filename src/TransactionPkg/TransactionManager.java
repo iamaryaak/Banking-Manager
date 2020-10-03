@@ -104,6 +104,8 @@ public class TransactionManager {
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         String amount = inputArr[3];
+                        Profile user = new Profile(firstName, lastName);;
+                      
 
                     } else if (command.equals("DS")) {
                         System.out.println("Deposit to a Savings Account");

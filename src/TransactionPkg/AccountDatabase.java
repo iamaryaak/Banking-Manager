@@ -21,7 +21,17 @@ public class AccountDatabase {
      */
     private int find(Account account) {
 
-        return 0;
+        int index = -10; // starter value for index
+
+        for (int i = 0; i < size; i++) {
+            if (accounts[i].equals(account)) {
+                // you found the account
+                index = i;
+                break;
+            }
+        }
+
+        return index;
     }
 
     private void grow() {
@@ -58,8 +68,15 @@ public class AccountDatabase {
     }
 
     public boolean deposit(Account account, double amount) {
+        boolean deposit = false;
 
-        return false;
+        if (find(account) >= 0)
+        {
+           System.out.println("Found account and able to deposit money");
+           deposit = true;
+        }
+
+        return deposit;
     }
 
     public int withdrawal(Account account, double amount) {

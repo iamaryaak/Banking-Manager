@@ -37,8 +37,11 @@ public abstract class Account {
         String out = "";
         if (this instanceof Checking)
         {
+
             out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
-                    "*" + dateOpen.toString() + " " + "what's supposed to be a bool");
+                    "*" + dateOpen.toString() + " " + "direct");
+
+            // HELP HELP HELP ^^^ how can we reference the bool for "direct" or not ;_;
         }
 
         else if (this instanceof Savings)

@@ -8,6 +8,7 @@ public class Checking extends Account {
     public Checking(Profile user, double amount, Date dateOpen, boolean d) {
         super(user, amount, dateOpen);
         this.directDeposit = d;
+
     }
 
     @Override
@@ -18,6 +19,9 @@ public class Checking extends Account {
             direct = "true";
 
         }
+
+        // I want this toString to replicate what we did with the date, but without
+        // creating an instance variable.
 
         return direct;
     }
