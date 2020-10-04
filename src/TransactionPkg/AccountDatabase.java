@@ -63,8 +63,26 @@ public class AccountDatabase {
     }
 
     public boolean remove(Account account) {
-        //return false if account doesn't exist
-        return false;
+        boolean removed = false;
+        if (size == 0) {
+            System.out.println("Database is empty");
+            return false;
+        }
+        int index = find(account);
+        if (index != -10) {
+            removed = true;
+            // swap
+            Account temp = accounts[index];
+            accounts[index] = accounts[size - 1];
+            accounts[size - 1] = temp;
+
+            size--;
+            // change last item to null
+            accounts[size] = new Checking(null, 0, null, false) {
+            };
+
+        }
+        return removed;
     }
 
     public boolean deposit(Account account, double amount) {

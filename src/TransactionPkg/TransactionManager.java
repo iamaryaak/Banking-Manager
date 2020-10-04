@@ -33,6 +33,11 @@ public class TransactionManager {
                         System.out.println("Close a new Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        // So the issue here is creating an account with only two parameters
+                        // or maybe do this with the profile
+
 
                     } else if (command.equals("CS")) {
                         System.out.println("Close a new Savings Account");
