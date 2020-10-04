@@ -10,6 +10,8 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
+    protected boolean direct;
+
     public Account(Profile h, double b, Date d)
     {
         this.holder = h;
@@ -27,6 +29,18 @@ public abstract class Account {
         balance = balance + amount;
     }
 
+    public boolean isDirectDeposit(boolean d) {
+        if (d == true)
+        {
+            System.out.println("Is direct-deposit");
+            d = true;
+        }
+        else
+            d = false;
+
+        return d;
+    }
+
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.00");
@@ -37,11 +51,8 @@ public abstract class Account {
         String out = "";
         if (this instanceof Checking)
         {
-
             out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
-                    "*" + dateOpen.toString() + " " + "direct");
-
-            // HELP HELP HELP ^^^ how can we reference the bool for "direct" or not ;_;
+                    "*" + dateOpen.toString() + "\n\n") + isDirectDeposit(direct);
         }
 
         else if (this instanceof Savings)

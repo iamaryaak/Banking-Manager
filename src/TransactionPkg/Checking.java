@@ -12,18 +12,16 @@ public class Checking extends Account {
     }
 
     @Override
-    public String toString() {
-        String direct = "";
+    public boolean isDirectDeposit(boolean d) {
         if (directDeposit == true)
         {
-            direct = "true";
-
+            System.out.println("Is direct-deposit");
+            directDeposit = true;
         }
+        else
+            directDeposit = false;
 
-        // I want this toString to replicate what we did with the date, but without
-        // creating an instance variable.
-
-        return direct;
+        return directDeposit;
     }
 
     @Override
