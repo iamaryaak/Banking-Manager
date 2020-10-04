@@ -10,6 +10,19 @@ public class Savings extends Account {
     }
 
     @Override
+    public String isLoyal() {
+        String saveType;
+        if (isLoyal)
+        {
+            saveType = "*special Savings account*";
+        }
+        else
+            saveType = "";
+
+        return saveType;
+    }
+
+    @Override
     public double monthlyInterest() {
         return 0;
     }

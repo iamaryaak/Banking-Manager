@@ -31,6 +31,7 @@ public abstract class Account {
     public String isDirectDeposit() {
         return null;
     }
+    public String isLoyal() {return null;}
 
     @Override
     public String toString() {
@@ -45,7 +46,7 @@ public abstract class Account {
         else if (this instanceof Savings)
         {
             output = ("*Savings*" + holder + "* " + "$" + df.format(balance) +
-                    "*"+ dateOpen.toString() +"*special Savings account*");
+                    "*"+ dateOpen.toString() + isLoyal());
         }
 
         return output;
