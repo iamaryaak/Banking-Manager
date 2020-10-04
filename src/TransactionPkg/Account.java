@@ -10,8 +10,6 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
-    protected boolean direct;
-
     public Account(Profile h, double b, Date d)
     {
         this.holder = h;
@@ -29,39 +27,27 @@ public abstract class Account {
         balance = balance + amount;
     }
 
-    public boolean isDirectDeposit(boolean d) {
-        if (d == true)
-        {
-            System.out.println("Is direct-deposit");
-            d = true;
-        }
-        else
-            d = false;
-
-        return d;
+    public String isDirectDeposit() {
+        return null;
     }
 
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.00");
-        // i.e. *Checking*John Doe* $500.00*1/1/2010*direct deposit account*
-        // maybe this a valid way to do this?
-        // if(this instanceof Checking) <---- THE REAL WAY BOI
-
-        String out = "";
+        String output = "";
         if (this instanceof Checking)
         {
-            out = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
-                    "*" + dateOpen.toString() + "\n\n") + isDirectDeposit(direct);
+           output = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
+                    "*" + dateOpen.toString() + isDirectDeposit());
         }
 
         else if (this instanceof Savings)
         {
-            out = ("*Savings*" + holder + "* " + "$" + df.format(balance) +
+            output = ("*Savings*" + holder + "* " + "$" + df.format(balance) +
                     "*"+ dateOpen.toString() +"*special Savings account*");
         }
 
-        return out;
+        return output;
     }
 
     public abstract double monthlyInterest();

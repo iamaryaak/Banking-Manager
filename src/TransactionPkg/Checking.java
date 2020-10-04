@@ -12,16 +12,16 @@ public class Checking extends Account {
     }
 
     @Override
-    public boolean isDirectDeposit(boolean d) {
-        if (directDeposit == true)
+    public String isDirectDeposit() {
+        String depositType;
+        if (directDeposit)
         {
-            System.out.println("Is direct-deposit");
-            directDeposit = true;
+            depositType = "*direct deposit account*";
         }
         else
-            directDeposit = false;
+            depositType = "";
 
-        return directDeposit;
+        return depositType;
     }
 
     @Override
