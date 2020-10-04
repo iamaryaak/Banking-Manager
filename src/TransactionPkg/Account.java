@@ -27,6 +27,7 @@ public abstract class Account {
         balance = balance + amount;
     }
 
+    // this is the method that allows polymorphism, it's override is in Checking, dictates checking-type
     public String isDirectDeposit() {
         return null;
     }
