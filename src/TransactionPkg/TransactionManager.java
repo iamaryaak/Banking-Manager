@@ -33,7 +33,11 @@ public class TransactionManager {
                         System.out.println("Close a new Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        double amount = Double.parseDouble(inputArr[3]);
+                        double amount = 0;
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account closeC = new Checking(user, amount, empty, false);
+                        database.remove(closeC);
 
                         // So the issue here is creating an account with only two parameters
                         // or maybe do this with the profile
