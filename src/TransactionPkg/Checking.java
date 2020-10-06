@@ -5,13 +5,13 @@ public class Checking extends Account {
     private boolean directDeposit;
 
 
-    public Checking(Profile user, double amount, Date dateOpen, boolean d) {
-        super(user, amount, dateOpen);
+    public Checking(Profile user, double balance, Date dateOpen, boolean d) {
+        super(user, balance, dateOpen);
         this.directDeposit = d;
 
     }
 
-    @Override
+
     public String isDirectDeposit() {
         String depositType;
         if (directDeposit)

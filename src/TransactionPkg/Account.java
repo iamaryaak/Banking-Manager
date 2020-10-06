@@ -31,7 +31,9 @@ public abstract class Account {
     public String isDirectDeposit() {
         return null;
     }
-    public String isLoyal() {return null;}
+    public String isLoyal() {
+        return null;
+    }
 
     @Override
     public String toString() {

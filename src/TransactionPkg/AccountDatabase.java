@@ -20,28 +20,9 @@ public class AccountDatabase {
      * @return int - finds the index at which the account is
      */
     private int find(Account account) {
+        int index = -10;
 
-        int index = -10; // starter value for index
-        String profileList = "";
-        String curProfile = "";
 
-        for (int i = 0; i < size; i++) {
-
-            curProfile = account.toString();
-            profileList = accounts[i].toString();
-            String[] inputArry1 = curProfile.split("\\*");
-            String[] inputArry2 = profileList.split("\\*");
-            System.out.println(inputArry1[1]);
-            System.out.println(inputArry2[1]);
-            if (inputArry1[2].equals(inputArry2[2])
-                    && inputArry1[0].equals(inputArry2[0])
-                    && (inputArry1.length == inputArry2.length))
-            {
-                index = i;
-                System.out.println("They match");
-                break;
-            }
-        }
 
         return index;
     }
