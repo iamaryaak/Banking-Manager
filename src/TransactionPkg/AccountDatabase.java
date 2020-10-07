@@ -22,7 +22,13 @@ public class AccountDatabase {
     private int find(Account account) {
         int index = -10;
 
-
+        for (int i = 0; i < size; i++) {
+            if (accounts[i].equals(account)) {
+                // you found the item
+                index = i;
+                break;
+            }
+        }
 
         return index;
     }
@@ -62,6 +68,7 @@ public class AccountDatabase {
             return false;
         }
         int index = find(account);
+        System.out.println("Index is : " + index + "------------");
         if (index != -10) {
             removed = true;
             // swap

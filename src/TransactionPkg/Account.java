@@ -1,6 +1,7 @@
 package TransactionPkg;
 
 import java.text.DecimalFormat;
+import java.util.*;
 
 public abstract class Account {
     /**
@@ -10,6 +11,12 @@ public abstract class Account {
     private double balance;
     private Date dateOpen;
 
+    /**
+     * Default Constructor
+     * @param h
+     * @param b
+     * @param d
+     */
     public Account(Profile h, double b, Date d)
     {
         this.holder = h;
@@ -27,6 +34,13 @@ public abstract class Account {
         balance = balance + amount;
     }
 
+    public boolean equals(Account a){
+        if (a != null) {//use instanceof
+            return holder.equals(a.holder) && Double.compare(balance, a.balance) == 0 && a.dateOpen.compareTo(dateOpen) == 0;
+        } else
+            return false;
+    }
+
     // this is the method that allows polymorphism, it's override is in Checking, dictates checking-type
     public String isDirectDeposit() {
         return null;
@@ -35,6 +49,10 @@ public abstract class Account {
         return null;
     }
 
+    /**
+     * Transforms the object into a String while displaying all elements of it
+     * @return String represents the object and its elements
+     */
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.00");
@@ -54,6 +72,12 @@ public abstract class Account {
         return output;
     }
 
+    /**
+     * Abstract methods
+     * @return
+     */
     public abstract double monthlyInterest();
     public abstract double monthlyFee();
+
+
 }

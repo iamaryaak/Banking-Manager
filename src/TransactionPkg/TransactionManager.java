@@ -33,6 +33,7 @@ public class TransactionManager {
                         System.out.println("Close a new Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
+
                         double amount = 0;
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
