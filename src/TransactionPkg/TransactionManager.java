@@ -68,12 +68,12 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
-                        String splitDate[] = date.split("/");
+                        String[] splitDate = date.split("/");
                             int month = Integer.parseInt(splitDate[0]);
                             int day = Integer.parseInt(splitDate[1]);
                             int year = Integer.parseInt(splitDate[2]);
                         Date dateOpen = new Date(year, month, day);
-                        Boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
+                        boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accC = new Checking(user, amount, dateOpen, directDeposit);
                         database.add(accC);
