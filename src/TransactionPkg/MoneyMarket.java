@@ -6,8 +6,6 @@ public class MoneyMarket extends Account {
 
     public MoneyMarket (Profile user, double amount, Date dateOpen){
         super(user, amount, dateOpen);
-
-
     }
 
     @Override
@@ -29,5 +27,7 @@ public class MoneyMarket extends Account {
         return 0;
     }
 
-
+    public int getWithdrawals() {
+        return withdrawals;
+    }
 }

@@ -57,6 +57,7 @@ public abstract class Account {
     {
         return holder;
     }
+
     /**
      * Transforms the object into a String while displaying all elements of it
      * @return String represents the object and its elements

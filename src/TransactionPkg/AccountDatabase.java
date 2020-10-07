@@ -33,6 +33,9 @@ public class AccountDatabase {
         return index;
     }
 
+    /**
+     *
+     */
     private void grow() {
 
         int capacity = 0;
@@ -47,6 +50,11 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Add an account
+     * @param account
+     * @return -
+     */
     public boolean add(Account account) {
         size++;
         grow();
@@ -104,7 +112,7 @@ public class AccountDatabase {
     }
 
     public int withdrawal(Account account, double amount) {
-        int withdrawl = 0;
+        int withdrawal = 0;
         int index = find(account);
         int count = 0;
 
@@ -113,20 +121,21 @@ public class AccountDatabase {
             if (amount > accounts[index].getBalance())
             {
                 System.out.print("Insufficient funds.");
-                withdrawl = 1;
+                withdrawal = 1;
             }
             else
             {
                 accounts[index].debit(amount);
-                withdrawl = 0;
+                withdrawal = 0;
+                count++;
             }
         }
         else
         {
-            withdrawl = -1;
+            withdrawal = -1;
             System.out.println("Account does not exist.");
         }
-        return withdrawl;
+        return withdrawal;
     }
     //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
 
