@@ -18,7 +18,13 @@ public class Date implements Comparable<Date> {
      * @return
      */
     public int compareTo(Date date){
-        return 0;
+        if(date.day == this.day && date.year == this.year && date.month == this.month){
+            return 0;
+        }else if(date.day < this.day && date.year < this.year && date.month < this.month){
+            return -1;
+        }else{
+            return 1;
+        }
     } //return 0, 1, or -1
 
 
