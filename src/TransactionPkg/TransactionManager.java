@@ -104,7 +104,7 @@ public class TransactionManager {
                         System.out.println("Open a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        int amount = Integer.parseInt(inputArr[3]);
+                        double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
                         String splitDate[] = date.split("/");
                             int month = Integer.parseInt(splitDate[0]);
@@ -122,21 +122,34 @@ public class TransactionManager {
                         System.out.println("Deposit to a Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
-                        Profile user = new Profile(firstName, lastName);;
-                      
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account depositC = new Checking(user, amount, empty, false);
+                        database.deposit(depositC, amount);
 
                     } else if (command.equals("DS")) {
                         System.out.println("Deposit to a Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account depositS = new Savings(user, amount, empty, false);
+                        database.deposit(depositS, amount);
 
                     } else if (command.equals("DM")) {
                         System.out.println("Deposit to a Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account depositM = new MoneyMarket(user, amount, empty);
+                        database.deposit(depositM, amount);
 
                     }
 

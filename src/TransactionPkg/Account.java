@@ -26,12 +26,15 @@ public abstract class Account {
 
     public void debit(double amount) {
         //decrease the balance by amount
-        balance = balance - amount;
+        this.balance -= amount;
     }
 
     public void credit(double amount) {
-        // increase the balance by amount
-        balance = balance + amount;
+        this.balance += amount;
+    }
+
+    public double getBalance() {
+        return balance;
     }
 
     public boolean equals(Account a){

@@ -11,7 +11,6 @@ public class Checking extends Account {
 
     }
 
-
     public String isDirectDeposit() {
         String depositType;
         if (directDeposit)

@@ -87,10 +87,18 @@ public class AccountDatabase {
     public boolean deposit(Account account, double amount) {
         boolean deposit = false;
 
+        int index = find(account);
+
         if (find(account) >= 0)
         {
-           System.out.println("Found account and able to deposit money");
-           deposit = true;
+            accounts[index].credit(amount);
+            System.out.println("Found account and able to deposit money");
+            deposit = true;
+        }
+        else
+        {
+            deposit = false;
+            System.out.println("Account does not exist");
         }
 
         return deposit;
