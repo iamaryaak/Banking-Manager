@@ -39,10 +39,6 @@ public class TransactionManager {
                         Account closeC = new Checking(user, 0, empty, false);
                         database.remove(closeC);
 
-                        // So the issue here is creating an account with only two parameters
-                        // or maybe do this with the profile
-
-
                     } else if (command.equals("CS")) {
                         System.out.println("Close a new Savings Account");
                         String firstName = inputArr[1];
@@ -158,19 +154,34 @@ public class TransactionManager {
                         System.out.println("Withdraw from a Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account withC = new Checking(user, amount, empty, false);
+                        database.withdrawal(withC, amount);
 
                     } else if (command.equals("WS")) {
                         System.out.println("Withdraw from a Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account withS = new Savings(user, amount, empty, false);
+                        database.withdrawal(withS, amount);
 
                     } else if (command.equals("WM")) {
                         System.out.println("Withdraw from a Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
-                        String amount = inputArr[3];
+                        double amount = Double.parseDouble(inputArr[3]);
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account withM = new MoneyMarket(user, amount, empty);
+                        database.withdrawal(withM, amount);
 
                     }
 

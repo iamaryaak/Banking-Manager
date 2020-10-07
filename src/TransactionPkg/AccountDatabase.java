@@ -86,7 +86,6 @@ public class AccountDatabase {
 
     public boolean deposit(Account account, double amount) {
         boolean deposit = false;
-
         int index = find(account);
 
         if (find(account) >= 0)
@@ -105,7 +104,28 @@ public class AccountDatabase {
     }
 
     public int withdrawal(Account account, double amount) {
-        return 0;
+        int withdrawl = 0;
+        int index = find(account);
+
+        if(find(account) >= 0)
+        {
+            if (amount > accounts[index].getBalance())
+            {
+                System.out.print("Insufficient funds.");
+                withdrawl = 1;
+            }
+            else
+            {
+                accounts[index].debit(amount);
+                withdrawl = 0;
+            }
+        }
+        else
+        {
+            withdrawl = -1;
+            System.out.println("Account does not exist.");
+        }
+        return withdrawl;
     }
     //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
 
