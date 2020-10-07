@@ -11,6 +11,15 @@ public class MoneyMarket extends Account {
     }
 
     @Override
+    public boolean equals(Account a) {
+        boolean instance = false;
+        if (a instanceof MoneyMarket && super.equals(a))
+            instance = true;
+
+        return instance;
+    }
+
+    @Override
     public double monthlyInterest() {
         return 0;
     }

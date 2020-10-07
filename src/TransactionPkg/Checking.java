@@ -25,6 +25,15 @@ public class Checking extends Account {
     }
 
     @Override
+    public boolean equals(Account a) {
+        boolean instance = false;
+        if (a instanceof Checking && super.equals(a))
+            instance = true;
+
+        return instance;
+    }
+
+    @Override
     public double monthlyInterest() {
         return 0;
     }
@@ -33,6 +42,7 @@ public class Checking extends Account {
     public double monthlyFee() {
         return 0;
     }
+
 
 
 }

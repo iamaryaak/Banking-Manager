@@ -34,10 +34,9 @@ public class TransactionManager {
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
-                        double amount = 0;
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
-                        Account closeC = new Checking(user, amount, empty, false);
+                        Account closeC = new Checking(user, 0, empty, false);
                         database.remove(closeC);
 
                         // So the issue here is creating an account with only two parameters
@@ -49,10 +48,20 @@ public class TransactionManager {
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account closeS = new Savings(user, 0, empty, false);
+                        database.remove(closeS);
+
                     } else if (command.equals("CM")) {
                         System.out.println("Close a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
+
+                        Profile user = new Profile(firstName, lastName);
+                        Date empty = new Date(0,0,0);
+                        Account closeM = new MoneyMarket(user, 0, empty);
+                        database.remove(closeM);
 
                     }
                     else if (command.equals("OC")) {

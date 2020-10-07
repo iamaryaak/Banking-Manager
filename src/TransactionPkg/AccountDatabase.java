@@ -78,8 +78,7 @@ public class AccountDatabase {
 
             size--;
             // change last item to null
-            accounts[size] = new Checking(null, 0, null, false) {
-            };
+            accounts[size] = null;
 
         }
         return removed;

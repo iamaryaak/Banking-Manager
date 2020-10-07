@@ -35,8 +35,9 @@ public abstract class Account {
     }
 
     public boolean equals(Account a){
-        if (a != null) {//use instanceof
-            return holder.equals(a.holder) && Double.compare(balance, a.balance) == 0 && a.dateOpen.compareTo(dateOpen) == 0;
+        if (a != null) {
+            return this.holder.getFname().equals(a.getProfile().getFname())
+                    && this.holder.getLname().equals((a.getProfile().getLname()));
         } else
             return false;
     }
@@ -49,6 +50,10 @@ public abstract class Account {
         return null;
     }
 
+    public Profile getProfile()
+    {
+        return holder;
+    }
     /**
      * Transforms the object into a String while displaying all elements of it
      * @return String represents the object and its elements
@@ -69,6 +74,12 @@ public abstract class Account {
                     "*"+ dateOpen.toString() + isLoyal());
         }
 
+        else if (this instanceof MoneyMarket)
+        {
+            output = ("*Money Market*" + holder + "* " + "$" + df.format(balance) +
+                    "*"+ dateOpen.toString()) /*here there will be count++ of withdrawls*/ ;
+        }
+
         return output;
     }
 
@@ -77,6 +88,7 @@ public abstract class Account {
      * @return
      */
     public abstract double monthlyInterest();
+    // I got the monthly interest rate conversion for all three types of accounts
     public abstract double monthlyFee();
 
 
