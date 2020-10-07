@@ -76,7 +76,12 @@ public class TransactionManager {
                         Boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accC = new Checking(user, amount, dateOpen, directDeposit);
-                        database.add(accC);
+                        if (database.add(accC) == false)
+                        {
+                            System.out.println("Account is already in the database.");
+                        }
+                        else
+                            System.out.println("Account opened and added to the database.");
 
 
                     } else if (command.equals("OS")) {
@@ -93,7 +98,12 @@ public class TransactionManager {
                         Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accS = new Savings(user, amount, dateOpen, isLoyal);
-                        database.add(accS);
+                        if (database.add(accS) == false)
+                        {
+                            System.out.println("Account is already in the database.");
+                        }
+                        else
+                            System.out.println("Account opened and added to the database");
 
 
                     } else if (command.equals("OM")) {
@@ -109,7 +119,12 @@ public class TransactionManager {
                         Date dateOpen = new Date(year, month, day);
                         Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
-                        database.add(accM);
+                        if (database.add(accM) == false)
+                        {
+                            System.out.println("Account is already in the database.");
+                        }
+                        else
+                            System.out.println("Account opened and added to the database");
 
                     }
 
