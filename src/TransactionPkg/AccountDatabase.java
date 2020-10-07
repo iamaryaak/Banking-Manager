@@ -69,6 +69,11 @@ public class AccountDatabase {
         return false;
     }
 
+    /**
+     * Remove an account from the Accounts array
+     * @param account
+     * @return boolean if account has been removed or not
+     */
     public boolean remove(Account account) {
         boolean removed = false;
         if (size == 0) {
