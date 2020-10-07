@@ -17,7 +17,7 @@ public class AccountDatabase {
     /**
      *
      * @param account
-     * @return int - finds the index at which the account is
+     * @return int - finds the index at which the account is and returns that value
      */
     private int find(Account account) {
         int index = -10;
@@ -33,6 +33,9 @@ public class AccountDatabase {
         return index;
     }
 
+    /**
+     *
+     */
     private void grow() {
 
         int capacity = 0;
@@ -47,24 +50,36 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Adds an account to the database
+     * @param account
+     * @return - returns a boolean that shows whether or not an account already exists,
+     * if it doesn't an account is added.
+     */
     public boolean add(Account account) {
-        size++;
-        grow();
-        // adding an account to the database
-        accounts[size-1] = account;
 
-        // just to test if it work
-            System.out.println("Account added to the database");
-            System.out.println("Capacity: " + accounts.length);
-            System.out.println("Size: " + size);
+        boolean addAcc;
 
-        return false;
+        if(find(account) >= 0)
+        {
+            addAcc = false;
+        }
+
+        else{
+            size++;
+            grow();
+            // adding an account to the database
+            accounts[size-1] = account;
+            addAcc = true;
+        }
+
+        return addAcc;
     }
 
     /**
      * Remove an account from the Accounts array
      * @param account
-     * @return boolean if account has been removed or not
+     * @return boolean, returns true or false if remove is successful
      */
     public boolean remove(Account account) {
         boolean removed = false;
@@ -73,7 +88,6 @@ public class AccountDatabase {
             return false;
         }
         int index = find(account);
-        System.out.println("Index is : " + index + "------------");
         if (index != -10) {
             removed = true;
             // swap
@@ -86,6 +100,11 @@ public class AccountDatabase {
             accounts[size] = null;
 
         }
+        else {
+            removed = false;
+            System.out.println("The account does not exist");
+        }
+
         return removed;
     }
 
@@ -109,7 +128,7 @@ public class AccountDatabase {
     }
 
     public int withdrawal(Account account, double amount) {
-        int withdrawl = 0;
+        int withdrawal = 0;
         int index = find(account);
         int count = 0;
 
@@ -118,20 +137,21 @@ public class AccountDatabase {
             if (amount > accounts[index].getBalance())
             {
                 System.out.print("Insufficient funds.");
-                withdrawl = 1;
+                withdrawal = 1;
             }
             else
             {
                 accounts[index].debit(amount);
-                withdrawl = 0;
+                withdrawal = 0;
+                count++;
             }
         }
         else
         {
-            withdrawl = -1;
+            withdrawal = -1;
             System.out.println("Account does not exist.");
         }
-        return withdrawl;
+        return withdrawal;
     }
     //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
 
