@@ -106,6 +106,7 @@ public class AccountDatabase {
     public int withdrawal(Account account, double amount) {
         int withdrawl = 0;
         int index = find(account);
+        int count = 0;
 
         if(find(account) >= 0)
         {
