@@ -1,17 +1,18 @@
 package TransactionPkg;
 
 /**
- *
+ * A subclass of Account, this class holds the values unique to the Checking account type
  */
 public class Checking extends Account {
 
     /**
-     *
+     * Declares variable private to class
      */
     private boolean directDeposit;
 
     /**
-     *
+     * Default constructor of the Checking class, uses super to send common values to Account, initializes
+     * unique class variable
      * @param user
      * @param balance
      * @param dateOpen
@@ -24,8 +25,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Used in toString below, this method adds a String based on the Checking account type
+     * @return String - the deposit type
      */
     public String isDirectDeposit() {
         String depositType;
@@ -40,9 +41,9 @@ public class Checking extends Account {
     }
 
     /**
-     *
+     * Override method for the equals method in Account, used for the specific instance of this subclass
      * @param a
-     * @return
+     * @return Boolean - whether or not the accounts are equal and the same Account type
      */
     @Override
     public boolean equals(Account a) {
@@ -54,8 +55,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Override method transforms the object into a String while displaying all elements of it
+     * @return String - specific for this subclass inheriting the common values from Account
      */
     @Override
     public String toString(){
@@ -63,8 +64,8 @@ public class Checking extends Account {
     }
 
     /**
-     *
-     * @return
+     * Dictates the appropriate monthly interest for this Account type
+     * @return double - monthly interest
      */
     @Override
     public double monthlyInterest() {
@@ -73,7 +74,7 @@ public class Checking extends Account {
 
 
     /**
-     *
+     * Dictates the appropriate monthly fee for this Account type
      * @return
      */
     @Override
