@@ -26,7 +26,7 @@ public class Checking extends Account {
     }
 
     /**
-     * Used in toString below, this method adds a String based on the Checking account type
+     * Helper method used in toString below, this method adds a String based on the Checking account type
      * @return String - the deposit type
      */
     public String isDirectDeposit() {
