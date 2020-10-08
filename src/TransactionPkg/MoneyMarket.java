@@ -36,8 +36,7 @@ public class MoneyMarket extends Account {
 
     @Override
     public double monthlyFee() {
-        System.out.println("NUMBER OF WITHDRAWALS ________ " + withdrawals);
-        if(withdrawals > 7){
+        if(withdrawals > 6){
             return 12.00;
         }else{
             return 0.00;
