@@ -5,6 +5,7 @@ public class AccountDatabase {
     private Account[] accounts;
     private int size;
 
+
     /**
      * Default constructor for AccountDatabase class
      * Initializes variables to starting values as described below to create an Accounts Database
@@ -130,7 +131,7 @@ public class AccountDatabase {
     }
 
     public int withdrawal(Account account, double amount) {
-        int withdrawal = 0;
+        int withdrawals = 0;
         int index = find(account);
         int count = 0;
 
@@ -139,21 +140,21 @@ public class AccountDatabase {
             if (amount > accounts[index].getBalance())
             {
                 System.out.print("Insufficient funds.");
-                withdrawal = 1;
+                withdrawals = 1;
             }
             else
             {
                 accounts[index].debit(amount);
-                withdrawal = 0;
+                withdrawals = 0;
                 count++;
             }
         }
         else
         {
-            withdrawal = -1;
+            withdrawals = -1;
             System.out.println("Account does not exist.");
         }
-        return withdrawal;
+        return withdrawals;
     }
     //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
 
