@@ -203,7 +203,7 @@ public class AccountDatabase {
         }else {
             DecimalFormat df = new DecimalFormat("#.00");
             sortByDateOpen();
-            System.out.println("--Printing statements by date opened--");
+            System.out.println("--Printing statements by last name--");
             for (int i = 0; i < size; i++) {
                 System.out.println("\n" + accounts[i].toString());
                 // get interest, fee, new balance
@@ -213,12 +213,20 @@ public class AccountDatabase {
                 double fee = accounts[i].monthlyFee();
 
                 // Create conditions to print out fees per account type
-                if (accounts[i].getBalance() >= 1500 && accounts[i] instanceof Checking) {
-                    fee = 0.00;
-                } else if (accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings) {
-                    fee = 0.00;
-                } else if (accounts[i].getBalance() >= 2500 && accounts[i] instanceof MoneyMarket) {
-                    fee = 0.00;
+                if ( accounts[i] instanceof Checking) {
+
+                    if(accounts[i].getBalance() >= 1500) {
+                        fee = 0.00;
+                    }
+                } else if (accounts[i] instanceof Savings) {
+
+                    if(accounts[i].getBalance() >= 300){
+                        fee = 0.00;
+                    }
+                } else if (accounts[i] instanceof MoneyMarket) {
+                    if(accounts[i].getBalance() >= 2500) {
+                        fee = 0.00;
+                    }
                 }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
@@ -249,21 +257,18 @@ public class AccountDatabase {
                 double fee = accounts[i].monthlyFee();
 
                 // Create conditions to print out fees per account type
-                if (accounts[i].getBalance() >= 1500 && accounts[i] instanceof Checking) {
-                    fee = 0.00;
-                } else if (accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings) {
-                    fee = 0.00;
+                if ( accounts[i] instanceof Checking) {
+                    if(accounts[i].getBalance() >= 1500) {
+                        fee = 0.00;
+                    }
+                } else if (accounts[i] instanceof Savings) {
+                    if(accounts[i].getBalance() >= 300){
+                        fee = 0.00;
+                    }
                 } else if (accounts[i] instanceof MoneyMarket) {
-
-                    if(accounts[i].getBalance() < 2500){
-                        fee = accounts[i].monthlyFee();
-                    }
-                    else if (accounts[i].getBalance() >= 2500)
-                    {
-                        fee = accounts[i].monthlyFee();
-                    }
-
-                }
+                    if(accounts[i].getBalance() >= 2500) {
+                        fee = 0.00;
+                    }                }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
                 accounts[i].setBalance(newBal);
