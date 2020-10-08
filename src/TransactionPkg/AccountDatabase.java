@@ -133,21 +133,22 @@ public class AccountDatabase {
     public int withdrawal(Account account, double amount) {
         int withdrawals = 0;
         int index = find(account);
-        int count = 0;
 
         if(find(account) >= 0)
         {
             if (amount > accounts[index].getBalance())
             {
-                System.out.print("Insufficient funds.");
+                System.out.println("Insufficient funds.");
                 withdrawals = 1;
             }
             else
             {
                 accounts[index].debit(amount);
                 withdrawals = 0;
-                count++;
-                accounts[index].setWithdrawals(count);
+                if(accounts[index] instanceof MoneyMarket)
+                {
+                    ((MoneyMarket) accounts[index]).countWithdrawals();
+                }
             }
         }
         else
@@ -168,7 +169,6 @@ public class AccountDatabase {
         //sort in ascending order
 
     }
-
 
     /**
      * print monthly interest

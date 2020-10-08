@@ -9,7 +9,6 @@ public class Savings extends Account {
         this.isLoyal = i;
     }
 
-    @Override
     public String isLoyal() {
         String saveType;
         if (isLoyal)
@@ -29,6 +28,12 @@ public class Savings extends Account {
             instance = true;
 
         return instance;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "*Savings*" + super.toString() + isLoyal();
     }
 
     @Override

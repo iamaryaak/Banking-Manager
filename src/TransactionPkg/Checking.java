@@ -33,6 +33,11 @@ public class Checking extends Account {
     }
 
     @Override
+    public String toString(){
+        return "*Checking*" + super.toString() + isDirectDeposit();
+    }
+
+    @Override
     public double monthlyInterest() {
         return 0;
     }
