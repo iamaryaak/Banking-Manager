@@ -98,8 +98,19 @@ public class TransactionManager {
                             int month = Integer.parseInt(splitDate[0]);
                             int day = Integer.parseInt(splitDate[1]);
                             int year = Integer.parseInt(splitDate[2]);
+                        // check if date is valid
                         Date dateOpen = new Date(year, month, day);
-                        Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
+                        if(dateOpen.isValid()){
+                            boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
+                            Profile user = new Profile(firstName, lastName);
+                            Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                            if (database.add(accC) == false)
+                            {
+                                System.out.println("Account is already in the database.");
+                            }
+                            else
+                                System.out.println("Account opened and added to the database.");
+                        }                        Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accS = new Savings(user, amount, dateOpen, isLoyal);
                         if (database.add(accS) == false)
@@ -120,8 +131,19 @@ public class TransactionManager {
                             int month = Integer.parseInt(splitDate[0]);
                             int day = Integer.parseInt(splitDate[1]);
                             int year = Integer.parseInt(splitDate[2]);
+                        // check if date is valid
                         Date dateOpen = new Date(year, month, day);
-                        Profile user = new Profile(firstName, lastName);
+                        if(dateOpen.isValid()){
+                            boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
+                            Profile user = new Profile(firstName, lastName);
+                            Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                            if (database.add(accC) == false)
+                            {
+                                System.out.println("Account is already in the database.");
+                            }
+                            else
+                                System.out.println("Account opened and added to the database.");
+                        }                        Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
                         if (database.add(accM) == false)
                         {
