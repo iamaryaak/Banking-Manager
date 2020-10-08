@@ -98,8 +98,6 @@ public class TransactionManager {
                         // check if date is valid
                         Date dateOpen = new Date(year, month, day);
                         if(dateOpen.isValid()){
-                            boolean checkBoolean = Boolean.parseBoolean(inputArr[5]);
-                            System.out.println("BOOLEAN HERE IS ------ " + checkBoolean);
                             boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                             Profile user = new Profile(firstName, lastName);
                             Account accC = new Checking(user, amount, dateOpen, directDeposit);
@@ -122,7 +120,8 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
-
+                        boolean checkBoolean = Boolean.parseBoolean(inputArr[5]);
+                        System.out.println("BOOLEAN HERE IS ------ " + checkBoolean);
 
                         String[] splitDate = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
