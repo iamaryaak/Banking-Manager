@@ -147,6 +147,7 @@ public class AccountDatabase {
                 accounts[index].debit(amount);
                 withdrawals = 0;
                 count++;
+                accounts[index].setWithdrawals(count);
             }
         }
         else

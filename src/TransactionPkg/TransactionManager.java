@@ -140,9 +140,9 @@ public class TransactionManager {
                         // check if date is valid
                         Date dateOpen = new Date(year, month, day);
                         if(dateOpen.isValid()){
-                            boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
+
                             Profile user = new Profile(firstName, lastName);
-                            Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                            Account accC = new MoneyMarket(user, amount, dateOpen);
                             if (database.add(accC) == false)
                             {
                                 System.out.println("Account is already in the database.");

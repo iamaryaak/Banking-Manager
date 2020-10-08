@@ -4,11 +4,15 @@ public class MoneyMarket extends Account {
 
     private int withdrawals;
 
-    public MoneyMarket (Profile user, double amount, Date dateOpen, int withdrawals){
+    public MoneyMarket (Profile user, double amount, Date dateOpen){
         super(user, amount, dateOpen);
-        this.withdrawals = 0;
     }
 
+
+    public int getWithdrawals() {
+        setWithdrawals(withdrawals);
+        return withdrawals;
+    }
 
     @Override
     public boolean equals(Account a) {
