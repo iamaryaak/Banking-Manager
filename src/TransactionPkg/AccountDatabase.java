@@ -201,10 +201,13 @@ public class AccountDatabase {
         {
             System.out.println("Database is empty.");
         }else {
-            DecimalFormat df = new DecimalFormat();
+            DecimalFormat df = new DecimalFormat("#.00");
             sortByDateOpen();
+            System.out.println("--Printing statements by date opened--");
             for (int i = 0; i < size; i++) {
                 System.out.println("\n" + accounts[i].toString());
+                // get interest, fee, new balance
+                // get account type
                 double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
                 System.out.println("-interest: $ " + df.format(interest));
                 double fee = accounts[i].monthlyFee();
@@ -222,7 +225,9 @@ public class AccountDatabase {
                 System.out.println("-new balance: $ " + df.format(newBal));
 
                 System.out.println();
+
             }
+            System.out.println("--end of printing--");
         }
     }
 
