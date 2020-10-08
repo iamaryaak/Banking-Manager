@@ -44,6 +44,15 @@ public class Date implements Comparable<Date> {
      */
     public boolean isValid() {
         // check if date is valid
+        boolean val = false;
+        // check if year is valid
+        if(this.year == 2012 || this.year == 2016 || this.year == 2020){
+            // leap year
+            if(this.month == 2 && this.day == 29{
+                val = true;
+            }
+        }
+
         return false;
     }
 }
