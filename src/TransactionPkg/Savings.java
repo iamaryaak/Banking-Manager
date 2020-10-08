@@ -32,6 +32,12 @@ public class Savings extends Account {
     }
 
     @Override
+    public String toString()
+    {
+        return "*Savings*" + super.toString() + isLoyal();
+    }
+
+    @Override
     public double monthlyInterest() {
         return 0;
     }

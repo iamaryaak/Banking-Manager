@@ -46,16 +46,6 @@ public abstract class Account {
             return false;
     }
 
-
-
-    // this is the method that allows polymorphism, it's override is in Checking, dictates checking-type
-    public String isDirectDeposit() {
-        return null;
-    }
-    public String isLoyal() {
-        return null;
-    }
-
     public Profile getProfile()
     {
         return holder;
@@ -66,32 +56,13 @@ public abstract class Account {
      * Transforms the object into a String while displaying all elements of it
      * @return String represents the object and its elements
      */
-    @Override
-    public String toString() {
+
+    public String toString(){
         DecimalFormat df = new DecimalFormat("#.00");
-        String output = "";
-        if (this instanceof Checking)
-        {
-           output = ("*Checking*" + holder + "* "+ "$" + df.format(balance) +
-                    "*" + dateOpen.toString() + isDirectDeposit());
-        }
 
-        else if (this instanceof Savings)
-        {
-            output = ("*Savings*" + holder + "* " + "$" + df.format(balance) +
-                    "*"+ dateOpen.toString() + isLoyal());
-        }
-
-        else if (this instanceof MoneyMarket)
-        {
-            output = ("*Money Market*" + holder + "* " + "$" + df.format(balance) +
-                    "*"+ dateOpen.toString());
-        }
-
-        return output;
+        return holder.toString() + "* "+ "$" + df.format(balance) +
+                "*" + dateOpen.toString();
     }
-
-
 
     /**
      * Abstract methods

@@ -133,7 +133,6 @@ public class AccountDatabase {
     public int withdrawal(Account account, double amount) {
         int withdrawals = 0;
         int index = find(account);
-        int count = 0;
 
         if(find(account) >= 0)
         {
@@ -146,6 +145,10 @@ public class AccountDatabase {
             {
                 accounts[index].debit(amount);
                 withdrawals = 0;
+                if(accounts[index] instanceof MoneyMarket)
+                {
+                    ((MoneyMarket) accounts[index]).countWithdrawals();
+                }
             }
         }
         else

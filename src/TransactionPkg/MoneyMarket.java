@@ -6,12 +6,11 @@ public class MoneyMarket extends Account {
 
     public MoneyMarket (Profile user, double amount, Date dateOpen){
         super(user, amount, dateOpen);
+        this.withdrawals = 0;
     }
 
-
-    public int getWithdrawals(int w) {
-        this.withdrawals = w;
-        return w;
+    public void countWithdrawals() {
+        withdrawals++;
     }
 
     @Override
@@ -21,6 +20,12 @@ public class MoneyMarket extends Account {
             instance = true;
 
         return instance;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "*Money Market" + super.toString() + "*" + withdrawals + " withdrawals";
     }
 
     @Override
