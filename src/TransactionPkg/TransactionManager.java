@@ -76,7 +76,7 @@ public class TransactionManager {
                         }
 
                     }
-                    else if (command.equals("OC")) {
+                    else if (command.equals("OC")) { // has boolean
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
@@ -86,6 +86,10 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
+                        String checkBool = inputArr[5];
+                        if(!(checkBool.equals("false") || checkBool.equals("true"))){
+                            throw new InputMismatchException();
+                        }
                         String[] splitDate = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
                         int day = Integer.parseInt(splitDate[1]);
@@ -108,7 +112,7 @@ public class TransactionManager {
                         }
 
 
-                    } else if (command.equals("OS")) {
+                    } else if (command.equals("OS")) { // has boolean
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
@@ -116,6 +120,10 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
+                        String checkBool = inputArr[5];
+                        if(!(checkBool.equals("false") || checkBool.equals("true"))){
+                            throw new InputMismatchException();
+                        }
                         String splitDate[] = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
                         int day = Integer.parseInt(splitDate[1]);
@@ -136,7 +144,7 @@ public class TransactionManager {
                             System.out.println(dateOpen.toString() + " is not a valid date!");
                         }
 
-                    } else if (command.equals("OM")) {
+                    } else if (command.equals("OM")) { // no boolean
                         if(inputArr.length != 5){
                             throw new NumberFormatException();
                         }
@@ -144,7 +152,7 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
-                        String splitDate[] = date.split("/");
+                        String[] splitDate = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
                         int day = Integer.parseInt(splitDate[1]);
                         int year = Integer.parseInt(splitDate[2]);
@@ -156,7 +164,7 @@ public class TransactionManager {
                             boolean added = database.add(accM);
                             if (added) {
                                 System.out.println("Account opened and added to the database.");
-                            } else{
+                            }else{
                                 System.out.println("Account is already in the database.");
                             }
                         }else{
