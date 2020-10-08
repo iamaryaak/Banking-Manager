@@ -210,7 +210,7 @@ public class AccountDatabase {
             System.out.println("\n" + accounts[i].toString());
             // get interest, fee, new balance
             // get account type
-            System.out.println("-interest: $ " + ((accounts[i].monthlyInterest()*accounts[i].getBalance())/100));
+            System.out.println("-interest: $ " + 0);
             System.out.println("-fee: $ " + accounts[i].monthlyFee());
             System.out.println("-new balance: $ " + 0);
 
