@@ -120,14 +120,14 @@ public class TransactionManager {
                         String date = inputArr[4];
 
 
-                        String splitDate[] = date.split("/");
+                        String[] splitDate = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
                         int day = Integer.parseInt(splitDate[1]);
                         int year = Integer.parseInt(splitDate[2]);
                         // check if date is valid
                         Date dateOpen = new Date(year, month, day);
                         if(dateOpen.isValid()){
-                            Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
+                            boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                             Profile user = new Profile(firstName, lastName);
                             Account accS = new Savings(user, amount, dateOpen, isLoyal);
                             boolean added = database.add(accS);
