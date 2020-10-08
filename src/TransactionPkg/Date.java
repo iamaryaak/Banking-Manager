@@ -59,7 +59,6 @@ public class Date implements Comparable<Date> {
         int y = this.year;
         int m = this.month;
         int d = this.day;
-        System.out.println(this.month + " " + this.year);
         // check if year is valid
         if (y > MAX_VALID_YR || y < MIN_VALID_YR)
             return false;
