@@ -80,6 +80,8 @@ public class TransactionManager {
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
+                        boolean checkBoolean = Boolean.parseBoolean(inputArr[5]);
+                        System.out.println("BOOLEAN HERE IS ------ " + checkBoolean);
                         //Example input: OC John Doe 300 false
                         //What it does: open a checking account with $300, non-direct deposit
                         String firstName = inputArr[1];
@@ -96,6 +98,8 @@ public class TransactionManager {
                         // check if date is valid
                         Date dateOpen = new Date(year, month, day);
                         if(dateOpen.isValid()){
+                            boolean checkBoolean = Boolean.parseBoolean(inputArr[5]);
+                            System.out.println("BOOLEAN HERE IS ------ " + checkBoolean);
                             boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                             Profile user = new Profile(firstName, lastName);
                             Account accC = new Checking(user, amount, dateOpen, directDeposit);
