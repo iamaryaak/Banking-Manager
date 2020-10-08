@@ -87,9 +87,11 @@ public class TransactionManager {
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
                         String checkBool = inputArr[5];
-                        if(!(checkBool.equals("false") || checkBool.equals("true"))){
-                            throw new InputMismatchException();
+                        boolean check = Boolean.parseBoolean(checkBool);
+                        if(!check){
+                            throw new NumberFormatException();
                         }
+
                         String[] splitDate = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
                         int day = Integer.parseInt(splitDate[1]);
@@ -121,9 +123,11 @@ public class TransactionManager {
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
                         String checkBool = inputArr[5];
-                        if(!(checkBool.equals("false") || checkBool.equals("true"))){
-                            throw new InputMismatchException();
+                        boolean check = Boolean.parseBoolean(checkBool);
+                        if(!check){
+                            throw new NumberFormatException();
                         }
+
                         String splitDate[] = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
                         int day = Integer.parseInt(splitDate[1]);
