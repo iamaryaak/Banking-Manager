@@ -253,8 +253,11 @@ public class AccountDatabase {
                     fee = 0.00;
                 } else if (accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings) {
                     fee = 0.00;
-                } else if (accounts[i].getBalance() >= 2500 && accounts[i] instanceof MoneyMarket) {
+                } else if (accounts[i] instanceof MoneyMarket) {
                     fee = accounts[i].monthlyFee();
+                    if(accounts[i].getBalance() >= 2500){
+                        fee = 0;
+                    }
                 }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
