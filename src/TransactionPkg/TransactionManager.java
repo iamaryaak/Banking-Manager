@@ -80,8 +80,10 @@ public class TransactionManager {
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
-
-                        System.out.println("BOOLEAN HERE IS ------ " + inputArr[5]);
+                        String bool = inputArr[5];
+                        if(bool.equals("flash")){
+                            throw new NumberFormatException();
+                        }
                         //Example input: OC John Doe 300 false
                         //What it does: open a checking account with $300, non-direct deposit
                         String firstName = inputArr[1];
@@ -120,8 +122,6 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
-                        boolean checkBoolean = Boolean.parseBoolean(inputArr[5]);
-                        System.out.println("BOOLEAN HERE IS ------ " + checkBoolean);
 
                         String[] splitDate = date.split("/");
                         int month = Integer.parseInt(splitDate[0]);
