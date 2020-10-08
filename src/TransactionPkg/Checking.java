@@ -39,7 +39,7 @@ public class Checking extends Account {
 
     @Override
     public double monthlyInterest() {
-        return 0.0042;
+        return (double)(0.0005/12.00);
     }
 
     @Override

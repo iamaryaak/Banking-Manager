@@ -174,7 +174,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account depositC = new Checking(user, amount, empty, false);
-                        database.deposit(depositC, amount);
+                        boolean depo = database.deposit(depositC, amount);
+                        if(depo){
+                            System.out.println("$" + amount + " deposited to account");
+                        }
 
                     } else if (command.equals("DS")) {
                         if(inputArr.length != 4){
@@ -188,7 +191,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account depositS = new Savings(user, amount, empty, false);
-                        database.deposit(depositS, amount);
+                        boolean depo = database.deposit(depositS, amount);
+                        if(depo){
+                            System.out.println("$" + amount + " deposited to account");
+                        }
 
                     } else if (command.equals("DM")) {
                         if(inputArr.length != 4){
@@ -202,7 +208,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account depositM = new MoneyMarket(user, amount, empty);
-                        database.deposit(depositM, amount);
+                        boolean depo = database.deposit(depositM, amount);
+                        if(depo){
+                            System.out.println("$" + amount + " deposited to account");
+                        }
 
                     }
 

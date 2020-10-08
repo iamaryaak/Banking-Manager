@@ -21,7 +21,7 @@ public class Date implements Comparable<Date> {
      * @return
      */
     public int compareTo(Date date) {
-        // get interger value of date
+        // get integer value of date
         int dateInt = (this.year * 10000) + (this.month * 100) + this.day;
         int compdateInt = (year * 10000) + (month * 100) + day;
         if(compdateInt > dateInt){

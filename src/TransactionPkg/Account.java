@@ -69,6 +69,5 @@ public abstract class Account {
      * @return
      */
     public abstract double monthlyInterest();
-    // I got the monthly interest rate conversion for all three types of accounts
     public abstract double monthlyFee();
 }

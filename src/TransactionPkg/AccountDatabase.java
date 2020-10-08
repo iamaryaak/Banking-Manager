@@ -1,4 +1,5 @@
 package TransactionPkg;
+import java.text.DecimalFormat;
 
 public class AccountDatabase {
 
@@ -114,7 +115,6 @@ public class AccountDatabase {
         if (find(account) >= 0)
         {
             accounts[index].credit(amount);
-            System.out.println("Found account and able to deposit money");
             deposit = true;
         }
         else
@@ -204,15 +204,28 @@ public class AccountDatabase {
     }
 
     public void printByLastName() {
+        DecimalFormat df = new DecimalFormat("#.00");
         sortByLastName();
         System.out.println("--Printing statements by last name--");
         for (int i = 0; i < size; i++) {
             System.out.println("\n" + accounts[i].toString());
             // get interest, fee, new balance
             // get account type
-            System.out.println("-interest: $ " + (accounts[i].getBalance() * accounts[i].monthlyInterest()));
-            System.out.println("-fee: $ " + accounts[i].monthlyFee());
-            System.out.println("-new balance: $ " + 0);
+            double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
+            System.out.println("-interest: $ " + df.format(interest));
+            double fee = accounts[i].monthlyFee();
+
+            // Create conditions to print out fees per account type
+            if(accounts[i].getBalance() >= 1500 && accounts[i] instanceof Checking){
+                fee = 0.00;
+            }else if(accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings){
+                fee = 0.00;
+            }else if(accounts[i].getBalance() >= 2500 && accounts[i] instanceof MoneyMarket){
+                fee = 0.00;
+            }
+            System.out.println("-fee: $ " + df.format(fee));
+            double newBal = (accounts[i].getBalance() * (1+accounts[i].monthlyInterest()) - fee);
+            System.out.println("-new balance: $ " + df.format(newBal));
 
             System.out.println();
 
