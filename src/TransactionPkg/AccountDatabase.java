@@ -203,7 +203,7 @@ public class AccountDatabase {
         }else {
             DecimalFormat df = new DecimalFormat("#.00");
             sortByDateOpen();
-            System.out.println("--Printing statements by last name--");
+            System.out.println("--Printing statements by Date Open --");
             for (int i = 0; i < size; i++) {
                 System.out.println("\n" + accounts[i].toString());
                 // get interest, fee, new balance
