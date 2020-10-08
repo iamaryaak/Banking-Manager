@@ -80,8 +80,8 @@ public class TransactionManager {
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
-                        boolean checkBoolean = Boolean.parseBoolean(inputArr[5]);
-                        System.out.println("BOOLEAN HERE IS ------ " + checkBoolean);
+
+                        System.out.println("BOOLEAN HERE IS ------ " + inputArr[5]);
                         //Example input: OC John Doe 300 false
                         //What it does: open a checking account with $300, non-direct deposit
                         String firstName = inputArr[1];
