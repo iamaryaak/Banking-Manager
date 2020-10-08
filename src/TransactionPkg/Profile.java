@@ -1,17 +1,18 @@
 package TransactionPkg;
 
 /**
- *
+ * This class holds the Profile object, which includes the first and last name of an account holder
+ * Handles getLname, getFname, toString
  */
 public class Profile {
     /**
-     *
+     * Declares variables private to the profile
      */
     private String fname;
     private String lname;
 
     /**
-     * Default Constructor
+     * Default Constructor of the profile, initializes variables declared for the class
      * @param firstName
      * @param lastName
      */
@@ -21,7 +22,7 @@ public class Profile {
     }
 
     /**
-     *
+     * Gets the last name from this class to be used in other methods
      * @return
      */
     public String getLname() {
@@ -29,15 +30,7 @@ public class Profile {
     }
 
     /**
-     *
-     * @param lastName
-     */
-    public void setLname(String lastName) {
-        this.lname = lastName;
-    }
-
-    /**
-     *
+     * Gets the first name from this class to be used in equals method
      * @return
      */
     public String getFname() {
@@ -45,16 +38,8 @@ public class Profile {
     }
 
     /**
-     *
-     * @param firstName
-     */
-    public void setFname(String firstName) {
-        this.fname = firstName;
-    }
-
-    /**
-     *
-     * @return
+     * Combines the first name and last name into a single string
+     * @return String - returns the combined name
      */
     @Override
     public String toString(){

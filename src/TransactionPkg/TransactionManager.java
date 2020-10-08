@@ -8,13 +8,15 @@ public class TransactionManager {
      *
      * Each transaction begins with a two-letter command (case sensitive) which identifies
      * the transaction type and account type followed by data tokens
-     */
+     **/
 
-    // add check for input array
+    /**
+     * Runs the transaction manager Interface, starts and ends the program
+     */
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("#,##0.00");
         AccountDatabase database = new AccountDatabase();
 
         do {

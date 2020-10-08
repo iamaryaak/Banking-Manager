@@ -1,17 +1,19 @@
 package TransactionPkg;
 
 /**
- *
+ * A subclass of account, this class holds the Savings account type and the values unique to it
+ * Handles isLoyal, equals, toString, monthlyInterest, monthlyFee
  */
 public class Savings extends Account {
 
     /**
-     *
+     * Declares the variable private to Savings
      */
     private boolean isLoyal;
 
     /**
-     *
+     * Default constructor for Savings, sends the values common to Account, initializes the variable unique to
+     * the subclass
      * @param user
      * @param amount
      * @param dateOpen
@@ -23,8 +25,8 @@ public class Savings extends Account {
     }
 
     /**
-     *
-     * @return
+     * Used in the toString, if the isLoyal variable is true, it sends a string for the account type
+     * @return String - for the account type
      */
     public String isLoyal() {
         String saveType;
@@ -39,9 +41,9 @@ public class Savings extends Account {
     }
 
     /**
-     *
+     * Overrides the equals method in Account, used to ensure the comparison is from the same account type
      * @param a
-     * @return
+     * @return Boolean - true if equal, false if not
      */
     @Override
     public boolean equals(Account a) {
@@ -53,8 +55,8 @@ public class Savings extends Account {
     }
 
     /**
-     *
-     * @return
+     * Override method transforms the object into a String while displaying all elements of it
+     * @return String - specific for this subclass inheriting the common values from Account
      */
     @Override
     public String toString()
@@ -63,8 +65,8 @@ public class Savings extends Account {
     }
 
     /**
-     *
-     * @return
+     * Dictates the appropriate monthly interest for this Account type
+     * @return double - monthly interest
      */
     @Override
     public double monthlyInterest() {
@@ -76,8 +78,8 @@ public class Savings extends Account {
     }
 
     /**
-     *
-     * @return
+     * Dictates the appropriate monthly fee for this Account type
+     * @return double - monthly fee
      */
     @Override
     public double monthlyFee() {

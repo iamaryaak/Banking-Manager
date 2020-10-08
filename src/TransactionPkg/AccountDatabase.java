@@ -8,7 +8,8 @@ import java.text.DecimalFormat;
 public class AccountDatabase {
 
     /**
-     *
+     * Declares array to hold accounts
+     * Declares array size
      */
     private Account[] accounts;
     private int size;
@@ -24,7 +25,7 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * This method finds the account based on the equals method given in Account when an account is passed
      * @param account
      * @return int - finds the index at which the account is and returns that value
      */
@@ -43,7 +44,7 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * This method grows the capacity by 5 accounts when the size is equal to the capacity
      */
     private void grow() {
 
@@ -116,10 +117,10 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Deposits an amount into an account, return value is dependent on it's success
      * @param account
      * @param amount
-     * @return
+     * @return Boolean - returns true or false if the deposit is successful
      */
     public boolean deposit(Account account, double amount) {
         boolean deposit = false;
@@ -140,12 +141,11 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Withdrawals a passed amount from a passed account, returns an int dependent on it's success
      * @param account
      * @param amount
-     * @return
+     * @return Int - 0 if successful, 1 if insufficient funds, -1 if the account doesn't exist
      */
-    //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
     public int withdrawal(Account account, double amount) {
         int withdrawals = 0;
         int index = find(account);
@@ -175,7 +175,7 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Sorts the accounts based on the ascending order they're opened
      */
     private void sortByDateOpen() {
         //sort in ascending order
@@ -197,7 +197,7 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Sorts the accounts in the ascending order of their last name
      */
     private void sortByLastName() {
         //sort in ascending order
@@ -218,14 +218,14 @@ public class AccountDatabase {
     }
 
     /**
-     * print monthly interest
+     * Prints the Statements based on the sorting of dates, including interest and fees
      */
     public void printByDateOpen() {
         if (size == 0)
         {
             System.out.println("Database is empty.");
         }else {
-            DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("#,##0.00");
             sortByDateOpen();
             System.out.println("--Printing statements by Date Open --");
             for (int i = 0; i < size; i++) {
@@ -265,14 +265,14 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Prints the Statements based on the sorting of last names, including interest and fees
      */
     public void printByLastName() {
         if (size == 0)
         {
             System.out.println("Database is empty.");
         }else {
-            DecimalFormat df = new DecimalFormat("#.00");
+            DecimalFormat df = new DecimalFormat("#,##0.00");
             sortByLastName();
             System.out.println("--Printing statements by last name--");
             for (int i = 0; i < size; i++) {
@@ -312,7 +312,7 @@ public class AccountDatabase {
     }
 
     /**
-     *
+     * Prints the accounts in the database
      */
     public void printAccounts() {
 
