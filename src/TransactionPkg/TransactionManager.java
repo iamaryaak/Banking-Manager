@@ -75,7 +75,6 @@ public class TransactionManager {
 
                         // check if date is valid
                         Date dateOpen = new Date(year, month, day);
-                        Date dateOpen = new Date(year, month, day);
                         if(dateOpen.isValid()){
                             boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                             Profile user = new Profile(firstName, lastName);
