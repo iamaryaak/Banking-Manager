@@ -222,6 +222,7 @@ public class AccountDatabase {
                 }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
+                accounts[i].setBalance(newBal);
                 System.out.println("-new balance: $ " + df.format(newBal));
 
                 System.out.println();
@@ -257,6 +258,7 @@ public class AccountDatabase {
                 }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
+                accounts[i].setBalance(newBal);
                 System.out.println("-new balance: $ " + df.format(newBal));
 
                 System.out.println();

@@ -34,6 +34,10 @@ public abstract class Account {
         this.balance += amount;
     }
 
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
     public double getBalance() {
         return balance;
     }
