@@ -81,7 +81,6 @@ public class TransactionManager {
                             throw new NumberFormatException();
                         }
 
-                        System.out.println("BOOLEAN HERE IS ------ " + inputArr[5]);
                         //Example input: OC John Doe 300 false
                         //What it does: open a checking account with $300, non-direct deposit
                         String firstName = inputArr[1];
