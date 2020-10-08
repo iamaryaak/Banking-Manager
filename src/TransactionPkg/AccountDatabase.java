@@ -255,6 +255,7 @@ public class AccountDatabase {
                     fee = 0.00;
                 } else if (accounts[i] instanceof MoneyMarket) {
                     fee = accounts[i].monthlyFee();
+                    System.out.println("MONTHLY FEE ---------" + fee);
                     if(accounts[i].getBalance() >= 2500){
                         fee = 0;
                     }
