@@ -214,19 +214,21 @@ public class AccountDatabase {
 
                 // Create conditions to print out fees per account type
                 if ( accounts[i] instanceof Checking) {
-
                     if(accounts[i].getBalance() >= 1500) {
                         fee = 0.00;
                     }
                 } else if (accounts[i] instanceof Savings) {
-
                     if(accounts[i].getBalance() >= 300){
                         fee = 0.00;
                     }
                 } else if (accounts[i] instanceof MoneyMarket) {
-                    if(accounts[i].getBalance() >= 2500) {
+                    if(fee == 12.00){ // it is exceeds than 6
+                        fee = 12.00;
+                    }
+                    if(accounts[i].getBalance() >= 2500 && fee == 0.00) {
                         fee = 0.00;
                     }
+
                 }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
@@ -266,9 +268,13 @@ public class AccountDatabase {
                         fee = 0.00;
                     }
                 } else if (accounts[i] instanceof MoneyMarket) {
-                    if(accounts[i].getBalance() >= 2500) {
+                    if(fee == 12.00){ // it is exceeds than 6
+                        fee = 12.00;
+                    }
+                    if(accounts[i].getBalance() >= 2500 && fee == 0.00) {
                         fee = 0.00;
-                    }                }
+                    }
+                }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
                 accounts[i].setBalance(newBal);
