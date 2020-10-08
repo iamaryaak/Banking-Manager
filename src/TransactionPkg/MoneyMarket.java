@@ -8,6 +8,12 @@ public class MoneyMarket extends Account {
         super(user, amount, dateOpen);
     }
 
+
+    public int getWithdrawals() {
+        setWithdrawals(withdrawals);
+        return withdrawals;
+    }
+
     @Override
     public boolean equals(Account a) {
         boolean instance = false;
@@ -26,8 +32,5 @@ public class MoneyMarket extends Account {
     public double monthlyFee() {
         return 0;
     }
-
-    public int getWithdrawals() {
-        return withdrawals;
     }
-}
+

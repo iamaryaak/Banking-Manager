@@ -27,6 +27,7 @@ public abstract class Account {
     public void debit(double amount) {
         //decrease the balance by amount
         this.balance -= amount;
+
     }
 
     public void credit(double amount) {
@@ -45,6 +46,8 @@ public abstract class Account {
             return false;
     }
 
+
+
     // this is the method that allows polymorphism, it's override is in Checking, dictates checking-type
     public String isDirectDeposit() {
         return null;
@@ -56,6 +59,9 @@ public abstract class Account {
     public Profile getProfile()
     {
         return holder;
+    }
+
+    public void setWithdrawals(int withdrawals) {
     }
 
     /**
@@ -81,11 +87,12 @@ public abstract class Account {
         else if (this instanceof MoneyMarket)
         {
             output = ("*Money Market*" + holder + "* " + "$" + df.format(balance) +
-                    "*"+ dateOpen.toString()) /*here there will be count++ of withdrawls*/ ;
+                    "*"+ dateOpen.toString() + ((MoneyMarket) this).getWithdrawals());
         }
 
         return output;
     }
+
 
     /**
      * Abstract methods
@@ -94,6 +101,4 @@ public abstract class Account {
     public abstract double monthlyInterest();
     // I got the monthly interest rate conversion for all three types of accounts
     public abstract double monthlyFee();
-
-
 }
