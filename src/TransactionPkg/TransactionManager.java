@@ -86,7 +86,6 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
-                        String checkBool = inputArr[5];
 
 
                         String[] splitDate = date.split("/");
@@ -119,7 +118,6 @@ public class TransactionManager {
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
                         String date = inputArr[4];
-                        String checkBool = inputArr[5];
 
 
                         String splitDate[] = date.split("/");
