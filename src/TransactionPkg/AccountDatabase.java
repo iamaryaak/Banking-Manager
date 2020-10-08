@@ -222,13 +222,11 @@ public class AccountDatabase {
                         fee = 0.00;
                     }
                 } else if (accounts[i] instanceof MoneyMarket) {
-                    if(fee == 12.00){ // it is exceeds than 6
+                    if(accounts[i].getBalance() >= 2500 && fee == 12.00 || accounts[i].getBalance() < 2500 && fee == 0.00){
                         fee = 12.00;
+                    }else{
+                        fee = 0;
                     }
-                    if(accounts[i].getBalance() >= 2500 && fee == 0.00) {
-                        fee = 0.00;
-                    }
-
                 }
                 System.out.println("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
@@ -268,11 +266,10 @@ public class AccountDatabase {
                         fee = 0.00;
                     }
                 } else if (accounts[i] instanceof MoneyMarket) {
-                    if(fee == 12.00){ // it is exceeds than 6
+                    if(accounts[i].getBalance() >= 2500 && fee == 12.00 || accounts[i].getBalance() < 2500 && fee == 0.00){
                         fee = 12.00;
-                    }
-                    if(accounts[i].getBalance() >= 2500 && fee == 0.00) {
-                        fee = 0.00;
+                    }else{
+                        fee = 0;
                     }
                 }
                 System.out.println("-fee: $ " + df.format(fee));
