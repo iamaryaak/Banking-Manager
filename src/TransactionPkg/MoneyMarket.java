@@ -26,7 +26,7 @@ public class MoneyMarket extends Account {
     @Override
     public String toString()
     {
-        return "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawals";
+        return "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawals*";
     }
 
     @Override
@@ -36,7 +36,7 @@ public class MoneyMarket extends Account {
 
     @Override
     public double monthlyFee() {
-        if(withdrawals > 6){
+        if(withdrawals < 7){
             return 12.00;
         }else{
             return 0.00;

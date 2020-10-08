@@ -9,6 +9,8 @@ public class TransactionManager {
      * Each transaction begins with a two-letter command (case sensitive) which identifies
      * the transaction type and account type followed by data tokens
      */
+
+    // add check for input array
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
@@ -40,7 +42,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account closeC = new Checking(user, 0, empty, false);
-                        database.remove(closeC);
+                        boolean close = database.remove(closeC);
+                        if(close){
+                            System.out.println("Account closed and removed from database.");
+                        }
 
                     } else if (command.equals("CS")) {
                         if(inputArr.length != 3){
@@ -53,8 +58,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account closeS = new Savings(user, 0, empty, false);
-                        database.remove(closeS);
-
+                        boolean close = database.remove(closeS);
+                        if(close){
+                            System.out.println("Account closed and removed from database.");
+                        }
                     } else if (command.equals("CM")) {
                         if(inputArr.length != 3){
                             throw new NumberFormatException();
@@ -66,7 +73,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account closeM = new MoneyMarket(user, 0, empty);
-                        database.remove(closeM);
+                        boolean close = database.remove(closeM);
+                        if(close){
+                            System.out.println("Account closed and removed from database.");
+                        }
 
                     }
                     else if (command.equals("OC")) {
@@ -176,7 +186,7 @@ public class TransactionManager {
                         Account depositC = new Checking(user, amount, empty, false);
                         boolean depo = database.deposit(depositC, amount);
                         if(depo){
-                            System.out.println("$" + amount + " deposited to account");
+                            System.out.println(amount + " deposited to account");
                         }
 
                     } else if (command.equals("DS")) {
@@ -193,7 +203,7 @@ public class TransactionManager {
                         Account depositS = new Savings(user, amount, empty, false);
                         boolean depo = database.deposit(depositS, amount);
                         if(depo){
-                            System.out.println("$" + amount + " deposited to account");
+                            System.out.println(amount + " deposited to account");
                         }
 
                     } else if (command.equals("DM")) {
@@ -210,7 +220,7 @@ public class TransactionManager {
                         Account depositM = new MoneyMarket(user, amount, empty);
                         boolean depo = database.deposit(depositM, amount);
                         if(depo){
-                            System.out.println("$" + amount + " deposited to account");
+                            System.out.println(amount + " deposited to account");
                         }
 
                     }
@@ -224,11 +234,13 @@ public class TransactionManager {
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
-
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account withC = new Checking(user, amount, empty, false);
-                        database.withdrawal(withC, amount);
+                        int with = database.withdrawal(withC, amount);
+                        if(with > 0){
+                            System.out.println(amount + " withdrawn to account");
+                        }
 
                     } else if (command.equals("WS")) {
                         if(inputArr.length != 4){
@@ -242,7 +254,10 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account withS = new Savings(user, amount, empty, false);
-                        database.withdrawal(withS, amount);
+                        int with = database.withdrawal(withS, amount);
+                        if(with > 0){
+                            System.out.println(amount + " withdrawn to account");
+                        }
 
                     } else if (command.equals("WM")) {
                         if(inputArr.length != 4){
@@ -256,22 +271,21 @@ public class TransactionManager {
                         Profile user = new Profile(firstName, lastName);
                         Date empty = new Date(0,0,0);
                         Account withM = new MoneyMarket(user, amount, empty);
-                        database.withdrawal(withM, amount);
+                        int with = database.withdrawal(withM, amount);
+                        if(with > 0){
+                            System.out.println(amount + " withdrawn to account");
+                        }
 
                     }
 
                     // P commands – print the list of accounts or print account statements
                     else if (command.equals("PA")) {
-                        System.out.println("Print the list of accounts in the database");
                         database.printAccounts();
 
                     } else if (command.equals("PD")) {
-                        System.out.println("Calculate the monthly interest fees, print account statements" +
-                                "and sort by dates opened in ascending order");
                         database.printByDateOpen();
 
                     } else if (command.equals("PN")) {
-                        System.out.println("Same as PD but sort by last names in ascending order");
                         database.printByLastName();
 
                     }else{

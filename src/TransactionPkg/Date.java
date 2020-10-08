@@ -23,7 +23,7 @@ public class Date implements Comparable<Date> {
     public int compareTo(Date date) {
         // get integer value of date
         int dateInt = (this.year * 10000) + (this.month * 100) + this.day;
-        int compdateInt = (year * 10000) + (month * 100) + day;
+        int compdateInt = (date.year * 10000) + (date.month * 100) + date.day;
         if(compdateInt > dateInt){
             return 1;
         }else if(compdateInt < dateInt){

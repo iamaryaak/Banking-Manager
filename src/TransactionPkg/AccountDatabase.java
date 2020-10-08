@@ -83,10 +83,10 @@ public class AccountDatabase {
      */
     public boolean remove(Account account) {
         boolean removed = false;
-        if (size == 0) {
+        /**if (size == 0) {
             System.out.println("Database is empty");
             return false;
-        }
+        }**/
         int index = find(account);
         if (index != -10) {
             removed = true;
@@ -102,7 +102,7 @@ public class AccountDatabase {
         }
         else {
             removed = false;
-            System.out.println("The account does not exist");
+            System.out.println("Account does not exist");
         }
 
         return removed;
@@ -197,40 +197,67 @@ public class AccountDatabase {
      * print monthly interest
      */
     public void printByDateOpen() {
-        sortByDateOpen();
-        for(int i = 0; i < size; i++){
-            System.out.println(accounts[i].toString());
+        if (size == 0)
+        {
+            System.out.println("Database is empty.");
+        }else {
+            DecimalFormat df = new DecimalFormat();
+            sortByDateOpen();
+            for (int i = 0; i < size; i++) {
+                double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
+                System.out.println("-interest: $ " + df.format(interest));
+                double fee = accounts[i].monthlyFee();
+
+                // Create conditions to print out fees per account type
+                if (accounts[i].getBalance() >= 1500 && accounts[i] instanceof Checking) {
+                    fee = 0.00;
+                } else if (accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings) {
+                    fee = 0.00;
+                } else if (accounts[i].getBalance() >= 2500 && accounts[i] instanceof MoneyMarket) {
+                    fee = 0.00;
+                }
+                System.out.println("-fee: $ " + df.format(fee));
+                double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
+                System.out.println("-new balance: $ " + df.format(newBal));
+
+                System.out.println();
+            }
         }
     }
 
     public void printByLastName() {
-        DecimalFormat df = new DecimalFormat("#.00");
-        sortByLastName();
-        System.out.println("--Printing statements by last name--");
-        for (int i = 0; i < size; i++) {
-            System.out.println("\n" + accounts[i].toString());
-            // get interest, fee, new balance
-            // get account type
-            double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
-            System.out.println("-interest: $ " + df.format(interest));
-            double fee = accounts[i].monthlyFee();
+        if (size == 0)
+        {
+            System.out.println("Database is empty.");
+        }else {
+            DecimalFormat df = new DecimalFormat("#.00");
+            sortByLastName();
+            System.out.println("--Printing statements by last name--");
+            for (int i = 0; i < size; i++) {
+                System.out.println("\n" + accounts[i].toString());
+                // get interest, fee, new balance
+                // get account type
+                double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
+                System.out.println("-interest: $ " + df.format(interest));
+                double fee = accounts[i].monthlyFee();
 
-            // Create conditions to print out fees per account type
-            if(accounts[i].getBalance() >= 1500 && accounts[i] instanceof Checking){
-                fee = 0.00;
-            }else if(accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings){
-                fee = 0.00;
-            }else if(accounts[i].getBalance() >= 2500 && accounts[i] instanceof MoneyMarket){
-                fee = 0.00;
+                // Create conditions to print out fees per account type
+                if (accounts[i].getBalance() >= 1500 && accounts[i] instanceof Checking) {
+                    fee = 0.00;
+                } else if (accounts[i].getBalance() >= 300 && accounts[i] instanceof Savings) {
+                    fee = 0.00;
+                } else if (accounts[i].getBalance() >= 2500 && accounts[i] instanceof MoneyMarket) {
+                    fee = 0.00;
+                }
+                System.out.println("-fee: $ " + df.format(fee));
+                double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
+                System.out.println("-new balance: $ " + df.format(newBal));
+
+                System.out.println();
+
             }
-            System.out.println("-fee: $ " + df.format(fee));
-            double newBal = (accounts[i].getBalance() * (1+accounts[i].monthlyInterest()) - fee);
-            System.out.println("-new balance: $ " + df.format(newBal));
-
-            System.out.println();
-
+            System.out.println("--end of printing--");
         }
-        System.out.println("--end of Printing--");
     }
 
     public void printAccounts() {
@@ -245,7 +272,7 @@ public class AccountDatabase {
             for (int i = 0; i < size; i++) {
                 System.out.println(accounts[i].toString());
             }
-            System.out.println("--End of Listing--");
+            System.out.println("--end of listing--");
         }
     }
 
