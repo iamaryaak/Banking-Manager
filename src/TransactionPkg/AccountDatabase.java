@@ -162,6 +162,23 @@ public class AccountDatabase {
 
     private void sortByDateOpen() {
         //sort in ascending order
+        for(int i = 0; i < size; i++){
+            // Find the minimum element in unsorted array
+            System.out.print(accounts[i].getDate());
+            // Find the minimum element in unsorted array
+            Date min = accounts[i].getDate();
+            int min_ind = i;
+            for (int j = i+1; j < size; j++)
+                if (accounts[j].getDate().compareTo((accounts[min_ind].getDate())) < 0)
+                    min_ind = j;
+
+            // Swap the found minimum element with the first
+            // element
+            Account temp = accounts[min_ind];
+            accounts[min_ind] = accounts[i];
+            accounts[i] = temp;
+
+        }
 
     }
 

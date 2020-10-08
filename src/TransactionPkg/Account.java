@@ -50,7 +50,7 @@ public abstract class Account {
     {
         return holder;
     }
-
+    public Date getDate(){return dateOpen;}
 
     /**
      * Transforms the object into a String while displaying all elements of it
