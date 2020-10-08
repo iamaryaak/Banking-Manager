@@ -9,8 +9,9 @@ public class MoneyMarket extends Account {
     }
 
 
+
+
     public int getWithdrawals() {
-        setWithdrawals(withdrawals);
         return withdrawals;
     }
 

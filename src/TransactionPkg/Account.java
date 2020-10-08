@@ -61,8 +61,6 @@ public abstract class Account {
         return holder;
     }
 
-    public void setWithdrawals(int withdrawals) {
-    }
 
     /**
      * Transforms the object into a String while displaying all elements of it
