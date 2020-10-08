@@ -76,7 +76,7 @@ public class Checking extends Account {
 
     /**
      * Dictates the appropriate monthly fee for this Account type
-     * @return
+     * @return double - monthly fee
      */
     @Override
     public double monthlyFee() {

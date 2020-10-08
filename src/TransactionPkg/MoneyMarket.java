@@ -1,17 +1,19 @@
 package TransactionPkg;
 
 /**
- *
+ * A subclass of Account, this class holds the values unique to the Money Market account type
+ * Handles countWithdrawals, equals, toString, monthlyInterest, monthlyFee
  */
 public class MoneyMarket extends Account {
 
     /**
-     *
+     * Declares variable private to the subclass
      */
     private int withdrawals;
 
     /**
-     *
+     * Default constructor for the Money Market Class, uses super to send common values to Account, initializes
+     * the withdrawal counter
      * @param user
      * @param amount
      * @param dateOpen
@@ -23,16 +25,16 @@ public class MoneyMarket extends Account {
 
 
     /**
-     *
+     * Increments the withdrawal variables each time it's called
      */
     public void countWithdrawals() {
         withdrawals++;
     }
 
     /**
-     *
+     * Override method for the equals method in Account, used for the specific instance of this subclass
      * @param a
-     * @return
+     * @return Boolean - whether or not the accounts are equal and the same Account type
      */
     @Override
     public boolean equals(Account a) {
@@ -44,8 +46,8 @@ public class MoneyMarket extends Account {
     }
 
     /**
-     *
-     * @return
+     * Override method transforms the object into a String while displaying all elements of it
+     * @return String - specific for this subclass inheriting the common values from Account
      */
     @Override
     public String toString()
@@ -54,8 +56,8 @@ public class MoneyMarket extends Account {
     }
 
     /**
-     *
-     * @return
+     * Dictates the appropriate monthly interest for this Account type
+     * @return double - monthly interest
      */
     @Override
     public double monthlyInterest() {
@@ -63,8 +65,8 @@ public class MoneyMarket extends Account {
     }
 
     /**
-     *
-     * @return
+     * Dictates the appropriate monthly fee for this Account type
+     * @return double - monthly fee
      */
     @Override
     public double monthlyFee() {
