@@ -225,7 +225,7 @@ public class AccountDatabase {
         {
             System.out.println("Database is empty.");
         }else {
-            DecimalFormat df = new DecimalFormat("0.00");
+            DecimalFormat df = new DecimalFormat("#,##0.00");
             sortByDateOpen();
             System.out.println("--Printing statements by Date Open --");
             for (int i = 0; i < size; i++) {
@@ -272,7 +272,7 @@ public class AccountDatabase {
         {
             System.out.println("Database is empty.");
         }else {
-            DecimalFormat df = new DecimalFormat("0.00");
+            DecimalFormat df = new DecimalFormat("#,##0.00");
             sortByLastName();
             System.out.println("--Printing statements by last name--");
             for (int i = 0; i < size; i++) {
