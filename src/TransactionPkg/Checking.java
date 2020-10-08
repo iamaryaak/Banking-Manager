@@ -34,7 +34,7 @@ public class Checking extends Account {
 
     @Override
     public String toString(){
-        return "*Checking*" + super.toString() + isDirectDeposit();
+        return "*Checking*" +  super.toString() + isDirectDeposit();
     }
 
     @Override

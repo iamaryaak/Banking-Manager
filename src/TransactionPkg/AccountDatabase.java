@@ -60,15 +60,11 @@ public class AccountDatabase {
     public boolean add(Account account) {
 
         boolean addAcc;
-
-        if(find(account) >= 0)
+        int returnValFind = -10;
+        if(find(account) != returnValFind)
         {
             addAcc = false;
-        }
-
-        else{
-            // check if date is valid
-
+        } else{
             size++;
             grow();
             // adding an account to the database
@@ -183,22 +179,11 @@ public class AccountDatabase {
     }
 
     private void sortByLastName() {
+        System.out.println("Sorting by last name****");
         //sort in ascending order
         for(int i = 0; i < size; i++){
             // Find the minimum element in unsorted array
             System.out.print(accounts[i].getProfile().getLname());
-            // Find the minimum element in unsorted array
-            String min = accounts[i].getProfile().getLname();
-            int min_ind = i;
-            for (int j = i+1; j < size; j++)
-                if (accounts[j].getProfile().getLname().compareTo((accounts[i].getProfile().getLname())) < 0)
-                    min_ind = j;
-
-            // Swap the found minimum element with the first
-            // element
-            Account temp = accounts[min_ind];
-            accounts[min_ind] = accounts[i];
-            accounts[i] = temp;
 
         }
 
@@ -216,6 +201,7 @@ public class AccountDatabase {
 
     public void printByLastName() {
         sortByLastName();
+        System.out.println("Sorting Done -------");
         for (int i = 0; i < size; i++) {
             System.out.println(accounts[i].toString());
         }
@@ -233,6 +219,7 @@ public class AccountDatabase {
             for (int i = 0; i < size; i++) {
                 System.out.println(accounts[i].toString());
             }
+            System.out.println("--End of Listing--");
         }
     }
 
