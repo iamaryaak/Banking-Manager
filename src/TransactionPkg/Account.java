@@ -84,7 +84,7 @@ public abstract class Account {
      * @return String represents the object and its elements
      */
     public String toString(){
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
 
         return holder.toString() + "* "+ "$" + df.format(balance) +
                 "*" + dateOpen.toString();

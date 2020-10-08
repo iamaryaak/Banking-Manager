@@ -14,7 +14,7 @@ public class TransactionManager {
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
-        DecimalFormat df = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("0.00");
         AccountDatabase database = new AccountDatabase();
 
         do {
