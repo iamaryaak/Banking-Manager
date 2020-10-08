@@ -5,6 +5,9 @@ public class Date implements Comparable<Date> {
     private int month;
     private int day;
 
+    int MAX_VALID_YR = 2021;
+    int MIN_VALID_YR = 2009;
+
     public Date (int y, int m, int d)
     {
         this.year = y;
@@ -34,25 +37,52 @@ public class Date implements Comparable<Date> {
      */
     public String toString()
     {
-        String dateOpen = (month + "/" + day + "/" + year);
-        return dateOpen;
+        return (month + "/" + day + "/" + year);
     }
 
     /**
      * Check if data is valid given the day, month, and year
      * @return boolean - data is valid
      */
+    public boolean isLeap(int year)
+    {
+        // Return true if year is
+        // a multiple of 4 and not
+        // multiple of 100.
+        // OR year is multiple of 400.
+        return (((year % 4 == 0) &&
+                (year % 100 != 0)) ||
+                (year % 400 == 0));
+    }
     public boolean isValid() {
         // check if date is valid
-        boolean val = false;
+        int y = this.year;
+        int m = this.month;
+        int d = this.day;
+        System.out.println(this.month + " " + this.year);
         // check if year is valid
-        if(this.year == 2012 || this.year == 2016 || this.year == 2020){
-            // leap year
-            if(this.month == 2 && this.day == 29{
-                val = true;
-            }
+        if (y > MAX_VALID_YR || y < MIN_VALID_YR)
+            return false;
+        if (m < 1 || m > 12)
+            return false;
+        if (d < 1 || d > 31)
+            return false;
+
+        // Handle February month
+        // with leap year
+        if (m == 2)
+        {
+            if (isLeap(y))
+                return (d <= 29);
+            else
+                return (d <= 28);
         }
 
-        return false;
+
+        if (m == 4 || m == 6 || m == 9 || m == 11)
+            return (d <= 30);
+
+        return true;
+
     }
 }

@@ -66,6 +66,8 @@ public class AccountDatabase {
         }
 
         else{
+            // check if date is valid
+
             size++;
             grow();
             // adding an account to the database
