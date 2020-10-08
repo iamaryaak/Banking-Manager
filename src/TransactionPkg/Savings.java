@@ -38,12 +38,16 @@ public class Savings extends Account {
 
     @Override
     public double monthlyInterest() {
-        return 0;
+        if(isLoyal){
+            return 0.0291;
+        }else{
+            return 0.0208;
+        }
     }
 
     @Override
     public double monthlyFee() {
-        return 0;
+        return 5.00;
     }
 
 

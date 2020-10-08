@@ -39,12 +39,12 @@ public class Checking extends Account {
 
     @Override
     public double monthlyInterest() {
-        return 0;
+        return 0.0042;
     }
 
     @Override
     public double monthlyFee() {
-        return 0;
+        return 25.00;
     }
 
 

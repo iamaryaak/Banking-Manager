@@ -20,24 +20,19 @@ public class Date implements Comparable<Date> {
      * @param date
      * @return
      */
-    public int compareTo(Date date){
-        if(date.year == this.year) {
-            // check month
-            if (date.month == this.month) {
-                // check day
-                return Integer.compare(date.day, this.day);
-            } else if (date.month < this.month) {
-                return -1;
-            } else {
-                return 1;
-            }
-        }else if(date.year < this.year){
-            // check month
+    public int compareTo(Date date) {
+        // get interger value of date
+        int dateInt = (this.year * 10000) + (this.month * 100) + this.day;
+        int compdateInt = (year * 10000) + (month * 100) + day;
+        if(compdateInt > dateInt){
+            return 1;
+        }else if(compdateInt < dateInt){
             return -1;
-            }else{
-                return 1;
-            }
+        }else{
+            return 0;
         }
+
+    }
 
 
     /**

@@ -161,7 +161,8 @@ public class AccountDatabase {
         for(int i = 0; i < size; i++){
             // Find the minimum element in unsorted array
             int min = i;
-            for ( int k=i+1; k < accounts.length-1; k++ )
+            for ( int k=i+1; k < size; k++ )
+
                 if ( accounts[k].getDate().compareTo(accounts[min].getDate()) > 0 ) {
                     min = k;
                 }
@@ -179,7 +180,7 @@ public class AccountDatabase {
         for(int i = 0; i < size; i++){
             // Find the minimum element in unsorted array
             int min = i;
-            for ( int k=i+1; k < accounts.length-1; k++ )
+            for ( int k=i+1; k < size; k++ )
                 if (accounts[k].getProfile().getLname().compareTo(accounts[min].getProfile().getLname()) < 0 ) {
                     min = k;
                 }
@@ -204,11 +205,17 @@ public class AccountDatabase {
 
     public void printByLastName() {
         sortByLastName();
-        System.out.println("--Listing accounts in the database--");
+        System.out.println("--Printing statements by last name--");
         for (int i = 0; i < size; i++) {
-            System.out.println(accounts[i].toString());
+            System.out.println("\n" + accounts[i].toString());
+            // get interest, fee, new balance
+            // get account type
+            accounts[i].monthlyFee();
+
+            System.out.println();
+
         }
-        System.out.println("--End of Listing--");
+        System.out.println("--end of Printing--");
     }
 
     public void printAccounts() {

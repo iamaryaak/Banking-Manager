@@ -31,12 +31,16 @@ public class MoneyMarket extends Account {
 
     @Override
     public double monthlyInterest() {
-        return 0;
+        return 0.054;
     }
 
     @Override
     public double monthlyFee() {
-        return 0;
+        if(withdrawals > 6){
+            return 12.00;
+        }else{
+            return 0.00;
+        }
     }
 
 }
