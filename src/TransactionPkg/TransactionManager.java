@@ -35,7 +35,6 @@ public class TransactionManager {
                         if(inputArr.length != 3){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Close a new Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
@@ -51,7 +50,6 @@ public class TransactionManager {
                         if(inputArr.length != 3){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Close a new Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
@@ -66,7 +64,6 @@ public class TransactionManager {
                         if(inputArr.length != 3){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Close a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
 
@@ -83,7 +80,6 @@ public class TransactionManager {
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Open a new Checking Account");
                         //Example input: OC John Doe 300 false
                         //What it does: open a checking account with $300, non-direct deposit
                         String firstName = inputArr[1];
@@ -116,7 +112,6 @@ public class TransactionManager {
                         if(inputArr.length != 6){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Open a new Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -145,7 +140,6 @@ public class TransactionManager {
                         if(inputArr.length != 5){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Open a new Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -176,7 +170,6 @@ public class TransactionManager {
                         if(inputArr.length != 4){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Deposit to a Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -193,7 +186,6 @@ public class TransactionManager {
                         if(inputArr.length != 4){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Deposit to a Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -210,7 +202,6 @@ public class TransactionManager {
                         if(inputArr.length != 4){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Deposit to a Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -230,7 +221,6 @@ public class TransactionManager {
                         if(inputArr.length != 4){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Withdraw from a Checking Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -238,15 +228,13 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withC = new Checking(user, amount, empty, false);
                         int with = database.withdrawal(withC, amount);
-                        if(with > 0){
-                            System.out.println(amount + " withdrawn to account");
-                        }
+                        System.out.println(amount + " withdrawn to account");
+
 
                     } else if (command.equals("WS")) {
                         if(inputArr.length != 4){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Withdraw from a Savings Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -255,15 +243,12 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withS = new Savings(user, amount, empty, false);
                         int with = database.withdrawal(withS, amount);
-                        if(with > 0){
-                            System.out.println(amount + " withdrawn to account");
-                        }
+                        System.out.println(amount + " withdrawn to account");
 
                     } else if (command.equals("WM")) {
                         if(inputArr.length != 4){
                             throw new NumberFormatException();
                         }
-                        System.out.println("Withdraw from a Money Market Account");
                         String firstName = inputArr[1];
                         String lastName = inputArr[2];
                         double amount = Double.parseDouble(inputArr[3]);
@@ -272,9 +257,8 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withM = new MoneyMarket(user, amount, empty);
                         int with = database.withdrawal(withM, amount);
-                        if(with > 0){
-                            System.out.println(amount + " withdrawn to account");
-                        }
+                        System.out.println(amount + " withdrawn to account");
+
 
                     }
 
