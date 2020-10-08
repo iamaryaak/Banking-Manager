@@ -152,14 +152,6 @@ public class TransactionManager {
                         }else{
                             System.out.println(dateOpen.toString() + " is not a valid date!");
                         }
-                        Profile user = new Profile(firstName, lastName);
-                        Account accM = new MoneyMarket(user, amount, dateOpen);
-                        if (database.add(accM) == false)
-                        {
-                            System.out.println("Account is already in the database.");
-                        }
-                        else
-                            System.out.println("Account opened and added to the database");
 
                     }
 

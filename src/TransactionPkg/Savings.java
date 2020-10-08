@@ -9,7 +9,6 @@ public class Savings extends Account {
         this.isLoyal = i;
     }
 
-    @Override
     public String isLoyal() {
         String saveType;
         if (isLoyal)

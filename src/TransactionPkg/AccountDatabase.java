@@ -138,7 +138,7 @@ public class AccountDatabase {
         {
             if (amount > accounts[index].getBalance())
             {
-                System.out.print("Insufficient funds.");
+                System.out.println("Insufficient funds.");
                 withdrawals = 1;
             }
             else
@@ -169,7 +169,6 @@ public class AccountDatabase {
         //sort in ascending order
 
     }
-
 
     /**
      * print monthly interest
