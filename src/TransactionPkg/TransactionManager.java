@@ -1,5 +1,5 @@
 package TransactionPkg;
-
+import java.text.DecimalFormat;
 import java.util.*;
 public class TransactionManager {
     /**
@@ -14,7 +14,7 @@ public class TransactionManager {
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
-
+        DecimalFormat df = new DecimalFormat("#.00");
         AccountDatabase database = new AccountDatabase();
 
         do {
@@ -179,7 +179,7 @@ public class TransactionManager {
                         Account depositC = new Checking(user, amount, empty, false);
                         boolean depo = database.deposit(depositC, amount);
                         if(depo){
-                            System.out.println(amount + " deposited to account");
+                            System.out.println(df.format(amount) + " deposited to account");
                         }
 
                     } else if (command.equals("DS")) {
@@ -195,7 +195,7 @@ public class TransactionManager {
                         Account depositS = new Savings(user, amount, empty, false);
                         boolean depo = database.deposit(depositS, amount);
                         if(depo){
-                            System.out.println(amount + " deposited to account");
+                            System.out.println(df.format(amount) + " deposited to account");
                         }
 
                     } else if (command.equals("DM")) {
@@ -211,7 +211,7 @@ public class TransactionManager {
                         Account depositM = new MoneyMarket(user, amount, empty);
                         boolean depo = database.deposit(depositM, amount);
                         if(depo){
-                            System.out.println(amount + " deposited to account");
+                            System.out.println(df.format(amount) + " deposited to account");
                         }
 
                     }
@@ -228,7 +228,7 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withC = new Checking(user, amount, empty, false);
                         int with = database.withdrawal(withC, amount);
-                        System.out.println(amount + " withdrawn to account");
+                        System.out.println(df.format(amount) + " withdrawn to account");
 
 
                     } else if (command.equals("WS")) {
@@ -243,7 +243,7 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withS = new Savings(user, amount, empty, false);
                         int with = database.withdrawal(withS, amount);
-                        System.out.println(amount + " withdrawn to account");
+                        System.out.println(df.format(amount) + " withdrawn to account");
 
                     } else if (command.equals("WM")) {
                         if(inputArr.length != 4){
@@ -257,7 +257,7 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withM = new MoneyMarket(user, amount, empty);
                         int with = database.withdrawal(withM, amount);
-                        System.out.println(amount + " withdrawn to account");
+                        System.out.println(df.format(amount) + " withdrawn to account");
 
 
                     }

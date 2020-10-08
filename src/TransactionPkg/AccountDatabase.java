@@ -204,6 +204,7 @@ public class AccountDatabase {
             DecimalFormat df = new DecimalFormat();
             sortByDateOpen();
             for (int i = 0; i < size; i++) {
+                System.out.println("\n" + accounts[i].toString());
                 double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
                 System.out.println("-interest: $ " + df.format(interest));
                 double fee = accounts[i].monthlyFee();
