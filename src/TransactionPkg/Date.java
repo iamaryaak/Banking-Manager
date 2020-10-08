@@ -21,14 +21,23 @@ public class Date implements Comparable<Date> {
      * @return
      */
     public int compareTo(Date date){
-        if(date.day == this.day && date.year == this.year && date.month == this.month){
-            return 0;
-        }else if(date.day < this.day && date.year < this.year && date.month < this.month){
+        if(date.year == this.year) {
+            // check month
+            if (date.month == this.month) {
+                // check day
+                return Integer.compare(date.day, this.day);
+            } else if (date.month < this.month) {
+                return -1;
+            } else {
+                return 1;
+            }
+        }else if(date.year < this.year){
+            // check month
             return -1;
-        }else{
-            return 1;
+            }else{
+                return 1;
+            }
         }
-    } //return 0, 1, or -1
 
 
     /**

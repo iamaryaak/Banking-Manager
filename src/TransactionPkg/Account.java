@@ -48,7 +48,7 @@ public abstract class Account {
 
     public Profile getProfile()
     {
-        return holder;
+        return this.holder;
     }
     public Date getDate(){return dateOpen;}
 

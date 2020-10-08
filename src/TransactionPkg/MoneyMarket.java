@@ -26,7 +26,7 @@ public class MoneyMarket extends Account {
     @Override
     public String toString()
     {
-        return "*Money Market" + super.toString() + "*" + withdrawals + " withdrawals";
+        return "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawals";
     }
 
     @Override

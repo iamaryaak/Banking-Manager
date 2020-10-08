@@ -160,30 +160,33 @@ public class AccountDatabase {
         //sort in ascending order
         for(int i = 0; i < size; i++){
             // Find the minimum element in unsorted array
-            System.out.print(accounts[i].getDate());
-            // Find the minimum element in unsorted array
-            Date min = accounts[i].getDate();
-            int min_ind = i;
-            for (int j = i+1; j < size; j++)
-                if (accounts[j].getDate().compareTo((accounts[min_ind].getDate())) < 0)
-                    min_ind = j;
-
-            // Swap the found minimum element with the first
-            // element
-            Account temp = accounts[min_ind];
-            accounts[min_ind] = accounts[i];
-            accounts[i] = temp;
+            int min = i;
+            for ( int k=i+1; k < accounts.length-1; k++ )
+                if ( accounts[k].getDate().compareTo(accounts[min].getDate()) > 0 ) {
+                    min = k;
+                }
+            // Swap the reference at j with the reference at min
+            Account temp = accounts[i];
+            accounts[i] = accounts[min];
+            accounts[min] = temp;
 
         }
 
     }
 
     private void sortByLastName() {
-        System.out.println("Sorting by last name****");
         //sort in ascending order
         for(int i = 0; i < size; i++){
             // Find the minimum element in unsorted array
-            System.out.print(accounts[i].getProfile().getLname());
+            int min = i;
+            for ( int k=i+1; k < accounts.length-1; k++ )
+                if (accounts[k].getProfile().getLname().compareTo(accounts[min].getProfile().getLname()) < 0 ) {
+                    min = k;
+                }
+            // Swap the reference at j with the reference at min
+            Account temp = accounts[i];
+            accounts[i] = accounts[min];
+            accounts[min] = temp;
 
         }
 
@@ -201,10 +204,11 @@ public class AccountDatabase {
 
     public void printByLastName() {
         sortByLastName();
-        System.out.println("Sorting Done -------");
+        System.out.println("--Listing accounts in the database--");
         for (int i = 0; i < size; i++) {
             System.out.println(accounts[i].toString());
         }
+        System.out.println("--End of Listing--");
     }
 
     public void printAccounts() {

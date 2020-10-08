@@ -14,17 +14,26 @@ public class Profile {
         this.lname = lastName;
     }
 
-    public String getFname() {
-        String firstName = "";
-        this.fname = firstName;
-        return firstName;
-    }
+
 
     public String getLname() {
-        String lastName = "";
-        this.lname = lastName;
-        return lastName;
+        return lname;
     }
+
+    // Setter
+    public void setLname(String lastName) {
+        this.lname = lastName;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    // Setter
+    public void setFname(String firstName) {
+        this.fname = firstName;
+    }
+
 
     @Override
     public String toString(){
