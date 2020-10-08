@@ -5,7 +5,7 @@ package TransactionPkg;
  */
 public class Date implements Comparable<Date> {
     /**
-     *
+     * Declares the variables private to the Date Class, used for Date object
      */
     private int year;
     private int month;
@@ -15,7 +15,7 @@ public class Date implements Comparable<Date> {
     int MIN_VALID_YR = 1999;
 
     /**
-     *
+     * Default constructor for the date class, initializes the variables associated with it
      * @param y
      * @param m
      * @param d
@@ -28,9 +28,9 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     *
+     * Compares the dates to be used properly in the sorting method in Account Database
      * @param date
-     * @return
+     * @return int - based on the outcome of the comparison
      */
     public int compareTo(Date date) {
         // get integer value of date
@@ -72,8 +72,8 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     *
-     * @return
+     * Checks if the date is a valid date
+     * @return Boolean - returns false if the date is not valid, true if it is
      */
     public boolean isValid() {
         // check if date is valid

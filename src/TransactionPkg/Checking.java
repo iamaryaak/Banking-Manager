@@ -2,6 +2,7 @@ package TransactionPkg;
 
 /**
  * A subclass of Account, this class holds the values unique to the Checking account type
+ * Handles isDirectDeposit, equals, toString, monthlyInterest, monthlyFee
  */
 public class Checking extends Account {
 
