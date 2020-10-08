@@ -1,7 +1,8 @@
 package TransactionPkg;
 
 /**
- *
+ * A class that holds the Date object and it's appropriate methods
+ * Handles compareTo, toString, isLeap, isValid
  */
 public class Date implements Comparable<Date> {
     /**
