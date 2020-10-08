@@ -187,6 +187,8 @@ public class TransactionManager {
                         boolean depo = database.deposit(depositC, amount);
                         if(depo){
                             System.out.println(df.format(amount) + " deposited to account");
+                        }else{
+                            System.out.println("Account does not exist");
                         }
 
                     } else if (command.equals("DS")) {
@@ -203,6 +205,8 @@ public class TransactionManager {
                         boolean depo = database.deposit(depositS, amount);
                         if(depo){
                             System.out.println(df.format(amount) + " deposited to account");
+                        }else{
+                            System.out.println("Account does not exist");
                         }
 
                     } else if (command.equals("DM")) {
@@ -219,6 +223,8 @@ public class TransactionManager {
                         boolean depo = database.deposit(depositM, amount);
                         if(depo){
                             System.out.println(df.format(amount) + " deposited to account");
+                        }else{
+                            System.out.println("Account does not exist");
                         }
 
                     }
@@ -235,8 +241,13 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withC = new Checking(user, amount, empty, false);
                         int with = database.withdrawal(withC, amount);
-                        System.out.println(df.format(amount) + " withdrawn to account");
-
+                        if(with  == 0) {
+                            System.out.println(df.format(amount) + " withdrawn to account");
+                        }else if(with == 1){
+                            System.out.println("Insufficient funds");
+                        }else{
+                            System.out.println("Account does not exist.");
+                        }
 
                     } else if (command.equals("WS")) {
                         if(inputArr.length != 4){
@@ -250,7 +261,13 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withS = new Savings(user, amount, empty, false);
                         int with = database.withdrawal(withS, amount);
-                        System.out.println(df.format(amount) + " withdrawn to account");
+                        if(with  == 0) {
+                            System.out.println(df.format(amount) + " withdrawn to account");
+                        }else if(with == 1){
+                            System.out.println("Insufficient funds");
+                        }else{
+                            System.out.println("Account does not exist.");
+                        }
 
                     } else if (command.equals("WM")) {
                         if(inputArr.length != 4){
@@ -264,7 +281,13 @@ public class TransactionManager {
                         Date empty = new Date(0,0,0);
                         Account withM = new MoneyMarket(user, amount, empty);
                         int with = database.withdrawal(withM, amount);
-                        System.out.println(df.format(amount) + " withdrawn to account");
+                        if(with  == 0) {
+                            System.out.println(df.format(amount) + " withdrawn to account");
+                        }else if(with == 1){
+                            System.out.println("Insufficient funds");
+                        }else{
+                            System.out.println("Account does not exist.");
+                        }
 
 
                     }

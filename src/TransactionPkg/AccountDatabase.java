@@ -1,8 +1,15 @@
 package TransactionPkg;
 import java.text.DecimalFormat;
 
+/**
+ * Handles the database for all types of accounts that the user inputs in the program.
+ * Handles print, remove, add, and automatically grows the database when limit is reached.
+ */
 public class AccountDatabase {
 
+    /**
+     *
+     */
     private Account[] accounts;
     private int size;
 
@@ -108,6 +115,12 @@ public class AccountDatabase {
         return removed;
     }
 
+    /**
+     *
+     * @param account
+     * @param amount
+     * @return
+     */
     public boolean deposit(Account account, double amount) {
         boolean deposit = false;
         int index = find(account);
@@ -120,12 +133,19 @@ public class AccountDatabase {
         else
         {
             deposit = false;
-            System.out.println("Account does not exist");
+
         }
 
         return deposit;
     }
 
+    /**
+     *
+     * @param account
+     * @param amount
+     * @return
+     */
+    //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
     public int withdrawal(Account account, double amount) {
         int withdrawals = 0;
         int index = find(account);
@@ -134,7 +154,6 @@ public class AccountDatabase {
         {
             if (amount > accounts[index].getBalance())
             {
-                System.out.println("Insufficient funds.");
                 withdrawals = 1;
             }
             else
@@ -150,12 +169,14 @@ public class AccountDatabase {
         else
         {
             withdrawals = -1;
-            System.out.println("Account does not exist.");
+
         }
         return withdrawals;
     }
-    //return 0: withdrawal successful, 1: insufficient funds, -1 account doesn’t exist
 
+    /**
+     *
+     */
     private void sortByDateOpen() {
         //sort in ascending order
         for(int i = 0; i < size; i++){
@@ -175,6 +196,9 @@ public class AccountDatabase {
 
     }
 
+    /**
+     *
+     */
     private void sortByLastName() {
         //sort in ascending order
         for(int i = 0; i < size; i++){
@@ -240,6 +264,9 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     *
+     */
     public void printByLastName() {
         if (size == 0)
         {
@@ -284,6 +311,9 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     *
+     */
     public void printAccounts() {
 
         if (size == 0)

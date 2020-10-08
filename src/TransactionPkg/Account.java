@@ -2,7 +2,9 @@ package TransactionPkg;
 
 import java.text.DecimalFormat;
 
-
+/**
+ *
+ */
 public abstract class Account {
     /**
      * Declare variables here
@@ -24,24 +26,45 @@ public abstract class Account {
         this.dateOpen = d;
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void debit(double amount) {
         //decrease the balance by amount
         this.balance -= amount;
 
     }
 
+    /**
+     *
+     * @param amount
+     */
     public void credit(double amount) {
         this.balance += amount;
     }
 
+    /**
+     *
+     * @param balance
+     */
     public void setBalance(double balance) {
         this.balance = balance;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getBalance() {
         return balance;
     }
 
+    /**
+     *
+     * @param a
+     * @return
+     */
     public boolean equals(Account a){
         if (a != null) {
             return this.holder.getFname().equals(a.getProfile().getFname())
@@ -60,7 +83,6 @@ public abstract class Account {
      * Transforms the object into a String while displaying all elements of it
      * @return String represents the object and its elements
      */
-
     public String toString(){
         DecimalFormat df = new DecimalFormat("#.00");
 
@@ -73,5 +95,10 @@ public abstract class Account {
      * @return
      */
     public abstract double monthlyInterest();
+
+    /**
+     *
+     * @return
+     */
     public abstract double monthlyFee();
 }

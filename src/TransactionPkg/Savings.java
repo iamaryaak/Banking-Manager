@@ -1,14 +1,31 @@
 package TransactionPkg;
 
+/**
+ *
+ */
 public class Savings extends Account {
 
+    /**
+     *
+     */
     private boolean isLoyal;
 
+    /**
+     *
+     * @param user
+     * @param amount
+     * @param dateOpen
+     * @param i
+     */
     public Savings (Profile user, double amount, Date dateOpen, boolean i){
         super(user, amount, dateOpen);
         this.isLoyal = i;
     }
 
+    /**
+     *
+     * @return
+     */
     public String isLoyal() {
         String saveType;
         if (isLoyal)
@@ -21,6 +38,11 @@ public class Savings extends Account {
         return saveType;
     }
 
+    /**
+     *
+     * @param a
+     * @return
+     */
     @Override
     public boolean equals(Account a) {
         boolean instance = false;
@@ -30,12 +52,20 @@ public class Savings extends Account {
         return instance;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString()
     {
         return "*Savings*" + super.toString() + isLoyal();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double monthlyInterest() {
         if(isLoyal){
@@ -45,6 +75,10 @@ public class Savings extends Account {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public double monthlyFee() {
         return 5.00;

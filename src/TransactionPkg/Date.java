@@ -1,6 +1,12 @@
 package TransactionPkg;
 
+/**
+ *
+ */
 public class Date implements Comparable<Date> {
+    /**
+     *
+     */
     private int year;
     private int month;
     private int day;
@@ -8,6 +14,12 @@ public class Date implements Comparable<Date> {
     int MAX_VALID_YR = 2021;
     int MIN_VALID_YR = 1999;
 
+    /**
+     *
+     * @param y
+     * @param m
+     * @param d
+     */
     public Date (int y, int m, int d)
     {
         this.year = y;
@@ -58,6 +70,11 @@ public class Date implements Comparable<Date> {
                 (year % 100 != 0)) ||
                 (year % 400 == 0));
     }
+
+    /**
+     *
+     * @return
+     */
     public boolean isValid() {
         // check if date is valid
         int y = this.year;
