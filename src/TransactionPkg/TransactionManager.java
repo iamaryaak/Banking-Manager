@@ -8,7 +8,7 @@ public class TransactionManager {
      *
      * Each transaction begins with a two-letter command (case sensitive) which identifies
      * the transaction type and account type followed by data tokens
-     */
+     **/
 
     /**
      * Runs the transaction manager Interface, starts and ends the program
