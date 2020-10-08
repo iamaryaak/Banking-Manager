@@ -10,7 +10,9 @@ public class TransactionManager {
      * the transaction type and account type followed by data tokens
      */
 
-    // add check for input array
+    /**
+     * Runs the transaction manager Interface, starts and ends the program
+     */
     public void run() {
         System.out.println("Transaction processing starts.....");
         Scanner sc = new Scanner (System.in);
