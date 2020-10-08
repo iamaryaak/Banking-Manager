@@ -75,6 +75,7 @@ public class TransactionManager {
 
                         // check if date is valid
                         Date dateOpen = new Date(year, month, day);
+                        Date dateOpen = new Date(year, month, day);
                         if(dateOpen.isValid()){
                             boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
                             Profile user = new Profile(firstName, lastName);
@@ -85,6 +86,8 @@ public class TransactionManager {
                             }
                             else
                                 System.out.println("Account opened and added to the database.");
+                        }else{
+                            System.out.println(dateOpen.toString() + " is not a valid date!");
                         }
 
 
@@ -110,7 +113,11 @@ public class TransactionManager {
                             }
                             else
                                 System.out.println("Account opened and added to the database.");
-                        }                        Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
+                        }else{
+                            System.out.println(dateOpen.toString() + " is not a valid date!");
+                        }
+
+                        Boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
                         Profile user = new Profile(firstName, lastName);
                         Account accS = new Savings(user, amount, dateOpen, isLoyal);
                         if (database.add(accS) == false)
@@ -143,7 +150,10 @@ public class TransactionManager {
                             }
                             else
                                 System.out.println("Account opened and added to the database.");
-                        }                        Profile user = new Profile(firstName, lastName);
+                        }else{
+                            System.out.println(dateOpen.toString() + " is not a valid date!");
+                        }
+                        Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
                         if (database.add(accM) == false)
                         {

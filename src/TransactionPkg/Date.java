@@ -6,7 +6,7 @@ public class Date implements Comparable<Date> {
     private int day;
 
     int MAX_VALID_YR = 2021;
-    int MIN_VALID_YR = 2009;
+    int MIN_VALID_YR = 1999;
 
     public Date (int y, int m, int d)
     {
