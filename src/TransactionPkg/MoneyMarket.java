@@ -9,9 +9,9 @@ public class MoneyMarket extends Account {
     }
 
 
-    public int getWithdrawals() {
-        setWithdrawals(withdrawals);
-        return withdrawals;
+    public int getWithdrawals(int w) {
+        this.withdrawals = w;
+        return w;
     }
 
     @Override

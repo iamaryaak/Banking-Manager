@@ -61,8 +61,6 @@ public abstract class Account {
         return holder;
     }
 
-    public void setWithdrawals(int withdrawals) {
-    }
 
     /**
      * Transforms the object into a String while displaying all elements of it
@@ -87,11 +85,12 @@ public abstract class Account {
         else if (this instanceof MoneyMarket)
         {
             output = ("*Money Market*" + holder + "* " + "$" + df.format(balance) +
-                    "*"+ dateOpen.toString() + ((MoneyMarket) this).getWithdrawals());
+                    "*"+ dateOpen.toString());
         }
 
         return output;
     }
+
 
 
     /**
