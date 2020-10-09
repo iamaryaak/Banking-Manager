@@ -80,6 +80,8 @@ public class Checking extends Account {
      */
     @Override
     public double monthlyFee() {
+        if (directDeposit || getBalance() >= 1500)
+            return 0;
         return 25.00;
     }
 
