@@ -25,7 +25,7 @@ public class MoneyMarket extends Account {
 
 
     /**
-     * Increments the withdrawal variables each time it's called
+     * helper method that increments the withdrawal variables each time it's called
      */
     public void countWithdrawals() {
         withdrawals++;

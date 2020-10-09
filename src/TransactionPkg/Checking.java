@@ -14,10 +14,10 @@ public class Checking extends Account {
     /**
      * Default constructor of the Checking class, uses super to send common values to Account, initializes
      * unique class variable
-     * @param user
-     * @param balance
-     * @param dateOpen
-     * @param d
+     * @param user Profile variable with user's first name and last name
+     * @param balance User's balance
+     * @param dateOpen the date the user opened the account
+     * @param d boolean for direct deposit or not
      */
     public Checking(Profile user, double balance, Date dateOpen, boolean d) {
         super(user, balance, dateOpen);
@@ -43,7 +43,7 @@ public class Checking extends Account {
 
     /**
      * Override method for the equals method in Account, used for the specific instance of this subclass
-     * @param a
+     * @param a Account used to compare to
      * @return Boolean - whether or not the accounts are equal and the same Account type
      */
     @Override

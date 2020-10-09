@@ -58,7 +58,7 @@ public class Date implements Comparable<Date> {
     }
 
     /**
-     * Check if data is valid given the day, month, and year
+     * Helper Method - Check if data is valid given the day, month, and year
      * @return boolean - data is valid
      */
     public boolean isLeap(int year)
