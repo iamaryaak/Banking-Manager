@@ -13,8 +13,8 @@ public class Profile {
 
     /**
      * Default Constructor of the profile, initializes variables declared for the class
-     * @param firstName
-     * @param lastName
+     * @param firstName First name of Client
+     * @param lastName Last name of Client
      */
     public Profile(String firstName, String lastName){
         this.fname = firstName;
@@ -23,7 +23,7 @@ public class Profile {
 
     /**
      * Gets the last name from this class to be used in other methods
-     * @return
+     * @return returns last name
      */
     public String getLname() {
         return lname;
@@ -31,7 +31,7 @@ public class Profile {
 
     /**
      * Gets the first name from this class to be used in equals method
-     * @return
+     * @return returns first name
      */
     public String getFname() {
         return fname;

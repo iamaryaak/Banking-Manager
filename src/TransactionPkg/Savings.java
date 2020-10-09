@@ -14,10 +14,10 @@ public class Savings extends Account {
     /**
      * Default constructor for Savings, sends the values common to Account, initializes the variable unique to
      * the subclass
-     * @param user
-     * @param amount
-     * @param dateOpen
-     * @param i
+     * @param user User for Profile (First and Last Name)
+     * @param amount amount associated with the account
+     * @param dateOpen date the account opened
+     * @param i isLoyal (dependent on savings account)
      */
     public Savings (Profile user, double amount, Date dateOpen, boolean i){
         super(user, amount, dateOpen);
@@ -42,7 +42,7 @@ public class Savings extends Account {
 
     /**
      * Overrides the equals method in Account, used to ensure the comparison is from the same account type
-     * @param a
+     * @param a Account that you check if equals to
      * @return Boolean - true if equal, false if not
      */
     @Override

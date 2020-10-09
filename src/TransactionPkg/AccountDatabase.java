@@ -26,7 +26,7 @@ public class AccountDatabase {
 
     /**
      * This method finds the account based on the equals method given in Account when an account is passed
-     * @param account
+     * @param account Target account
      * @return int - finds the index at which the account is and returns that value
      */
     private int find(Account account) {
@@ -62,7 +62,7 @@ public class AccountDatabase {
 
     /**
      * Adds an account to the database
-     * @param account
+     * @param account Account to be added to the database
      * @return - returns a boolean that shows whether or not an account already exists,
      * if it doesn't an account is added.
      */
@@ -86,7 +86,7 @@ public class AccountDatabase {
 
     /**
      * Remove an account from the Accounts array
-     * @param account
+     * @param account Target account to remove
      * @return boolean, returns true or false if remove is successful
      */
     public boolean remove(Account account) {
@@ -118,8 +118,8 @@ public class AccountDatabase {
 
     /**
      * Deposits an amount into an account, return value is dependent on it's success
-     * @param account
-     * @param amount
+     * @param account Target account to deposit money into
+     * @param amount Target amount to add to the balance
      * @return Boolean - returns true or false if the deposit is successful
      */
     public boolean deposit(Account account, double amount) {
@@ -142,8 +142,8 @@ public class AccountDatabase {
 
     /**
      * Withdrawals a passed amount from a passed account, returns an int dependent on it's success
-     * @param account
-     * @param amount
+     * @param account Target account to remove money from
+     * @param amount Target amount to be removed
      * @return Int - 0 if successful, 1 if insufficient funds, -1 if the account doesn't exist
      */
     public int withdrawal(Account account, double amount) {

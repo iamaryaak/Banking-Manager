@@ -11,19 +11,27 @@ class CheckingTest {
             d = new Checking(new Profile("Jesse", "Barbieri"),1500, new Date(2010,1,1),true),
             e = new Savings(new Profile("Jesse", "Barbieri"),500, new Date(2010,1,1),true);
 
-
+    /**
+     * Tests if equals works in Checking between two Checking accounts
+     */
     @Test
     void testEquals() {
         assertTrue(a.equals(d), "Same account type and same name associated with them, should return true");
         assertFalse(a.equals(e), "Different account types, same name, should return false");
     }
 
+    /**
+     * Tests Checking toString method
+     */
     @Test
     void testToString() {
         assertEquals("*Checking*Jesse Barbieri* $500.00*1/1/2010*direct deposit account*", a.toString());
         assertEquals("*Checking*Arya Kulkarni* $1,000.00*1/1/2010", b.toString());
     }
 
+    /**
+     * Tests monthly Interest for Checking class
+     */
     @Test
     void monthlyInterest() {
         assertEquals((0.0005/12), a.monthlyInterest(), "Interest to direct-deposit");
@@ -31,6 +39,9 @@ class CheckingTest {
         assertEquals((0.0005/12), b.monthlyInterest(), "Monthly interest is found");
     }
 
+    /**
+     * Tests monthly fee plus it's constraints in Checking
+     */
     @Test
     void monthlyFee() {
         assertEquals(0, a.monthlyFee());

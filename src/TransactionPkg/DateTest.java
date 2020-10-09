@@ -14,6 +14,9 @@ class DateTest {
             g = new Date(2020, 13, 10);
 
 
+    /**
+     * Tests compare to method in Date to compare two Date objects
+     */
     @Test
     void compareTo() {
         assertEquals(1, b.compareTo(a), "a should be a later date than b, returning a 1");
@@ -21,12 +24,18 @@ class DateTest {
         assertEquals(-1, a.compareTo(b), "b should be before a, returning a -1");
     }
 
+    /**
+     * Tests if it returns Date in the strong fromat of MM/DD/YYYY
+     */
     @Test
     void testToString() {
         assertEquals("1/1/2010", d.toString(), "Expected date output");
         assertEquals("1/2/2010", a.toString(), "Expected date output");
     }
 
+    /**
+     * Tests to see if the Date provided is valid and real
+     */
     @Test
     void isValid() {
         assertTrue(e.isValid(), "2020 is a leap year, returns true");

@@ -14,9 +14,9 @@ public class MoneyMarket extends Account {
     /**
      * Default constructor for the Money Market Class, uses super to send common values to Account, initializes
      * the withdrawal counter
-     * @param user
-     * @param amount
-     * @param dateOpen
+     * @param user User the account is created for
+     * @param amount Amount in the account for user
+     * @param dateOpen date the account opened
      */
     public MoneyMarket (Profile user, double amount, Date dateOpen){
         super(user, amount, dateOpen);
@@ -33,7 +33,7 @@ public class MoneyMarket extends Account {
 
     /**
      * Override method for the equals method in Account, used for the specific instance of this subclass
-     * @param a
+     * @param a account checking to be equal or not
      * @return Boolean - whether or not the accounts are equal and the same Account type
      */
     @Override

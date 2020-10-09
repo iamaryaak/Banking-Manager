@@ -17,9 +17,9 @@ public class Date implements Comparable<Date> {
 
     /**
      * Default constructor for the date class, initializes the variables associated with it
-     * @param y
-     * @param m
-     * @param d
+     * @param y Year
+     * @param m Month
+     * @param d Day
      */
     public Date (int y, int m, int d)
     {
@@ -30,7 +30,7 @@ public class Date implements Comparable<Date> {
 
     /**
      * Compares the dates to be used properly in the sorting method in Account Database
-     * @param date
+     * @param date Date value needed to compare to
      * @return int - based on the outcome of the comparison
      */
     public int compareTo(Date date) {
@@ -57,9 +57,11 @@ public class Date implements Comparable<Date> {
         return (month + "/" + day + "/" + year);
     }
 
+
     /**
      * Helper Method - Check if data is valid given the day, month, and year
-     * @return boolean - data is valid
+     * @param year Year in question, to check validity
+     * @return boolean if it is a valid leap year or not
      */
     public boolean isLeap(int year)
     {

@@ -16,9 +16,9 @@ public abstract class Account {
 
     /**
      * Default Constructor for the Account abstract class, initializes the variables common to all subclasses
-     * @param h
-     * @param b
-     * @param d
+     * @param h Profile User
+     * @param b Balance
+     * @param d Data the account opened
      */
     public Account(Profile h, double b, Date d)
     {
@@ -29,7 +29,7 @@ public abstract class Account {
 
     /**
      * When withdrawal is called, this method debits the balance the passed amount
-     * @param amount
+     * @param amount amount debit for account
      */
     public void debit(double amount) {
         //decrease the balance by amount
@@ -39,7 +39,7 @@ public abstract class Account {
 
     /**
      * When deposit is called, this method credits the balance the passed amount
-     * @param amount
+     * @param amount amount credit for account
      */
     public void credit(double amount) {
         this.balance += amount;
@@ -47,7 +47,7 @@ public abstract class Account {
 
     /**
      * This method sets the balance in order to be used for the sorting methods in AccountDatabase
-     * @param balance
+     * @param balance account balance
      */
     public void setBalance(double balance) {
         this.balance = balance;
