@@ -3,7 +3,7 @@ import javafx.stage.Stage;
 
 public class FxApp extends AccountDatabase {
 
-    //@Override
+    @Override
     public void start(Stage primaryStage) throws Exception{
         primaryStage.setTitle("Hello World");
         primaryStage.show();
@@ -13,7 +13,4 @@ public class FxApp extends AccountDatabase {
         launch(args);
     }
 
-    private static void launch(String[] args) {
-    }
-    // hello
 }
