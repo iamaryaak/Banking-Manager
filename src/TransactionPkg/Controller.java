@@ -8,7 +8,7 @@ public class Controller {
     public Label helloWorld;
 
     public void sayHelloWorld(ActionEvent actionEvent) {
-        helloWorld.setText("Hello World!");
+        helloWorld.setText("This is a test!");
     }
 
 }
