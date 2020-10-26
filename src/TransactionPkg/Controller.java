@@ -34,11 +34,13 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
+    /**
+     * A void method that sets radio buttons into a group for a single selection
+     */
     public void setTg() {
         checking.setToggleGroup(tg);
         savings.setToggleGroup(tg);
         moneyMarket.setToggleGroup(tg);
-
     }
 
 
