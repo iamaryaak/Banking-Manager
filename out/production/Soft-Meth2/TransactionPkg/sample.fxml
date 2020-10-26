@@ -25,11 +25,11 @@
                   <TextField fx:id="lastName" layoutX="118.0" layoutY="69.0" prefHeight="27.0" prefWidth="182.0" />
                   <TextField fx:id="month" layoutX="118.0" layoutY="109.0" prefHeight="27.0" prefWidth="39.0" promptText="mm" />
                   <TextField fx:id="balance" layoutX="118.0" layoutY="148.0" prefHeight="27.0" prefWidth="182.0" />
-                  <RadioButton fx:id="checking" layoutX="320.0" layoutY="35.0" mnemonicParsing="false" onAction="#selectAccount" text="Checking" />
-                  <RadioButton fx:id="savings" layoutX="320.0" layoutY="74.0" mnemonicParsing="false" onAction="#selectAccount" text="Savings" />
-                  <RadioButton fx:id="moneyMarket" layoutX="320.0" layoutY="114.0" mnemonicParsing="false" onAction="#selectAccount" text="Money Market" />
-                  <CheckBox fx:id="direct" layoutX="452.0" layoutY="35.0" mnemonicParsing="false" text="Direct-Deposit" />
-                  <CheckBox fx:id="loyal" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" text="Loyal Customer" />
+                  <RadioButton fx:id="checking" layoutX="320.0" layoutY="35.0" mnemonicParsing="false" text="Checking" />
+                  <RadioButton fx:id="savings" layoutX="320.0" layoutY="74.0" mnemonicParsing="false" text="Savings" />
+                  <RadioButton fx:id="moneyMarket" layoutX="320.0" layoutY="114.0" mnemonicParsing="false" text="Money Market" />
+                  <CheckBox fx:id="directDepo" layoutX="452.0" layoutY="35.0" mnemonicParsing="false" onAction="#setDirectDepo" text="Direct-Deposit" />
+                  <CheckBox fx:id="isLoy" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" text="Loyal Customer" />
                   <ListView layoutX="38.0" layoutY="192.0" prefHeight="216.0" prefWidth="658.0" />
                   <Label layoutX="161.0" layoutY="107.0" prefHeight="17.0" prefWidth="10.0" text="/">
                      <font>
@@ -41,7 +41,7 @@
                         <Font size="24.0" />
                      </font></Label>
                   <TextField fx:id="year" layoutX="232.0" layoutY="109.0" prefHeight="27.0" prefWidth="65.0" promptText="yyyy" />
-                  <Button fx:id="openAccount" layoutX="320.0" layoutY="148.0" mnemonicParsing="false" onAction="#sayName" prefHeight="27.0" prefWidth="115.0" text="Open Account" />
+                  <Button fx:id="openAccount" layoutX="320.0" layoutY="148.0" mnemonicParsing="false" onAction="#setOpenAccount" prefHeight="27.0" prefWidth="115.0" text="Open Account" />
                   <Button layoutX="451.0" layoutY="148.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Close Account" />
                   <Button layoutX="581.0" layoutY="148.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="115.0" text="Clear" />
                </children></AnchorPane>
