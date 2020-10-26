@@ -17,6 +17,9 @@ public class Controller {
 
     public Button openAccount;
 
+    public boolean directBool;
+    public boolean isLoyalBool;
+
     @FXML
     RadioButton checking;
     @FXML
@@ -53,10 +56,25 @@ public class Controller {
         System.out.println("Got name: " + n + " " + l);
     }
 
-    public void setDirectDepo(ActionEvent e) {
+    public boolean setDirectDepo(ActionEvent e) {
         System.out.println("Direct Deposit");
+        if(direct.isSelected()){
+            directBool = true;
+        }else{
+            directBool = false;
+        }
+        return directBool;
     }
 
+    public boolean setIsLoyal(ActionEvent e) {
+        System.out.println("Is Loyal");
+        if(loyal.isSelected()){
+            isLoyalBool = true;
+        }else{
+            isLoyalBool = false;
+        }
+        return isLoyalBool;
+    }
 
     public void setOpenAccount(){
         /**public TextField firstName;
@@ -74,7 +92,7 @@ public class Controller {
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
-                Account accC = new Checking(user, Double.parseDouble(balance.getText()), dateOpen, false);
+                Account accC = new Checking(user, Double.parseDouble(balance.getText()), dateOpen, directBool);
                 boolean added = db.add(accC);
                 if (added) {
                     System.out.println("Account opened and added to the database.");
@@ -85,9 +103,7 @@ public class Controller {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
             }
 
-        }
-
-        if(savings.isSelected()) {
+        }else if(savings.isSelected()) {
             System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             System.out.println("Balance " + balance.getText());
@@ -95,7 +111,7 @@ public class Controller {
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
-                Account accS = new Savings(user, Double.parseDouble(balance.getText()), dateOpen, false);
+                Account accS = new Savings(user, Double.parseDouble(balance.getText()), dateOpen, isLoyalBool);
                 boolean added = db.add(accS);
                 if (added) {
                     System.out.println("Account opened and added to the database.");
@@ -106,6 +122,10 @@ public class Controller {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
             }
 
+        }else if(moneyMarket.isSelected()){ // money Market is selected
+            System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+            System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
+            System.out.println("Balance " + balance.getText());
         }
 
     }
