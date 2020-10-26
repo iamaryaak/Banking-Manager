@@ -1,9 +1,6 @@
 package TransactionPkg;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 
 public class Controller {
 
@@ -20,6 +17,9 @@ public class Controller {
     public RadioButton savings;
     public RadioButton moneyMarket;
 
+    public CheckBox directDepo;
+    public CheckBox isLoy;
+
     public ToggleGroup tg = new ToggleGroup();
 
     public void sayName(ActionEvent actionEvent) {
@@ -32,6 +32,10 @@ public class Controller {
     public void checkingSelect(ActionEvent e){
         // select checking and gray out other two
         System.out.println("Selected Checking");
+    }
+
+    public void setDirectDepo(ActionEvent e){
+        System.out.println("Direct Deposit");
     }
 
 }
