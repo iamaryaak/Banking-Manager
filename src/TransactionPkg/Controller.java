@@ -31,26 +31,20 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
 
 
-    public void selectAccount(){
+    public void selectAccount() {
 
-        if(checking.isSelected()){
+        if (checking.isSelected()) {
             loyal.setDisable(true);
-            setOpenAccount();
-        }
-        else if (savings.isSelected()){
+        } else if (savings.isSelected()) {
             direct.setDisable(true);
-        }
-        else if (moneyMarket.isSelected()){
+        } else if (moneyMarket.isSelected()) {
             direct.setDisable(true);
             loyal.setDisable(true);
-        }
-        else
-        {
+        } else {
             direct.setDisable(false);
             loyal.setDisable(false);
         }
     }
-
 
     public void sayName(ActionEvent actionEvent) {
         String n = firstName.getText();
@@ -59,9 +53,10 @@ public class Controller {
         System.out.println("Got name: " + n + " " + l);
     }
 
-    public void setDirectDepo(ActionEvent e){
+    public void setDirectDepo(ActionEvent e) {
         System.out.println("Direct Deposit");
     }
+
 
     public void setOpenAccount(){
         /**public TextField firstName;
@@ -69,7 +64,8 @@ public class Controller {
         public TextField month;
         public TextField day;
         public TextField year;
-        public TextField balance;**/
+        public TextField balance;
+         **/
         if(checking.isSelected()) {
             System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
@@ -90,8 +86,6 @@ public class Controller {
             }
 
         }
-
-
 
     }
 
