@@ -1,14 +1,16 @@
 package TransactionPkg;
-
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class Controller {
 
-    public Label helloWorld;
+    public TextField firstName;
+    public Button openAccount;
 
-    public void sayHelloWorld(ActionEvent actionEvent) {
-        helloWorld.setText("This is a test!");
+    public void sayFirstName(ActionEvent actionEvent) {
+        String n = firstName.getText();
+        System.out.println("Got name " + n);
     }
 
 }

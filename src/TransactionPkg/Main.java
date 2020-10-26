@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
+    // Create Database - AccountDatabase db = new AccountDatabase();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
