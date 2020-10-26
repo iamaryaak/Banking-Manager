@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="Add/Close Accounts">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="38.0" layoutY="37.0" text="First Name" />
-                  <Label layoutX="38.0" layoutY="80.0" text="Last Name" />
-                  <Label layoutX="38.0" layoutY="118.0" text="Date Open" />
-                  <Label layoutX="38.0" layoutY="155.0" text="Balance" />
+                  <Label layoutX="37.0" layoutY="35.0" text="First Name" />
+                  <Label layoutX="38.0" layoutY="74.0" text="Last Name" />
+                  <Label layoutX="38.0" layoutY="114.0" text="Date Open" />
+                  <Label layoutX="37.0" layoutY="153.0" text="Balance" />
+                  <TextField layoutX="118.0" layoutY="30.0" prefHeight="27.0" prefWidth="182.0" />
+                  <TextField layoutX="118.0" layoutY="69.0" prefHeight="27.0" prefWidth="182.0" />
+                  <TextField layoutX="118.0" layoutY="109.0" prefHeight="27.0" prefWidth="182.0" />
+                  <TextField layoutX="118.0" layoutY="148.0" prefHeight="27.0" prefWidth="182.0" />
+                  <RadioButton layoutX="320.0" layoutY="35.0" mnemonicParsing="false" text="Checking" />
+                  <RadioButton layoutX="320.0" layoutY="74.0" mnemonicParsing="false" text="Savings" />
+                  <RadioButton layoutX="320.0" layoutY="114.0" mnemonicParsing="false" text="Money Market" />
+                  <CheckBox layoutX="452.0" layoutY="35.0" mnemonicParsing="false" text="Direct-Deposit" />
+                  <CheckBox layoutX="452.0" layoutY="74.0" mnemonicParsing="false" text="Loyal Customer" />
+                  <ListView layoutX="38.0" layoutY="184.0" prefHeight="169.0" prefWidth="600.0" />
                </children></AnchorPane>
       </content>
     </Tab>
