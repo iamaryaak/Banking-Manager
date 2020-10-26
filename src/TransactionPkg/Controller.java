@@ -60,9 +60,6 @@ public class Controller {
             tg.getSelectedToggle();
             direct.setDisable(true);
             loyal.setDisable(true);
-        } else {
-            direct.setDisable(true);
-            loyal.setDisable(true);
         }
     }
 
