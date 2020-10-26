@@ -1,6 +1,11 @@
 package TransactionPkg;
+
 import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 public class Controller {
 
@@ -13,25 +18,43 @@ public class Controller {
 
     public Button openAccount;
 
-    public RadioButton checking;
-    public RadioButton savings;
-    public RadioButton moneyMarket;
+    @FXML
+    RadioButton checking;
+    @FXML
+    RadioButton savings;
+    @FXML
+    RadioButton moneyMarket;
+    @FXML
+    CheckBox direct;
+    @FXML
+    CheckBox loyal;
 
-    public CheckBox directDepo;
-    public CheckBox isLoy;
 
-    public ToggleGroup tg = new ToggleGroup();
+    public void selectAccount(){
+
+        if(checking.isSelected()){
+            loyal.setDisable(true);
+        }
+        else if (savings.isSelected()){
+            direct.setDisable(true);
+        }
+        else if (moneyMarket.isSelected()){
+            direct.setDisable(true);
+            loyal.setDisable(true);
+        }
+        else
+        {
+            direct.setDisable(false);
+            loyal.setDisable(false);
+        }
+    }
+
 
     public void sayName(ActionEvent actionEvent) {
         String n = firstName.getText();
         String l = lastName.getText();
 
         System.out.println("Got name: " + n + " " + l);
-    }
-
-    public void checkingSelect(ActionEvent e){
-        // select checking and gray out other two
-        System.out.println("Selected Checking");
     }
 
     public void setDirectDepo(ActionEvent e){
