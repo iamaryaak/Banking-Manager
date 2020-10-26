@@ -135,6 +135,21 @@ public class Controller {
             System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             System.out.println("Balance " + balance.getText());
+
+            Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
+            if (dateOpen.isValid()) {
+                Profile user = new Profile(firstName.getText(), lastName.getText());
+                Account accM = new MoneyMarket(user, Double.parseDouble(balance.getText()), dateOpen);
+                boolean added = db.add(accM);
+                if (added) {
+                    System.out.println("Account opened and added to the database.");
+                } else {
+                    System.out.println("Account is already in the database.");
+                }
+            } else {
+                System.out.println(dateOpen.toString() + " is not a valid date!");
+            }
+
         }
 
     }
