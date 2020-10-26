@@ -31,7 +31,7 @@ public class Controller {
 
     public void checkingSelect(ActionEvent e){
         // select checking and gray out other two
-        System.out.println("Checking is selected");
+        System.out.println("Selected Checking");
     }
 
 }
