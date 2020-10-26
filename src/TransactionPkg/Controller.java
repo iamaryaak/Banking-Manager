@@ -32,29 +32,35 @@ public class Controller {
     CheckBox loyal;
 
     AccountDatabase db = new AccountDatabase();
+    ToggleGroup tg = new ToggleGroup();
+
+    public void setTg() {
+        checking.setToggleGroup(tg);
+        savings.setToggleGroup(tg);
+        moneyMarket.setToggleGroup(tg);
+
+    }
 
 
     public void selectAccount() {
 
+        setTg();
+
         if (checking.isSelected()) {
+            tg.getSelectedToggle();
             loyal.setDisable(true);
-            savings.setDisable(true);
-            moneyMarket.setDisable(true);
-        } else if (savings.isSelected()) {
-            direct.setDisable(true);
-            checking.setDisable(true);
-            moneyMarket.setDisable(true);
-        } else if (moneyMarket.isSelected()) {
-            direct.setDisable(true);
-            loyal.setDisable(true);
-            savings.setDisable(true);
-            checking.setDisable(true);
-        } else {
-            checking.setDisable(false);
-            savings.setDisable(false);
-            moneyMarket.setDisable(false);
             direct.setDisable(false);
+        } else if (savings.isSelected()) {
+            tg.getSelectedToggle();
             loyal.setDisable(false);
+            direct.setDisable(true);
+        } else if (moneyMarket.isSelected()) {
+            tg.getSelectedToggle();
+            direct.setDisable(true);
+            loyal.setDisable(true);
+        } else {
+            direct.setDisable(true);
+            loyal.setDisable(true);
         }
     }
 
