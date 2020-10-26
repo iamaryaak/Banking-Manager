@@ -13,7 +13,7 @@ public class Controller {
     public TextField year;
     public TextField balance;
 
-    public ListView<Account> list;
+    public ListView<String> list = new ListView<String>();
 
     public Button openAccount;
 
@@ -105,6 +105,7 @@ public class Controller {
                 boolean added = db.add(accC);
                 if (added) {
                     System.out.println("Account opened and added to the database.");
+                    list.getItems().add(accC.toString());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -123,6 +124,7 @@ public class Controller {
                 Account accS = new Savings(user, Double.parseDouble(balance.getText()), dateOpen, isLoyalBool);
                 boolean added = db.add(accS);
                 if (added) {
+                    list.getItems().add(accS.toString());
                     System.out.println("Account opened and added to the database.");
                 } else {
                     System.out.println("Account is already in the database.");
@@ -142,6 +144,7 @@ public class Controller {
                 Account accM = new MoneyMarket(user, Double.parseDouble(balance.getText()), dateOpen);
                 boolean added = db.add(accM);
                 if (added) {
+                    list.getItems().add(accM.toString());
                     System.out.println("Account opened and added to the database.");
                 } else {
                     System.out.println("Account is already in the database.");
@@ -153,5 +156,6 @@ public class Controller {
         }
 
     }
+
 
 }
