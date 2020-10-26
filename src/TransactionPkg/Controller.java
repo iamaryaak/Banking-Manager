@@ -38,12 +38,21 @@ public class Controller {
 
         if (checking.isSelected()) {
             loyal.setDisable(true);
+            savings.setDisable(true);
+            moneyMarket.setDisable(true);
         } else if (savings.isSelected()) {
             direct.setDisable(true);
+            checking.setDisable(true);
+            moneyMarket.setDisable(true);
         } else if (moneyMarket.isSelected()) {
             direct.setDisable(true);
             loyal.setDisable(true);
+            savings.setDisable(true);
+            checking.setDisable(true);
         } else {
+            checking.setDisable(false);
+            savings.setDisable(false);
+            moneyMarket.setDisable(false);
             direct.setDisable(false);
             loyal.setDisable(false);
         }
