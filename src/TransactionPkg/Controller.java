@@ -158,34 +158,16 @@ public class Controller {
     }
 
     public void setCloseAccount(ActionEvent e){
-        //System.out.println("Closing Account");
+
+        String account =  list.getSelectionModel().toString();
+        System.out.println("Account Selected to Remove: " + account);
+
         if(checking.isSelected()){
-            Profile user = new Profile(firstName.getText(), lastName.getText());
-            Date empty = new Date(0,0,0);
-            Account closeC = new Checking(user, 0, empty, false);
-            boolean close = db.remove(closeC);
-            if(close){
-                list.getItems().remove(closeC.toString());
-                System.out.println("Account closed and removed from database.");
-            }
+            System.out.println("Checking is selected");
         }else if(savings.isSelected()){
-            Profile user = new Profile(firstName.getText(), lastName.getText());
-            Date empty = new Date(0,0,0);
-            Account closeS = new Savings(user, 0, empty, false);
-            boolean close = db.remove(closeS);
-            if(close){
-                list.getItems().remove(closeS.toString());
-                System.out.println("Account closed and removed from database.");
-            }
+            System.out.println("Savings is selected");
         }else if(moneyMarket.isSelected()){
-            Profile user = new Profile(firstName.getText(), lastName.getText());
-            Date empty = new Date(0,0,0);
-            Account closeM = new MoneyMarket(user, 0, empty);
-            boolean close = db.remove(closeM);
-            if(close){
-                list.getItems().remove(closeM.toString());
-                System.out.println("Account closed and removed from database.");
-            }
+            System.out.println("moneyMarket is selected");
         }
     }
 
