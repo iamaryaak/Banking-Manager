@@ -36,6 +36,19 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
+    public void initialize(){
+        closeAccount.setDisable(true);
+        openAccount.setDisable(true);
+        firstName.setDisable(true);
+        lastName.setDisable(true);
+        month.setDisable(true);
+        day.setDisable(true);
+        year.setDisable(true);
+        balance.setDisable(true);
+        direct.setDisable(true);
+        loyal.setDisable(true);
+    }
+
     /**
      * A void method that sets radio buttons into a group for a single selection
      */
@@ -47,22 +60,47 @@ public class Controller {
 
 
     public void selectAccount() {
-
         setTg();
 
         if (checking.isSelected()) {
             tg.getSelectedToggle();
             loyal.setDisable(true);
             direct.setDisable(false);
+            openAccount.setDisable(false);
+            // make user ability to type
+            firstName.setDisable(false);
+            lastName.setDisable(false);
+            month.setDisable(false);
+            day.setDisable(false);
+            year.setDisable(false);
+            balance.setDisable(false);
         } else if (savings.isSelected()) {
             tg.getSelectedToggle();
             loyal.setDisable(false);
             direct.setDisable(true);
+            openAccount.setDisable(false);
+            // make user ability to type
+            firstName.setDisable(false);
+            lastName.setDisable(false);
+            month.setDisable(false);
+            day.setDisable(false);
+            year.setDisable(false);
+            balance.setDisable(false);
+
         } else if (moneyMarket.isSelected()) {
             tg.getSelectedToggle();
             direct.setDisable(true);
             loyal.setDisable(true);
+            openAccount.setDisable(false);
+            // make user ability to type
+            firstName.setDisable(false);
+            lastName.setDisable(false);
+            month.setDisable(false);
+            day.setDisable(false);
+            year.setDisable(false);
+            balance.setDisable(false);
         }
+
     }
 
     public void sayName(ActionEvent actionEvent) {
@@ -93,6 +131,7 @@ public class Controller {
     }
 
     public void setOpenAccount(){
+
         if(checking.isSelected()) {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
@@ -158,6 +197,10 @@ public class Controller {
     }
 
     public void setCloseAccount(ActionEvent e){
+        int selectedItem = list.getSelectionModel().getSelectedIndex();
+        list.getItems().remove(selectedItem);
+
+        /*
         //System.out.println("Closing Account");
         if(checking.isSelected()){
             Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -165,7 +208,7 @@ public class Controller {
             Account closeC = new Checking(user, 0, empty, false);
             boolean close = db.remove(closeC);
             if(close){
-                list.getItems().remove(closeC.toString());
+                list.getItems().remove(closeC);
                 System.out.println("Account closed and removed from database.");
             }
         }else if(savings.isSelected()){
@@ -174,7 +217,7 @@ public class Controller {
             Account closeS = new Savings(user, 0, empty, false);
             boolean close = db.remove(closeS);
             if(close){
-                list.getItems().remove(closeS.toString());
+                list.getItems().remove(closeS);
                 System.out.println("Account closed and removed from database.");
             }
         }else if(moneyMarket.isSelected()){
@@ -187,6 +230,8 @@ public class Controller {
                 System.out.println("Account closed and removed from database.");
             }
         }
+
+         */
     }
 
     public void setClear(){
