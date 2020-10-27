@@ -168,10 +168,21 @@ public class Controller {
 
         }
 
+        // reset fields
         direct.setSelected(false);
         directBool = false;
         loyal.setSelected(false);
         isLoyalBool = false;
+        firstName.clear();
+        lastName.clear();
+        month.clear();
+        day.clear();
+        year.clear();
+        balance.clear();
+        checking.setSelected(false);
+        savings.setSelected(false);
+        moneyMarket.setSelected(false);
+
     }
 
     public void setList(){
