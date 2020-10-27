@@ -36,8 +36,10 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
+
+
     public void initialize(){
-        closeAccount.setDisable(true);
+        //closeAccount.setDisable(true);
         openAccount.setDisable(true);
         direct.setDisable(true);
         loyal.setDisable(true);
@@ -178,30 +180,51 @@ public class Controller {
 
 
     public void setCloseAccount(ActionEvent e){
-        closeAccount.setDisable(false);
-        closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+        //closeAccount.setDisable(false);
+        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
 
-        String account =  list.getSelectionModel().getSelectedItem();
-        //System.out.println("Account Selected to Remove: " + account);
-
-        // "*Checking*" +  holder.toString() + "* "+ "$" + df.format(balance) +
-        //                "*" + dateOpen.toString() + isDirectDeposit()
-
-        String[] acc = account.split("\\*");
-        System.out.println("Account= " + acc[0]);
-        Object accountObj = acc[0];
-        String name = acc[1];
-        // split this up
-        String[] names = name.split("\\s");
+        // handle account info
+        String account =  list.getSelectionModel().getSelectedItem().toString();
+        System.out.println("Account Selected to Remove: " + account);
+        String[] accountInfo = account.split("\\*");
+        String typeOfAcc = accountInfo[1];
+        String[] fullName = accountInfo[2].split("\\s");
 
 
-        if(checking.isSelected()){
-            System.out.println("Checking is selected");
+        if(typeOfAcc.equals("Checking")){
+            Profile user = new Profile(fullName[0], fullName[1]);
+            Date empty = new Date(0,0,0);
+            Account rC = new Checking(user, 0, empty, false);
+            boolean close = db.remove(rC);
+            if(close){
+                list.getItems().remove(account);
+                System.out.println("Account closed and removed from database.");
+            }else{
+                System.out.println("Account does not exist.");
+            }
+        }else if(typeOfAcc.equals("Savings")){
+            Profile user = new Profile(fullName[0], fullName[1]);
+            Date empty = new Date(0,0,0);
+            Account rS = new Savings(user, 0, empty, false);
+            boolean close = db.remove(rS);
+            if(close){
+                list.getItems().remove(account);
+                System.out.println("Account closed and removed from database.");
+            }else{
+                System.out.println("Account does not exist.");
+            }
+        }else if(typeOfAcc.equals("MoneyMarket")){
+            Profile user = new Profile(fullName[0], fullName[1]);
+            Date empty = new Date(0,0,0);
+            Account rM = new MoneyMarket(user, 0, empty);
+            boolean close = db.remove(rM);
+            if(close){
+                list.getItems().remove(account);
+                System.out.println("Account closed and removed from database.");
+            }else{
+                System.out.println("Account does not exist.");
+            }
 
-        }else if(savings.isSelected()){
-            System.out.println("Savings is selected");
-        }else if(moneyMarket.isSelected()){
-            System.out.println("moneyMarket is selected");
         }
     }
 
