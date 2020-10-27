@@ -16,6 +16,8 @@ public class Controller {
     public ListView<String> list = new ListView<String>();
 
     public Button openAccount;
+    public Button closeAccount;
+    public Button clear;
 
     public boolean directBool;
     public boolean isLoyalBool;
@@ -67,11 +69,11 @@ public class Controller {
         String n = firstName.getText();
         String l = lastName.getText();
 
-        System.out.println("Got name: " + n + " " + l);
+        //System.out.println("Got name: " + n + " " + l);
     }
 
     public boolean setDirectDepo(ActionEvent e) {
-        System.out.println("Direct Deposit");
+        //System.out.println("Direct Deposit");
         if(direct.isSelected()){
             directBool = true;
         }else{
@@ -81,7 +83,7 @@ public class Controller {
     }
 
     public boolean setIsLoyal(ActionEvent e) {
-        System.out.println("Is Loyal");
+        //System.out.println("Is Loyal");
         if(loyal.isSelected()){
             isLoyalBool = true;
         }else{
@@ -91,17 +93,10 @@ public class Controller {
     }
 
     public void setOpenAccount(){
-        /**public TextField firstName;
-        public TextField lastName;
-        public TextField month;
-        public TextField day;
-        public TextField year;
-        public TextField balance;
-         **/
         if(checking.isSelected()) {
-            System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
-            System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
-            System.out.println("Balance " + balance.getText());
+            //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+            //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
+            //System.out.println("Balance " + balance.getText());
 
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -119,9 +114,9 @@ public class Controller {
             }
 
         }else if(savings.isSelected()) {
-            System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
-            System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
-            System.out.println("Balance " + balance.getText());
+           //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+            //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
+            //System.out.println("Balance " + balance.getText());
 
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -139,9 +134,9 @@ public class Controller {
             }
 
         }else if(moneyMarket.isSelected()){ // money Market is selected
-            System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
-            System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
-            System.out.println("Balance " + balance.getText());
+            //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+            //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
+            //System.out.println("Balance " + balance.getText());
 
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -162,5 +157,40 @@ public class Controller {
 
     }
 
+    public void setCloseAccount(ActionEvent e){
+        //System.out.println("Closing Account");
+        if(checking.isSelected()){
+            Profile user = new Profile(firstName.getText(), lastName.getText());
+            Date empty = new Date(0,0,0);
+            Account closeC = new Checking(user, 0, empty, false);
+            boolean close = db.remove(closeC);
+            if(close){
+                list.getItems().remove(closeC.toString());
+                System.out.println("Account closed and removed from database.");
+            }
+        }else if(savings.isSelected()){
+            Profile user = new Profile(firstName.getText(), lastName.getText());
+            Date empty = new Date(0,0,0);
+            Account closeS = new Savings(user, 0, empty, false);
+            boolean close = db.remove(closeS);
+            if(close){
+                list.getItems().remove(closeS.toString());
+                System.out.println("Account closed and removed from database.");
+            }
+        }else if(moneyMarket.isSelected()){
+            Profile user = new Profile(firstName.getText(), lastName.getText());
+            Date empty = new Date(0,0,0);
+            Account closeM = new MoneyMarket(user, 0, empty);
+            boolean close = db.remove(closeM);
+            if(close){
+                list.getItems().remove(closeM.toString());
+                System.out.println("Account closed and removed from database.");
+            }
+        }
+    }
+
+    public void setClear(){
+        list.getItems().removeAll();
+    }
 
 }
