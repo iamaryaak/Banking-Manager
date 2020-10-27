@@ -20,8 +20,8 @@ public class Controller {
     public Button closeAccount;
     public Button clear;
 
-    public boolean directBool;
-    public boolean isLoyalBool;
+    public boolean directBool = false;
+    public boolean isLoyalBool = false;
 
     @FXML
     RadioButton checking;
@@ -89,21 +89,13 @@ public class Controller {
 
     public boolean setDirectDepo(ActionEvent e) {
         //System.out.println("Direct Deposit");
-        if(direct.isSelected()){
-            directBool = true;
-        }else{
-            directBool = false;
-        }
+        directBool = direct.isSelected();
         return directBool;
     }
 
     public boolean setIsLoyal(ActionEvent e) {
         //System.out.println("Is Loyal");
-        if(loyal.isSelected()){
-            isLoyalBool = true;
-        }else{
-            isLoyalBool = false;
-        }
+        isLoyalBool = loyal.isSelected();
         return isLoyalBool;
     }
 
@@ -176,6 +168,10 @@ public class Controller {
 
         }
 
+        direct.setSelected(false);
+        directBool = false;
+        loyal.setSelected(false);
+        isLoyalBool = false;
     }
 
     public void setList(){
@@ -221,7 +217,7 @@ public class Controller {
             }else{
                 System.out.println("Account does not exist.");
             }
-        }else if(typeOfAcc.equals("MoneyMarket")){
+        }else if(typeOfAcc.equals("Money Market")){
             Profile user = new Profile(fullName[0], fullName[1]);
             Date empty = new Date(0,0,0);
             Account rM = new MoneyMarket(user, 0, empty);
