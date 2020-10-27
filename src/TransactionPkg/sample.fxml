@@ -30,7 +30,7 @@
                   <RadioButton fx:id="moneyMarket" layoutX="320.0" layoutY="114.0" mnemonicParsing="false" onAction="#selectAccount" text="Money Market" />
                   <CheckBox fx:id="direct" layoutX="452.0" layoutY="35.0" mnemonicParsing="false" onAction="#setDirectDepo" text="Direct-Deposit" />
                   <CheckBox fx:id="loyal" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" text="Loyal Customer" />
-                  <ListView fx:id="list" layoutX="38.0" layoutY="192.0" prefHeight="216.0" prefWidth="658.0" />
+                  <ListView fx:id="list" layoutX="38.0" layoutY="192.0" onMouseClicked="#setCloseAccount" prefHeight="216.0" prefWidth="658.0" />
                   <Label layoutX="161.0" layoutY="107.0" prefHeight="17.0" prefWidth="10.0" text="/">
                      <font>
                         <Font size="24.0" />

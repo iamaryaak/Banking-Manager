@@ -120,8 +120,8 @@ public class Controller {
                 if (added) {
                     System.out.println("Account opened and added to the database.");
                     list.getItems().add(accC.toString());
-                    closeAccount.setDisable(false);
-                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+                    //closeAccount.setDisable(false);
+                    //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -142,8 +142,7 @@ public class Controller {
                 if (added) {
                     list.getItems().add(accS.toString());
                     System.out.println("Account opened and added to the database.");
-                    closeAccount.setDisable(false);
-                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -164,8 +163,8 @@ public class Controller {
                 if (added) {
                     list.getItems().add(accM.toString());
                     System.out.println("Account opened and added to the database.");
-                    closeAccount.setDisable(false);
-                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+                    //closeAccount.setDisable(false);
+                    //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -178,13 +177,27 @@ public class Controller {
     }
 
 
-
     public void setCloseAccount(ActionEvent e){
-        String account =  list.getSelectionModel().toString();
-        System.out.println("Account Selected to Remove: " + account);
+        closeAccount.setDisable(false);
+        closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+
+        String account =  list.getSelectionModel().getSelectedItem();
+        //System.out.println("Account Selected to Remove: " + account);
+
+        // "*Checking*" +  holder.toString() + "* "+ "$" + df.format(balance) +
+        //                "*" + dateOpen.toString() + isDirectDeposit()
+
+        String[] acc = account.split("\\*");
+        System.out.println("Account= " + acc[0]);
+        Object accountObj = acc[0];
+        String name = acc[1];
+        // split this up
+        String[] names = name.split("\\s");
+
 
         if(checking.isSelected()){
             System.out.println("Checking is selected");
+
         }else if(savings.isSelected()){
             System.out.println("Savings is selected");
         }else if(moneyMarket.isSelected()){
