@@ -145,6 +145,8 @@ public class Controller {
                 if (added) {
                     System.out.println("Account opened and added to the database.");
                     list.getItems().add(accC.toString());
+                    closeAccount.setDisable(false);
+                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -165,6 +167,8 @@ public class Controller {
                 if (added) {
                     list.getItems().add(accS.toString());
                     System.out.println("Account opened and added to the database.");
+                    closeAccount.setDisable(false);
+                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -185,6 +189,8 @@ public class Controller {
                 if (added) {
                     list.getItems().add(accM.toString());
                     System.out.println("Account opened and added to the database.");
+                    closeAccount.setDisable(false);
+                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -196,11 +202,10 @@ public class Controller {
 
     }
 
-    public void setCloseAccount(ActionEvent e){
-        int selectedItem = list.getSelectionModel().getSelectedIndex();
-        list.getItems().remove(selectedItem);
 
-        /*
+
+    public void setCloseAccount(ActionEvent e){
+
         //System.out.println("Closing Account");
         if(checking.isSelected()){
             Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -231,7 +236,6 @@ public class Controller {
             }
         }
 
-         */
     }
 
     public void setClear(){
