@@ -36,6 +36,14 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
+    public void initialize(){
+        closeAccount.setDisable(true);
+        openAccount.setDisable(true);
+        direct.setDisable(true);
+        loyal.setDisable(true);
+        clear.setDisable(true);
+    }
+
     /**
      * A void method that sets radio buttons into a group for a single selection
      */
@@ -47,22 +55,27 @@ public class Controller {
 
 
     public void selectAccount() {
-
         setTg();
 
         if (checking.isSelected()) {
             tg.getSelectedToggle();
             loyal.setDisable(true);
             direct.setDisable(false);
+            openAccount.setDisable(false);
+
         } else if (savings.isSelected()) {
             tg.getSelectedToggle();
             loyal.setDisable(false);
             direct.setDisable(true);
+            openAccount.setDisable(false);
+
         } else if (moneyMarket.isSelected()) {
             tg.getSelectedToggle();
             direct.setDisable(true);
             loyal.setDisable(true);
+            openAccount.setDisable(false);
         }
+
     }
 
     public void sayName(ActionEvent actionEvent) {
@@ -93,6 +106,7 @@ public class Controller {
     }
 
     public void setOpenAccount(){
+
         if(checking.isSelected()) {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
@@ -106,6 +120,8 @@ public class Controller {
                 if (added) {
                     System.out.println("Account opened and added to the database.");
                     list.getItems().add(accC.toString());
+                    closeAccount.setDisable(false);
+                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -126,6 +142,8 @@ public class Controller {
                 if (added) {
                     list.getItems().add(accS.toString());
                     System.out.println("Account opened and added to the database.");
+                    closeAccount.setDisable(false);
+                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -146,6 +164,8 @@ public class Controller {
                 if (added) {
                     list.getItems().add(accM.toString());
                     System.out.println("Account opened and added to the database.");
+                    closeAccount.setDisable(false);
+                    closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                 } else {
                     System.out.println("Account is already in the database.");
                 }
@@ -157,8 +177,9 @@ public class Controller {
 
     }
 
-    public void setCloseAccount(ActionEvent e){
 
+
+    public void setCloseAccount(ActionEvent e){
         String account =  list.getSelectionModel().toString();
         System.out.println("Account Selected to Remove: " + account);
 
