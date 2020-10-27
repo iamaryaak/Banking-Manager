@@ -39,14 +39,9 @@ public class Controller {
     public void initialize(){
         closeAccount.setDisable(true);
         openAccount.setDisable(true);
-        firstName.setDisable(true);
-        lastName.setDisable(true);
-        month.setDisable(true);
-        day.setDisable(true);
-        year.setDisable(true);
-        balance.setDisable(true);
         direct.setDisable(true);
         loyal.setDisable(true);
+        clear.setDisable(true);
     }
 
     /**
@@ -67,38 +62,18 @@ public class Controller {
             loyal.setDisable(true);
             direct.setDisable(false);
             openAccount.setDisable(false);
-            // make user ability to type
-            firstName.setDisable(false);
-            lastName.setDisable(false);
-            month.setDisable(false);
-            day.setDisable(false);
-            year.setDisable(false);
-            balance.setDisable(false);
+
         } else if (savings.isSelected()) {
             tg.getSelectedToggle();
             loyal.setDisable(false);
             direct.setDisable(true);
             openAccount.setDisable(false);
-            // make user ability to type
-            firstName.setDisable(false);
-            lastName.setDisable(false);
-            month.setDisable(false);
-            day.setDisable(false);
-            year.setDisable(false);
-            balance.setDisable(false);
 
         } else if (moneyMarket.isSelected()) {
             tg.getSelectedToggle();
             direct.setDisable(true);
             loyal.setDisable(true);
             openAccount.setDisable(false);
-            // make user ability to type
-            firstName.setDisable(false);
-            lastName.setDisable(false);
-            month.setDisable(false);
-            day.setDisable(false);
-            year.setDisable(false);
-            balance.setDisable(false);
         }
 
     }
