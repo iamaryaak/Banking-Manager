@@ -13,7 +13,8 @@ public class Controller {
     public TextField year;
     public TextField balance;
 
-    public ListView<String> list = new ListView<String>();
+    @FXML
+    ListView<String> list = new ListView<String>();
 
     public Button openAccount;
     public Button closeAccount;
@@ -37,7 +38,6 @@ public class Controller {
     ToggleGroup tg = new ToggleGroup();
 
     public void initialize(){
-        closeAccount.setDisable(true);
         openAccount.setDisable(true);
         direct.setDisable(true);
         loyal.setDisable(true);
@@ -176,10 +176,18 @@ public class Controller {
 
     }
 
+    public void setList(){
+        do{
+            closeAccount.setDisable(true);
+        }while(list.getSelectionModel().getSelectedItem().isEmpty());
+
+        String item = list.getSelectionModel().getSelectedItem();
+        System.out.println(item);
+    }
 
     public void setCloseAccount(ActionEvent e){
-        closeAccount.setDisable(false);
-        closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+
+        setList();
 
         String account =  list.getSelectionModel().getSelectedItem();
         //System.out.println("Account Selected to Remove: " + account);
