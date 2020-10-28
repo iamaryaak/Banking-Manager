@@ -201,8 +201,6 @@ public class Controller {
         checking.setSelected(false);
         savings.setSelected(false);
         moneyMarket.setSelected(false);
-
-
     }
 
     public void handle(){
@@ -319,17 +317,67 @@ public class Controller {
                 }
 
             }
-            else if(inputArr[0] == "S"){
+            else if(inputArr[0].equals("S")){
+                if(inputArr.length != 6){
+                    throw new NumberFormatException();
+                }
+                String firstName = inputArr[1];
+                String lastName = inputArr[2];
+                double amount = Double.parseDouble(inputArr[3]);
+                String date = inputArr[4];
+
+                String[] splitDate = date.split("/");
+                int month = Integer.parseInt(splitDate[0]);
+                int day = Integer.parseInt(splitDate[1]);
+                int year = Integer.parseInt(splitDate[2]);
+                // check if date is valid
+                Date dateOpen = new Date(year, month, day);
+                if(dateOpen.isValid()){
+                    boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
+                    Profile user = new Profile(firstName, lastName);
+                    Account accS = new Savings(user, amount, dateOpen, isLoyal);
+                    boolean added = db.add(accS);
+                    if (added) {
+                        list2.getItems().add(accS.toString());
+                        System.out.println("Account opened and added to the database.");
+                    } else{
+                        System.out.println("Account is already in the database.");
+                    }
+                }else{
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                }
 
             }
-            else if(inputArr[0] == "M"){
-
+            else if(inputArr[0].equals("M")){
+                if(inputArr.length != 5){
+                    throw new NumberFormatException();
+                }
+                String firstName = inputArr[1];
+                String lastName = inputArr[2];
+                double amount = Double.parseDouble(inputArr[3]);
+                String date = inputArr[4];
+                String[] splitDate = date.split("/");
+                int month = Integer.parseInt(splitDate[0]);
+                int day = Integer.parseInt(splitDate[1]);
+                int year = Integer.parseInt(splitDate[2]);
+                // check if date is valid
+                Date dateOpen = new Date(year, month, day);
+                if(dateOpen.isValid()){
+                    Profile user = new Profile(firstName, lastName);
+                    Account accM = new MoneyMarket(user, amount, dateOpen);
+                    boolean added = db.add(accM);
+                    if (added) {
+                        list2.getItems().add(accM.toString());
+                        System.out.println("Account opened and added to the database.");
+                    }else{
+                        System.out.println("Account is already in the database.");
+                    }
+                }else{
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                }
             }
 
         }
-
-
-
     }
 
 }
