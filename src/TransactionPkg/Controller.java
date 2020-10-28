@@ -3,6 +3,12 @@ package TransactionPkg;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Controller {
 
@@ -19,9 +25,13 @@ public class Controller {
     @FXML
     ListView<String> list1 = new ListView<String>();
 
+    @FXML
+    ListView<String> list2 = new ListView<String>();
+
     public Button openAccount;
     public Button closeAccount;
     public Button clear;
+    public Button input;
 
     public boolean directBool = false;
     public boolean isLoyalBool = false;
@@ -41,12 +51,15 @@ public class Controller {
     ToggleGroup tg = new ToggleGroup();
 
     // Binds the list from the first tab to the second
+    public void setList2() {list2.itemsProperty().bind(list.itemsProperty());}
     public void setList1(){
         list1.itemsProperty().bind(list.itemsProperty());
     }
 
+
     public void initialize(){
         setList1();
+        setList2();
         openAccount.setDisable(true);
         direct.setDisable(true);
         loyal.setDisable(true);
@@ -246,6 +259,77 @@ public class Controller {
 
     public void setClear(){
         list.getItems().removeAll();
+    }
+
+    public void importFile() throws FileNotFoundException {
+
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Open Source File for the Import");
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            Stage stage = new Stage();
+            File sourceFile = chooser.showOpenDialog(stage); //get the reference of the source file
+            System.out.println("Imported a file");
+
+        Scanner sc = new Scanner(sourceFile);
+        while(sc.hasNext()){
+
+            String s = sc.nextLine();
+
+            String[] inputArr = s.split(",");
+
+            if(inputArr[0].equals("C")){
+                System.out.println("Found matching account");
+                if(inputArr.length != 6){
+                    throw new NumberFormatException();
+                }
+                String bool = inputArr[5];
+                if(bool.equals("flash")){
+                    throw new NumberFormatException();
+                }
+                //Example input: OC John Doe 300 false
+                //What it does: open a checking account with $300, non-direct deposit
+                String firstName = inputArr[1];
+                String lastName = inputArr[2];
+                double amount = Double.parseDouble(inputArr[3]);
+                String date = inputArr[4];
+
+
+                String[] splitDate = date.split("/");
+                int month = Integer.parseInt(splitDate[0]);
+                int day = Integer.parseInt(splitDate[1]);
+                int year = Integer.parseInt(splitDate[2]);
+
+                // check if date is valid
+                Date dateOpen = new Date(year, month, day);
+                if(dateOpen.isValid()){
+                    boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
+                    Profile user = new Profile(firstName, lastName);
+                    Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                    boolean added = db.add(accC);
+                    if (added) {
+                        System.out.println(accC);
+                        list2.getItems().add(accC.toString());
+                        System.out.println("Account opened and added to the database.");
+                    } else{
+                        System.out.println("Account is already in the database.");
+                    }
+                }else{
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                }
+
+            }
+            else if(inputArr[0] == "S"){
+
+            }
+            else if(inputArr[0] == "M"){
+
+            }
+
+        }
+
+
+
     }
 
 }
