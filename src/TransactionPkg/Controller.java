@@ -32,6 +32,10 @@ public class Controller {
     public Button closeAccount;
     public Button clear;
     public Button input;
+    public MenuButton pr;
+    public MenuItem prinAcc;
+    public MenuItem stateDate;
+    public MenuItem stateLname;
 
     public boolean directBool = false;
     public boolean isLoyalBool = false;
@@ -50,14 +54,29 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
+
+
+   /* MenuItem accounts = new MenuItem("Accounts");
+    MenuItem stateDate = new MenuItem("Statements by Date");
+    MenuItem stateLast = new MenuItem("Statements by Last Name");
+    */
+
     // Binds the list from the first tab to the second
-    public void setList2() {list2.itemsProperty().bind(list.itemsProperty());}
-    public void setList1(){
+    public void setList2() {
+        list2.itemsProperty().bind(list.itemsProperty());
+    }
+
+    public void setList1() {
         list1.itemsProperty().bind(list.itemsProperty());
     }
 
+    public void setPr() {
+        //pr.getItems().addAll(accounts, stateDate, stateLast);
+    }
 
-    public void initialize(){
+
+    public void initialize() {
+        setPr();
         setList1();
         setList2();
         openAccount.setDisable(true);
@@ -119,9 +138,9 @@ public class Controller {
         return isLoyalBool;
     }
 
-    public void setOpenAccount(){
+    public void setOpenAccount() {
 
-        if(checking.isSelected()) {
+        if (checking.isSelected()) {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
@@ -143,8 +162,8 @@ public class Controller {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
             }
 
-        }else if(savings.isSelected()) {
-           //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+        } else if (savings.isSelected()) {
+            //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
 
@@ -164,7 +183,7 @@ public class Controller {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
             }
 
-        }else if(moneyMarket.isSelected()){ // money Market is selected
+        } else if (moneyMarket.isSelected()) { // money Market is selected
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
@@ -203,181 +222,186 @@ public class Controller {
         moneyMarket.setSelected(false);
     }
 
-    public void handle(){
+    public void handle() {
         // I WILL CONQUER THIS
     }
 
-    public void setCloseAccount(ActionEvent e){
+    public void setCloseAccount(ActionEvent e) {
         //closeAccount.setDisable(false);
         //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
         // handle account info
-        String account =  list.getSelectionModel().getSelectedItem().toString();
+        String account = list.getSelectionModel().getSelectedItem().toString();
         System.out.println("Account Selected to Remove: " + account);
         String[] accountInfo = account.split("\\*");
         String typeOfAcc = accountInfo[1];
         String[] fullName = accountInfo[2].split("\\s");
 
 
-        if(typeOfAcc.equals("Checking")){
+        if (typeOfAcc.equals("Checking")) {
             Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0,0,0);
+            Date empty = new Date(0, 0, 0);
             Account rC = new Checking(user, 0, empty, false);
             boolean close = db.remove(rC);
-            if(close){
+            if (close) {
                 list.getItems().remove(account);
                 System.out.println("Account closed and removed from database.");
-            }else{
+            } else {
                 System.out.println("Account does not exist.");
             }
-        }else if(typeOfAcc.equals("Savings")){
+        } else if (typeOfAcc.equals("Savings")) {
             Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0,0,0);
+            Date empty = new Date(0, 0, 0);
             Account rS = new Savings(user, 0, empty, false);
             boolean close = db.remove(rS);
-            if(close){
+            if (close) {
                 list.getItems().remove(account);
                 System.out.println("Account closed and removed from database.");
-            }else{
+            } else {
                 System.out.println("Account does not exist.");
             }
-        }else if(typeOfAcc.equals("Money Market")){
+        } else if (typeOfAcc.equals("Money Market")) {
             Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0,0,0);
+            Date empty = new Date(0, 0, 0);
             Account rM = new MoneyMarket(user, 0, empty);
             boolean close = db.remove(rM);
-            if(close){
+            if (close) {
                 list.getItems().remove(account);
                 System.out.println("Account closed and removed from database.");
-            }else{
+            } else {
                 System.out.println("Account does not exist.");
             }
 
         }
     }
 
-    public void setClear(){
+    public void setClear() {
         list.getItems().removeAll();
+    }
+
+    public void outputAcc() {
+        ///
     }
 
     public void importFile() throws FileNotFoundException {
 
-            FileChooser chooser = new FileChooser();
-            chooser.setTitle("Open Source File for the Import");
-            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
-                    new FileChooser.ExtensionFilter("All Files", "*.*"));
-            Stage stage = new Stage();
-            File sourceFile = chooser.showOpenDialog(stage); //get the reference of the source file
-            System.out.println("Imported a file");
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open Source File for the Import");
+        chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File sourceFile = chooser.showOpenDialog(stage); //get the reference of the source file
+        System.out.println("Imported a file");
 
         Scanner sc = new Scanner(sourceFile);
-        while(sc.hasNext()){
+        while (sc.hasNext()) {
 
             String s = sc.nextLine();
 
             String[] inputArr = s.split(",");
-
-            if(inputArr[0].equals("C")){
-                System.out.println("Found matching account");
-                if(inputArr.length != 6){
-                    throw new NumberFormatException();
-                }
-                String bool = inputArr[5];
-                if(bool.equals("flash")){
-                    throw new NumberFormatException();
-                }
-                //Example input: OC John Doe 300 false
-                //What it does: open a checking account with $300, non-direct deposit
-                String firstName = inputArr[1];
-                String lastName = inputArr[2];
-                double amount = Double.parseDouble(inputArr[3]);
-                String date = inputArr[4];
-
-
-                String[] splitDate = date.split("/");
-                int month = Integer.parseInt(splitDate[0]);
-                int day = Integer.parseInt(splitDate[1]);
-                int year = Integer.parseInt(splitDate[2]);
-
-                // check if date is valid
-                Date dateOpen = new Date(year, month, day);
-                if(dateOpen.isValid()){
-                    boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
-                    Profile user = new Profile(firstName, lastName);
-                    Account accC = new Checking(user, amount, dateOpen, directDeposit);
-                    boolean added = db.add(accC);
-                    if (added) {
-                        System.out.println(accC);
-                        list2.getItems().add(accC.toString());
-                        System.out.println("Account opened and added to the database.");
-                    } else{
-                        System.out.println("Account is already in the database.");
+            try {
+                if (inputArr[0].equals("C")) {
+                    System.out.println("Found matching account");
+                    if (inputArr.length != 6) {
+                        throw new NumberFormatException();
                     }
-                }else{
-                    System.out.println(dateOpen.toString() + " is not a valid date!");
-                }
-
-            }
-            else if(inputArr[0].equals("S")){
-                if(inputArr.length != 6){
-                    throw new NumberFormatException();
-                }
-                String firstName = inputArr[1];
-                String lastName = inputArr[2];
-                double amount = Double.parseDouble(inputArr[3]);
-                String date = inputArr[4];
-
-                String[] splitDate = date.split("/");
-                int month = Integer.parseInt(splitDate[0]);
-                int day = Integer.parseInt(splitDate[1]);
-                int year = Integer.parseInt(splitDate[2]);
-                // check if date is valid
-                Date dateOpen = new Date(year, month, day);
-                if(dateOpen.isValid()){
-                    boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
-                    Profile user = new Profile(firstName, lastName);
-                    Account accS = new Savings(user, amount, dateOpen, isLoyal);
-                    boolean added = db.add(accS);
-                    if (added) {
-                        list2.getItems().add(accS.toString());
-                        System.out.println("Account opened and added to the database.");
-                    } else{
-                        System.out.println("Account is already in the database.");
+                    String bool = inputArr[5];
+                    if (bool.equals("flash")) {
+                        throw new NumberFormatException();
                     }
-                }else{
-                    System.out.println(dateOpen.toString() + " is not a valid date!");
-                }
+                    //Example input: OC John Doe 300 false
+                    //What it does: open a checking account with $300, non-direct deposit
+                    String firstName = inputArr[1];
+                    String lastName = inputArr[2];
+                    double amount = Double.parseDouble(inputArr[3]);
+                    String date = inputArr[4];
 
-            }
-            else if(inputArr[0].equals("M")){
-                if(inputArr.length != 5){
-                    throw new NumberFormatException();
-                }
-                String firstName = inputArr[1];
-                String lastName = inputArr[2];
-                double amount = Double.parseDouble(inputArr[3]);
-                String date = inputArr[4];
-                String[] splitDate = date.split("/");
-                int month = Integer.parseInt(splitDate[0]);
-                int day = Integer.parseInt(splitDate[1]);
-                int year = Integer.parseInt(splitDate[2]);
-                // check if date is valid
-                Date dateOpen = new Date(year, month, day);
-                if(dateOpen.isValid()){
-                    Profile user = new Profile(firstName, lastName);
-                    Account accM = new MoneyMarket(user, amount, dateOpen);
-                    boolean added = db.add(accM);
-                    if (added) {
-                        list2.getItems().add(accM.toString());
-                        System.out.println("Account opened and added to the database.");
-                    }else{
-                        System.out.println("Account is already in the database.");
+
+                    String[] splitDate = date.split("/");
+                    int month = Integer.parseInt(splitDate[0]);
+                    int day = Integer.parseInt(splitDate[1]);
+                    int year = Integer.parseInt(splitDate[2]);
+
+                    // check if date is valid
+                    Date dateOpen = new Date(year, month, day);
+                    if (dateOpen.isValid()) {
+                        boolean directDeposit = Boolean.parseBoolean(inputArr[5]);
+                        Profile user = new Profile(firstName, lastName);
+                        Account accC = new Checking(user, amount, dateOpen, directDeposit);
+                        boolean added = db.add(accC);
+                        if (added) {
+                            System.out.println(accC);
+                            list2.getItems().add(accC.toString());
+                            System.out.println("Account opened and added to the database.");
+                        } else {
+                            System.out.println("Account is already in the database.");
+                        }
+                    } else {
+                        System.out.println(dateOpen.toString() + " is not a valid date!");
                     }
-                }else{
-                    System.out.println(dateOpen.toString() + " is not a valid date!");
-                }
-            }
 
+                } else if (inputArr[0].equals("S")) {
+                    if (inputArr.length != 6) {
+                        throw new NumberFormatException();
+                    }
+                    String firstName = inputArr[1];
+                    String lastName = inputArr[2];
+                    double amount = Double.parseDouble(inputArr[3]);
+                    String date = inputArr[4];
+
+                    String[] splitDate = date.split("/");
+                    int month = Integer.parseInt(splitDate[0]);
+                    int day = Integer.parseInt(splitDate[1]);
+                    int year = Integer.parseInt(splitDate[2]);
+                    // check if date is valid
+                    Date dateOpen = new Date(year, month, day);
+                    if (dateOpen.isValid()) {
+                        boolean isLoyal = Boolean.parseBoolean(inputArr[5]);
+                        Profile user = new Profile(firstName, lastName);
+                        Account accS = new Savings(user, amount, dateOpen, isLoyal);
+                        boolean added = db.add(accS);
+                        if (added) {
+                            list2.getItems().add(accS.toString());
+                            System.out.println("Account opened and added to the database.");
+                        } else {
+                            System.out.println("Account is already in the database.");
+                        }
+                    } else {
+                        System.out.println(dateOpen.toString() + " is not a valid date!");
+                    }
+
+                } else if (inputArr[0].equals("M")) {
+                    if (inputArr.length != 5) {
+                        throw new NumberFormatException();
+                    }
+                    String firstName = inputArr[1];
+                    String lastName = inputArr[2];
+                    double amount = Double.parseDouble(inputArr[3]);
+                    String date = inputArr[4];
+                    String[] splitDate = date.split("/");
+                    int month = Integer.parseInt(splitDate[0]);
+                    int day = Integer.parseInt(splitDate[1]);
+                    int year = Integer.parseInt(splitDate[2]);
+                    // check if date is valid
+                    Date dateOpen = new Date(year, month, day);
+                    if (dateOpen.isValid()) {
+                        Profile user = new Profile(firstName, lastName);
+                        Account accM = new MoneyMarket(user, amount, dateOpen);
+                        boolean added = db.add(accM);
+                        if (added) {
+                            list2.getItems().add(accM.toString());
+                            System.out.println("Account opened and added to the database.");
+                        } else {
+                            System.out.println("Account is already in the database.");
+                        }
+                    } else {
+                        System.out.println(dateOpen.toString() + " is not a valid date!");
+                    }
+                }
+
+            } catch (NumberFormatException e) {
+                // e.printStackTrace();
+            }
         }
-    }
 
+    }
 }
