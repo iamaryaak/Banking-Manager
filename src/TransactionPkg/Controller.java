@@ -16,6 +16,9 @@ public class Controller {
     @FXML
     ListView<String> list = new ListView<String>();
 
+    @FXML
+    ListView<String> list1 = new ListView<String>();
+
     public Button openAccount;
     public Button closeAccount;
     public Button clear;
@@ -37,8 +40,13 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
+    // Binds the list from the first tab to the second
+    public void setList1(){
+        list1.itemsProperty().bind(list.itemsProperty());
+    }
 
     public void initialize(){
+        setList1();
         openAccount.setDisable(true);
         direct.setDisable(true);
         loyal.setDisable(true);
@@ -180,6 +188,7 @@ public class Controller {
         checking.setSelected(false);
         savings.setSelected(false);
         moneyMarket.setSelected(false);
+
 
     }
 
