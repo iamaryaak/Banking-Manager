@@ -9,6 +9,10 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="732.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TransactionPkg.Controller">
@@ -17,6 +21,11 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="431.0" prefWidth="662.0">
                <children>
+                  <BorderPane layoutX="31.0" layoutY="201.0" prefHeight="216.0" prefWidth="672.0">
+                     <bottom>
+                        <ListView fx:id="list" prefHeight="216.0" prefWidth="658.0" BorderPane.alignment="CENTER" />
+                     </bottom>
+                  </BorderPane>
                   <Label layoutX="37.0" layoutY="35.0" text="First Name" />
                   <Label layoutX="38.0" layoutY="74.0" text="Last Name" />
                   <Label layoutX="38.0" layoutY="114.0" text="Date Open" />
@@ -30,7 +39,6 @@
                   <RadioButton fx:id="moneyMarket" layoutX="320.0" layoutY="114.0" mnemonicParsing="false" onAction="#selectAccount" text="Money Market" />
                   <CheckBox fx:id="direct" layoutX="452.0" layoutY="35.0" mnemonicParsing="false" onAction="#setDirectDepo" text="Direct-Deposit" />
                   <CheckBox fx:id="loyal" layoutX="452.0" layoutY="74.0" mnemonicParsing="false" onAction="#setIsLoyal" text="Loyal Customer" />
-                  <ListView fx:id="list" layoutX="38.0" layoutY="192.0" prefHeight="216.0" prefWidth="658.0" />
                   <Label layoutX="161.0" layoutY="107.0" prefHeight="17.0" prefWidth="10.0" text="/">
                      <font>
                         <Font size="24.0" />
@@ -59,6 +67,17 @@
                   <TextField layoutX="53.0" layoutY="71.0" />
                   <Label layoutX="37.0" layoutY="31.0" text="\$" />
                   <Label layoutX="37.0" layoutY="76.0" text="\$" />
+                  <GridPane layoutX="37.0" layoutY="20.0" prefHeight="90.0" prefWidth="295.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                </children></AnchorPane>
       </content>
     </Tab>
