@@ -38,7 +38,6 @@ public class Controller {
     ToggleGroup tg = new ToggleGroup();
 
 
-
     public void initialize(){
         openAccount.setDisable(true);
         direct.setDisable(true);
@@ -165,7 +164,6 @@ public class Controller {
             } else {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
             }
-
         }
 
         // reset fields
@@ -185,19 +183,13 @@ public class Controller {
 
     }
 
-    public void setList(){
-        do{
-            closeAccount.setDisable(true);
-        }while(list.getSelectionModel().getSelectedItem().isEmpty());
-
-        String item = list.getSelectionModel().getSelectedItem();
-        System.out.println(item);
+    public void handle(){
+        // I WILL CONQUER THIS
     }
 
     public void setCloseAccount(ActionEvent e){
         //closeAccount.setDisable(false);
         //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
-
         // handle account info
         String account =  list.getSelectionModel().getSelectedItem().toString();
         System.out.println("Account Selected to Remove: " + account);
