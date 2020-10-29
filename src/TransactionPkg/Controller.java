@@ -86,6 +86,7 @@ public class Controller {
         direct.setDisable(true);
         loyal.setDisable(true);
         clear.setDisable(true);
+        closeAccount.setDisable(true);
     }
 
     /**
@@ -301,6 +302,7 @@ public class Controller {
         checking.setSelected(false);
         savings.setSelected(false);
         moneyMarket.setSelected(false);
+        closeAccount.setDisable(false);
     }
 
     public void handle() {
@@ -311,6 +313,7 @@ public class Controller {
         //closeAccount.setDisable(false);
         //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
         // handle account info
+
         String account = list.getSelectionModel().getSelectedItem().toString();
         System.out.println("Account Selected to Remove: " + account);
         String[] accountInfo = account.split("\\*");
@@ -352,6 +355,10 @@ public class Controller {
                 System.out.println("Account does not exist.");
             }
 
+        }
+
+        if(list.getItems().isEmpty()){
+            closeAccount.setDisable(true);
         }
     }
 
@@ -490,6 +497,8 @@ public class Controller {
                         System.out.println(dateOpen.toString() + " is not a valid date!");
                     }
                 }
+
+                closeAccount.setDisable(false);
 
             } catch (NumberFormatException e) {
                 // e.printStackTrace();
