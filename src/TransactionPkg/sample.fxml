@@ -74,10 +74,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" text="Deposit" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#setDepo" prefHeight="27.0" prefWidth="80.0" text="Deposit" GridPane.columnIndex="1" />
                         <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="80.0" text="Withdraw" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField prefHeight="27.0" prefWidth="305.0" promptText="Enter monetary value" GridPane.rowIndex="1" />
-                        <TextField promptText="Enter monetary value" />
+                        <TextField fx:id="depositAmount" promptText="Enter monetary value" />
                      </children>
                   </GridPane>
                </children></AnchorPane>

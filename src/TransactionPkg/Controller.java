@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Controller {
@@ -36,6 +38,7 @@ public class Controller {
     public MenuItem prinAcc;
     public MenuItem stateDate;
     public MenuItem stateLname;
+    public TextField depositAmount;
 
     public boolean directBool = false;
     public boolean isLoyalBool = false;
@@ -128,9 +131,87 @@ public class Controller {
 
     public boolean setDirectDepo(ActionEvent e) {
         //System.out.println("Direct Deposit");
+
+        list.getSelectionModel().getSelectedItem();
         directBool = direct.isSelected();
+
         return directBool;
     }
+
+    public void setDepo(ActionEvent e) throws Exception{
+    try{
+        DecimalFormat df = new DecimalFormat("#,##0.00");
+        String account = list1.getSelectionModel().getSelectedItem().toString();
+        String accCupdate = "";
+        System.out.println("Account Selected to Deposit: " + account);
+        String[] accountInfo = account.split("\\*");
+        String typeOfAcc = accountInfo[1];
+        String[] fullName = accountInfo[2].split("\\s");
+        String inAmount = accountInfo[3].replaceAll("[$,\\s]", "");
+        double oldamount = Double.parseDouble(inAmount);
+
+        if (typeOfAcc.equals("Checking")){
+            String damount = depositAmount.getText();
+            double amount = Double.parseDouble(damount);
+
+            String newamount = String.valueOf(df.format(amount + oldamount));
+            System.out.println(amount);
+            Profile user = new Profile(fullName[0], fullName[1]);
+            Date empty = new Date(0,0,0);
+            Account depositC = new Checking(user, amount, empty, false);
+            boolean depo = db.deposit(depositC, amount);
+            accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+            list.getItems().remove(account);
+            if(depo){
+                list.getItems().add(accCupdate);
+                System.out.println(amount + " deposited to account");
+            }else{
+                System.out.println("Account does not exist");
+            }
+        }
+        else if(typeOfAcc.equals("Savings")){
+            String damount = depositAmount.getText();
+            double amount = Double.parseDouble(damount);
+
+            String newamount = String.valueOf(df.format(amount + oldamount));
+            System.out.println(amount);
+            Profile user = new Profile(fullName[0], fullName[1]);
+            Date empty = new Date(0,0,0);
+            Account depositS = new Savings(user, amount, empty, false);
+            boolean depo = db.deposit(depositS, amount);
+            accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+            list.getItems().remove(account);
+            if(depo){
+                list.getItems().add(accCupdate);
+                System.out.println(amount + " deposited to account");
+            }else{
+                System.out.println("Account does not exist");
+            }
+        }
+        else if(typeOfAcc.equals("Money Market")){
+            String damount = depositAmount.getText();
+            double amount = Double.parseDouble(damount);
+
+            String newamount = String.valueOf(df.format(amount + oldamount));
+            System.out.println(amount);
+            Profile user = new Profile(fullName[0], fullName[1]);
+            Date empty = new Date(0,0,0);
+            Account depositM = new MoneyMarket(user, amount, empty);
+            boolean depo = db.deposit(depositM, amount);
+            accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+            list.getItems().remove(account);
+            if(depo){
+                list.getItems().add(accCupdate);
+                System.out.println(amount + " deposited to account");
+            }else{
+                System.out.println("Account does not exist");
+            }
+        }
+
+    } catch (Exception exception){
+        // This try-catch is if someone tries to deposit to an account without selectig an account
+        System.out.println("No account selected");
+    }}
 
     public boolean setIsLoyal(ActionEvent e) {
         //System.out.println("Is Loyal");
@@ -138,7 +219,7 @@ public class Controller {
         return isLoyalBool;
     }
 
-    public void setOpenAccount() {
+    public void setOpenAccount(){
 
         if (checking.isSelected()) {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
@@ -278,8 +359,13 @@ public class Controller {
         list.getItems().removeAll();
     }
 
-    public void outputAcc() {
-        ///
+    public void outputAcc() throws FileNotFoundException {
+        String exportAcc = "accounts.txt";
+        File accounts = new File(exportAcc);
+
+        PrintWriter pw = new PrintWriter(accounts);
+        // need to figure out how to change the account database method to write to printwriter
+        pw.close();
     }
 
     public void importFile() throws FileNotFoundException {
