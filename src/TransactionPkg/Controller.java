@@ -370,7 +370,7 @@ public class Controller {
                     }
 
                 } else if (inputArr[0].equals("M")) {
-                    if (inputArr.length != 5) {
+                    if (inputArr.length != 6) {
                         throw new NumberFormatException();
                     }
                     String firstName = inputArr[1];
@@ -381,12 +381,19 @@ public class Controller {
                     int month = Integer.parseInt(splitDate[0]);
                     int day = Integer.parseInt(splitDate[1]);
                     int year = Integer.parseInt(splitDate[2]);
+                    int withdrawals = Integer.parseInt(inputArr[5]);
                     // check if date is valid
                     Date dateOpen = new Date(year, month, day);
                     if (dateOpen.isValid()) {
                         Profile user = new Profile(firstName, lastName);
                         Account accM = new MoneyMarket(user, amount, dateOpen);
                         boolean added = db.add(accM);
+
+                        // null withdrawals to make the correct number of withdrawals be associated to account
+                        for (int i=0; i < withdrawals; i++){
+                            db.withdrawal(accM, 0);
+                        }
+
                         if (added) {
                             list2.getItems().add(accM.toString());
                             System.out.println("Account opened and added to the database.");
