@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -463,12 +463,20 @@ public class Controller {
     }
 
     public void outputAcc() throws FileNotFoundException {
-        String exportAcc = "accounts.txt";
-        File accounts = new File(exportAcc);
+        try {
+            File myObj = new File("printStatementReg.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
 
-        PrintWriter pw = new PrintWriter(accounts);
-        // need to figure out how to change the account database method to write to printwriter
-        pw.close();
+
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     public void importFile() throws FileNotFoundException {
