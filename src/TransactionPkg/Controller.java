@@ -514,21 +514,9 @@ public class Controller {
                 }
             }
         }catch (InputMismatchException e) {
-            if (list.getItems().isEmpty()) {
-                closeAccount.setDisable(true);
-                depoButton.setDisable(true);
-                withButton.setDisable(true);
-            }
             displayInvalidOpenFields();
-
         } catch (NumberFormatException e) {
-            if (list.getItems().isEmpty()) {
-                closeAccount.setDisable(true);
-                depoButton.setDisable(true);
-                withButton.setDisable(true);
-            }
             displayInvalidDateFields();
-
         }
 
         // reset fields
@@ -545,9 +533,16 @@ public class Controller {
         checking.setSelected(false);
         savings.setSelected(false);
         moneyMarket.setSelected(false);
-        closeAccount.setDisable(false);
-        depoButton.setDisable(false);
-        withButton.setDisable(false);
+
+        if (list.getItems().isEmpty()) {
+            closeAccount.setDisable(true);
+            depoButton.setDisable(true);
+            withButton.setDisable(true);
+        }else {
+            closeAccount.setDisable(false);
+            depoButton.setDisable(false);
+            withButton.setDisable(false);
+        }
     }
 
     public void setCloseAccount(ActionEvent e) {
