@@ -417,7 +417,7 @@ public class Controller {
     public boolean checkDate(String year, String month, String day){
         boolean res = true;
         if(year.equals("") || month.equals("") || day.equals("")){
-            res = false;
+            return false;
         }
         if (year.matches("^\\d+\\.\\d+") || month.matches("^\\d+\\.\\d+") || day.matches("^\\d+\\.\\d+")) {
             res = false;
