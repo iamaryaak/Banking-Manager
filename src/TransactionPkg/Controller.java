@@ -204,9 +204,9 @@ public class Controller {
                 if (depo) {
                     list.getItems().remove(account);
                     if (isDirectB) {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4] + "*direct deposit account*");
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(Double.parseDouble(newamount)) + "*" + accountInfo[4] + "*direct deposit account*");
                     } else {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4]);
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(Double.parseDouble(newamount)) + "*" + accountInfo[4]);
                     }
                 } else {
                     displayAccNotExist();
@@ -234,9 +234,9 @@ public class Controller {
                 if (depo) {
                     list.getItems().remove(account);
                     if (isLoyalB) {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4] + "*special Savings account*");
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(Double.parseDouble(newamount)) + "*" + accountInfo[4] + "*special Savings account*");
                     } else {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4]);
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(Double.parseDouble(newamount)) + "*" + accountInfo[4]);
                     }
                 } else {
                     displayAccNotExist();
@@ -255,7 +255,7 @@ public class Controller {
                 Date empty = new Date(0, 0, 0);
                 Account depositM = new MoneyMarket(user, amount, empty);
                 boolean depo = db.deposit(depositM, amount);
-                accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4];
+                accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(Double.parseDouble(newamount)) + "*" + accountInfo[4];
                 list.getItems().remove(account);
                 if (depo) {
                     list.getItems().add(accCupdate);
