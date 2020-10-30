@@ -464,7 +464,9 @@ public class Controller {
         list.getItems().removeAll();
     }
 
-    public void outputAcc() throws FileNotFoundException {
+    //     public void outputAcc() throws FileNotFoundException {
+
+    public void outputLastName() {
         try {
             File myObj = new File("printStatementReg.txt");
             if (myObj.createNewFile()) {
@@ -475,10 +477,13 @@ public class Controller {
 
             // write to file
             PrintWriter writer = new PrintWriter("printStatementReg.txt", StandardCharsets.UTF_8);
-            writer.println("The first line");
-            writer.println("The second line");
+            writer.println("--Printing statements by last name--");
+            String[] resArr = db.printByLastName();
+            for (String s : resArr) {
+                writer.println(s);
+            }
+            writer.println("--end of printing--");
             writer.close();
-
 
         } catch (IOException e) {
             System.out.println("An error occurred.");

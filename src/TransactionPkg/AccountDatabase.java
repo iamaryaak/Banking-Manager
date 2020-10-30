@@ -267,20 +267,26 @@ public class AccountDatabase {
     /**
      * Prints the Statements based on the sorting of last names, including interest and fees
      */
-    public void printByLastName() {
+    public String[] printByLastName() {
+        String[] returnable = new String[size];
+        int index = 0;
         if (size == 0)
         {
-            System.out.println("Database is empty.");
+            String res = ("Database is empty.");
+            String[] all = new String[1];
+            all[0] = res;
+            return all;
         }else {
             DecimalFormat df = new DecimalFormat("#,##0.00");
             sortByLastName();
-            System.out.println("--Printing statements by last name--");
+            String addition = "";
+            //System.out.println("--Printing statements by last name--");
             for (int i = 0; i < size; i++) {
-                System.out.println("\n" + accounts[i].toString());
+                addition = addition+ ("\n") + (accounts[i].toString());
                 // get interest, fee, new balance
                 // get account type
                 double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
-                System.out.println("-interest: $ " + df.format(interest));
+                addition = addition + ("-interest: $ " + df.format(interest));
                 double fee = accounts[i].monthlyFee();
 
                 // Create conditions to print out fees per account type
@@ -299,16 +305,19 @@ public class AccountDatabase {
                         fee = 0;
                     }
                 }
-                System.out.println("-fee: $ " + df.format(fee));
+                addition = addition + ("-fee: $ " + df.format(fee));
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
                 accounts[i].setBalance(newBal);
-                System.out.println("-new balance: $ " + df.format(newBal));
+                addition = addition + ("-new balance: $ " + df.format(newBal));
 
-                System.out.println();
-
+                addition = addition + ("\n");
+                returnable[index] = addition;
+                addition = "";
+                index++;
             }
-            System.out.println("--end of printing--");
+            //System.out.println("--end of printing--");
         }
+        return returnable;
     }
 
     /**
