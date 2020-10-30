@@ -580,12 +580,14 @@ public class Controller {
             if (list.getItems().isEmpty()) {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
+                withButton.setDisable(true);
             }
         } catch (NullPointerException q) {
             displayClose();
             if (list.getItems().isEmpty()) {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
+                withButton.setDisable(true);
             }
         }
     }
