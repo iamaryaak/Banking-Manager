@@ -311,8 +311,10 @@ public class Controller {
                     list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                 } else if (with == 1) {
                     System.out.println("Insufficient funds");
+                    displayInsufficientFunds();
                 } else {
                     System.out.println("Account does not exist.");
+                    displayAccNotExist();
                 }
             } else if (accPara[1].equals("Checking")) {
                 boolean isDirectB;
@@ -335,8 +337,10 @@ public class Controller {
                     }
                 } else if (with == 1) {
                     System.out.println("Insufficient funds");
+                    displayInsufficientFunds();
                 } else {
                     System.out.println("Account does not exist.");
+                    displayAccNotExist();
                 }
             } else if (accPara[1].equals("Savings")) {
                 boolean isLoyalB;
@@ -359,8 +363,11 @@ public class Controller {
                     }
                 } else if (with == 1) {
                     System.out.println("Insufficient funds");
+                    displayInsufficientFunds();
+
                 } else {
                     System.out.println("Account does not exist.");
+                    displayAccNotExist();
                 }
             }
 
@@ -914,6 +921,13 @@ try{
         Alert errorAlert = new Alert(Alert.AlertType.WARNING);
         errorAlert.setHeaderText("Warning");
         errorAlert.setContentText("No Account Type Selected!");
+        errorAlert.showAndWait();
+    }
+
+    public static void displayInsufficientFunds(){
+        Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+        errorAlert.setHeaderText("Warning");
+        errorAlert.setContentText("Insufficient Funds!");
         errorAlert.showAndWait();
     }
 
