@@ -725,7 +725,7 @@ try {
     3) Date can only accept integers
     4) Low Priority: Uncheck boxes if toggle is changed
     5) Withdrawal try-catch * NumberFormatException
-    6) Close, deposit, withdrawal,
+    6) Close, deposit, withdrawal, no selection errors
 
 
  */
