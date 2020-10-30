@@ -430,7 +430,6 @@ public class Controller {
     public void setOpenAccount() {
         try {
             if (checking.isSelected()) {
-                direct.setSelected(false);
                 if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
                     throw new InputMismatchException();
                 }
@@ -456,7 +455,6 @@ public class Controller {
                 }
 
             } else if (savings.isSelected()) {
-                loyal.setSelected(false);
                 //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
                 //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
                 //System.out.println("Balance " + balance.getText());
