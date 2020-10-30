@@ -356,11 +356,36 @@ public class Controller {
         return res;
     }
 
+    public boolean checkBalance(String str){
+        boolean res = true;
+        str = str.substring(1);
+        for(int i = 0; i < str.length(); i++){
+            if(!Character.isDigit(str.charAt(i))){
+                res = false;
+                break;
+            }
+        }
+        return res;
+    }
+
+    public boolean checkDate(String year, String month, String day){
+        boolean res = true;
+
+        if(year.matches("^\\d+\\.\\d+") || month.matches("^\\d+\\.\\d+") || day.matches("^\\d+\\.\\d+")){
+            res = false;
+        }
+
+        return res;
+    }
+
     public void setOpenAccount() {
         try{
         if (checking.isSelected()) {
-            if(firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
                 throw new InputMismatchException();
+            }
+            if(checkDate(year.getText(), month.getText(), day.getText())){
+                throw new NumberFormatException();
             }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -384,8 +409,11 @@ public class Controller {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
-            if(firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
                 throw new InputMismatchException();
+            }
+            if(checkDate(year.getText(), month.getText(), day.getText())){
+                throw new NumberFormatException();
             }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -408,8 +436,11 @@ public class Controller {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
-            if(firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
                 throw new InputMismatchException();
+            }
+            if(checkDate(year.getText(), month.getText(), day.getText())){
+                throw new NumberFormatException();
             }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -431,6 +462,8 @@ public class Controller {
         }
         }catch(InputMismatchException e){
             displayInvalidOpenFields();
+        }catch(NumberFormatException e){
+            displayInvalidDateFields();
         }
 
         // reset fields
@@ -745,15 +778,23 @@ try {
         errorAlert.showAndWait();
     }
 
+    public static void displayInvalidDateFields() {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Input not valid");
+        errorAlert.setContentText("Not a valid date! Please enter the date correctly.");
+        errorAlert.showAndWait();
+
+    }
+
 }
 
 
 
 /*  ERROR CHECKLIST
-    1) Balance Text Field: needs to only accept numbers, popup if otherwise
-    2) First Name, Last Name, only characters
-    3) Date can only accept integers
-    4) Low Priority: Uncheck boxes if toggle is changed
-    5) Withdrawal try-catch * NumberFormatException
-    6) Close, deposit, withdrawal
+    DONE    1) Balance Text Field: needs to only accept numbers, popup if otherwise
+    DONE    2) First Name, Last Name, only characters
+    DONE    3) Date can only accept integers
+            4) Low Priority: Uncheck boxes if toggle is changed
+            5) Withdrawal try-catch * NumberFormatException
+            6) Close, deposit, withdrawal
  */
