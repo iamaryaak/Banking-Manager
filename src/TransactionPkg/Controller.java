@@ -9,6 +9,8 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -471,6 +473,11 @@ public class Controller {
                 System.out.println("File already exists.");
             }
 
+            // write to file
+            PrintWriter writer = new PrintWriter("printStatementReg.txt", StandardCharsets.UTF_8);
+            writer.println("The first line");
+            writer.println("The second line");
+            writer.close();
 
 
         } catch (IOException e) {
