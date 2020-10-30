@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Controller {
@@ -343,8 +344,24 @@ public class Controller {
         return isLoyalBool;
     }
 
+    public boolean checkString(String str){
+        boolean res = true;
+        for(int i = 0; i < str.length(); i++){
+            if(!Character.isLetter(str.charAt(i))){
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+    }
+
     public void setOpenAccount() {
+        try{
         if (checking.isSelected()) {
+            if(firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+                throw new InputMismatchException();
+            }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -367,7 +384,9 @@ public class Controller {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
-
+            if(firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+                throw new InputMismatchException();
+            }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -389,7 +408,9 @@ public class Controller {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
-
+            if(firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+                throw new InputMismatchException();
+            }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -407,6 +428,9 @@ public class Controller {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
                 display(dateOpen);
             }
+        }
+        }catch(InputMismatchException e){
+            displayInvalidOpenFields();
         }
 
         // reset fields
@@ -432,8 +456,6 @@ public class Controller {
     }
 
     public void setCloseAccount(ActionEvent e) {
-        //closeAccount.setDisable(false);
-        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
         // handle account info
 try {
     String account = list.getSelectionModel().getSelectedItem().toString();
@@ -715,6 +737,14 @@ try {
         errorAlert.setContentText("Please select an account!");
         errorAlert.showAndWait();
     }
+
+    public static void displayInvalidOpenFields(){
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Invalid Fields");
+        errorAlert.setContentText("Some fields may have been left blank or inputted incorrectly, please fix them.");
+        errorAlert.showAndWait();
+    }
+
 }
 
 
@@ -725,7 +755,5 @@ try {
     3) Date can only accept integers
     4) Low Priority: Uncheck boxes if toggle is changed
     5) Withdrawal try-catch * NumberFormatException
-    6) Close, deposit, withdrawal,
-
-
+    6) Close, deposit, withdrawal
  */
