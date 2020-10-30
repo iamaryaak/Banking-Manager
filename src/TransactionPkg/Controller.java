@@ -198,9 +198,9 @@ public class Controller {
                 if (depo) {
                     list.getItems().remove(account);
                     if (isDirectB) {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4] + "*direct deposit account*");
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4] + "*direct deposit account*");
                     } else {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4]);
                     }
                 } else {
                     displayAccNotExist();
@@ -228,12 +228,12 @@ public class Controller {
                 if (depo) {
                     list.getItems().remove(account);
                     if (isLoyalB) {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4] + "*special Savings account*");
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4] + "*special Savings account*");
                     } else {
-                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4]);
                     }
                 } else {
-                    System.out.println("Account does not exist");
+                    displayAccNotExist();
                 }
             } else if (typeOfAcc.equals("Money Market")) {
                 String damount = depositAmount.getText();
@@ -249,13 +249,12 @@ public class Controller {
                 Date empty = new Date(0, 0, 0);
                 Account depositM = new MoneyMarket(user, amount, empty);
                 boolean depo = db.deposit(depositM, amount);
-                accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+                accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + df.format(newamount) + "*" + accountInfo[4];
                 list.getItems().remove(account);
                 if (depo) {
                     list.getItems().add(accCupdate);
-                    System.out.println(amount + " deposited to account");
                 } else {
-                    System.out.println("Account does not exist");
+                    displayAccNotExist();
                 }
             }
             depositAmount.clear();
@@ -293,18 +292,17 @@ public class Controller {
                 }
             }
 
+            double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
             // split into Money Market, Checking, and Savings
             if (accPara[1].equals("Money Market")) {
 
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withM = new MoneyMarket(user, amount, empty);
-                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
-                df.format(newAmount);
                 int with = db.withdrawal(withM, amount);
                 if (with == 0) {
                     list.getItems().remove(account);
-                    list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
+                    list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                 } else if (with == 1) {
                     System.out.println("Insufficient funds");
                 } else {
@@ -320,15 +318,14 @@ public class Controller {
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withC = new Checking(user, amount, empty, isDirectB);
-                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
                 df.format(newAmount);
                 int with = db.withdrawal(withC, amount);
                 if (with == 0) {
                     list.getItems().remove(account);
                     if (isDirectB) {
-                        list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4] + "*direct deposit account*");
+                        list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4] + "*direct deposit account*");
                     } else {
-                        list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
+                        list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                     }
                 } else if (with == 1) {
                     System.out.println("Insufficient funds");
@@ -345,7 +342,6 @@ public class Controller {
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withC = new Savings(user, amount, empty, isLoyalB);
-                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
                 df.format(newAmount);
                 int with = db.withdrawal(withC, amount);
                 if (with == 0) {
@@ -389,6 +385,9 @@ public class Controller {
     }
 
     public boolean checkBalance(String str) {
+        if(str.equals("")){
+            return false;
+        }
         boolean res = true;
         str = str.substring(1);
         for (int i = 0; i < str.length(); i++) {
@@ -417,7 +416,9 @@ public class Controller {
 
     public boolean checkDate(String year, String month, String day){
         boolean res = true;
-
+        if(year.equals("") || month.equals("") || day.equals("")){
+            res = false;
+        }
         if (year.matches("^\\d+\\.\\d+") || month.matches("^\\d+\\.\\d+") || day.matches("^\\d+\\.\\d+")) {
             res = false;
         }
