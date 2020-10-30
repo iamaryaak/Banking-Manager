@@ -435,57 +435,58 @@ public class Controller {
         //closeAccount.setDisable(false);
         //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
         // handle account info
+try {
+    String account = list.getSelectionModel().getSelectedItem().toString();
 
-        String account = list.getSelectionModel().getSelectedItem().toString();
-        if(///){
-            display(new Date(1996,1,20));
+    System.out.println("Account Selected to Remove: " + account);
+    String[] accountInfo = account.split("\\*");
+    String typeOfAcc = accountInfo[1];
+    String[] fullName = accountInfo[2].split("\\s");
+
+
+    if (typeOfAcc.equals("Checking")) {
+        Profile user = new Profile(fullName[0], fullName[1]);
+        Date empty = new Date(0, 0, 0);
+        Account rC = new Checking(user, 0, empty, false);
+        boolean close = db.remove(rC);
+        if (close) {
+            list.getItems().remove(account);
+            System.out.println("Account closed and removed from database.");
+        } else {
+            System.out.println("Account does not exist.");
         }
-        System.out.println("Account Selected to Remove: " + account);
-        String[] accountInfo = account.split("\\*");
-        String typeOfAcc = accountInfo[1];
-        String[] fullName = accountInfo[2].split("\\s");
-
-
-        if (typeOfAcc.equals("Checking")) {
-            Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0, 0, 0);
-            Account rC = new Checking(user, 0, empty, false);
-            boolean close = db.remove(rC);
-            if (close) {
-                list.getItems().remove(account);
-                System.out.println("Account closed and removed from database.");
-            } else {
-                System.out.println("Account does not exist.");
-            }
-        } else if (typeOfAcc.equals("Savings")) {
-            Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0, 0, 0);
-            Account rS = new Savings(user, 0, empty, false);
-            boolean close = db.remove(rS);
-            if (close) {
-                list.getItems().remove(account);
-                System.out.println("Account closed and removed from database.");
-            } else {
-                System.out.println("Account does not exist.");
-            }
-        } else if (typeOfAcc.equals("Money Market")) {
-            Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0, 0, 0);
-            Account rM = new MoneyMarket(user, 0, empty);
-            boolean close = db.remove(rM);
-            if (close) {
-                list.getItems().remove(account);
-                System.out.println("Account closed and removed from database.");
-            } else {
-                System.out.println("Account does not exist.");
-            }
-
+    } else if (typeOfAcc.equals("Savings")) {
+        Profile user = new Profile(fullName[0], fullName[1]);
+        Date empty = new Date(0, 0, 0);
+        Account rS = new Savings(user, 0, empty, false);
+        boolean close = db.remove(rS);
+        if (close) {
+            list.getItems().remove(account);
+            System.out.println("Account closed and removed from database.");
+        } else {
+            System.out.println("Account does not exist.");
+        }
+    } else if (typeOfAcc.equals("Money Market")) {
+        Profile user = new Profile(fullName[0], fullName[1]);
+        Date empty = new Date(0, 0, 0);
+        Account rM = new MoneyMarket(user, 0, empty);
+        boolean close = db.remove(rM);
+        if (close) {
+            list.getItems().remove(account);
+            System.out.println("Account closed and removed from database.");
+        } else {
+            System.out.println("Account does not exist.");
         }
 
-        if (list.getItems().isEmpty()) {
-            closeAccount.setDisable(true);
-            depoButton.setDisable(true);
-        }
+    }
+
+    if (list.getItems().isEmpty()) {
+        closeAccount.setDisable(true);
+        depoButton.setDisable(true);
+    }
+}catch(NullPointerException q){
+    displayClose();
+}
     }
 
     public void setClear() {
@@ -706,6 +707,13 @@ public class Controller {
         errorAlert.setContentText(date.toString() + " is not a valid date. Please enter the correct date");
         errorAlert.showAndWait();
 
+    }
+
+    public static void displayClose(){
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Account not selected");
+        errorAlert.setContentText("Please select an account!");
+        errorAlert.showAndWait();
     }
 }
 
