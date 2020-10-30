@@ -508,9 +508,11 @@ public class Controller {
                         //closeAccount.setDisable(false);
                         //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                     } else {
-                        System.out.println(dateOpen.toString() + " is not a valid date!");
-                        display(dateOpen);
+                        System.out.println("Account is already in the database.");
                     }
+                }else {
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                    display(dateOpen);
                 }
             }
         }catch (InputMismatchException e) {
