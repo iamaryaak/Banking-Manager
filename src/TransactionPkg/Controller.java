@@ -514,19 +514,21 @@ public class Controller {
                 }
             }
         }catch (InputMismatchException e) {
+            if (list.getItems().isEmpty()) {
+                closeAccount.setDisable(true);
+                depoButton.setDisable(true);
+                withButton.setDisable(true);
+            }
             displayInvalidOpenFields();
-            if (list.getItems().isEmpty()) {
-                closeAccount.setDisable(true);
-                depoButton.setDisable(true);
-                withButton.setDisable(true);
-            }
+
         } catch (NumberFormatException e) {
-            displayInvalidDateFields();
             if (list.getItems().isEmpty()) {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
                 withButton.setDisable(true);
             }
+            displayInvalidDateFields();
+
         }
 
         // reset fields
