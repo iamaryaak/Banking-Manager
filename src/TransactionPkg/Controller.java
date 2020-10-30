@@ -430,7 +430,7 @@ public class Controller {
     public void setOpenAccount() {
         try {
             if (checking.isSelected()) {
-                loyal.setSelected(false);
+                direct.setSelected(false);
                 if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
                     throw new InputMismatchException();
                 }
@@ -456,7 +456,7 @@ public class Controller {
                 }
 
             } else if (savings.isSelected()) {
-                direct.setSelected(false);
+                loyal.setSelected(false);
                 //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
                 //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
                 //System.out.println("Balance " + balance.getText());
@@ -483,8 +483,7 @@ public class Controller {
                 }
 
             } else if (moneyMarket.isSelected()) { // money Market is selected
-                loyal.setSelected(false);
-                direct.setSelected(false);
+
                 //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
                 //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
                 //System.out.println("Balance " + balance.getText());
