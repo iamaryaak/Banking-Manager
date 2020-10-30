@@ -59,6 +59,7 @@ public class Controller {
     RadioButton savings;
     @FXML
     RadioButton moneyMarket;
+
     @FXML
     CheckBox direct;
     @FXML
@@ -429,6 +430,7 @@ public class Controller {
     public void setOpenAccount() {
         try {
             if (checking.isSelected()) {
+                loyal.setDisable(true);
                 if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
                     throw new InputMismatchException();
                 }
@@ -454,6 +456,7 @@ public class Controller {
                 }
 
             } else if (savings.isSelected()) {
+                direct.setDisable(true);
                 //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
                 //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
                 //System.out.println("Balance " + balance.getText());
@@ -480,9 +483,12 @@ public class Controller {
                 }
 
             } else if (moneyMarket.isSelected()) { // money Market is selected
+                loyal.setDisable(true);
+                direct.setDisable(true);
                 //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
                 //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
                 //System.out.println("Balance " + balance.getText());
+
                 if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
                     throw new InputMismatchException();
                 }
@@ -806,9 +812,6 @@ try{
                 displayImportFile();
             }
         }
-
-
-
 
     // make popup window for not importing file
     public static void display(Date date) {
