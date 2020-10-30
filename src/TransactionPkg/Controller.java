@@ -2,8 +2,12 @@ package TransactionPkg;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -35,11 +39,17 @@ public class Controller {
     public Button openAccount;
     public Button closeAccount;
     public Button clear;
+    @FXML
+    public Button closeApp1;
+    @FXML
+    public Button closeApp2;
     public Button input;
+
     public MenuButton pr;
     public MenuItem prinAcc;
     public MenuItem stateDate;
     public MenuItem stateLname;
+
     public TextField depositAmount;
     public TextField withdrawalAmount;
 
@@ -80,6 +90,15 @@ public class Controller {
         //pr.getItems().addAll(accounts, stateDate, stateLast);
     }
 
+    @FXML
+    public void setCloseApp1(ActionEvent event) {
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+    }
+
+    @FXML
+    public void setCloseApp2(ActionEvent event) {
+        ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+    }
 
     public void initialize() {
         setPr();
@@ -142,99 +161,98 @@ public class Controller {
         return directBool;
     }
 
-    public void setDepo(ActionEvent e) throws Exception{
-    try{
-        DecimalFormat df = new DecimalFormat("#,##0.00");
-        String account = list1.getSelectionModel().getSelectedItem().toString();
-        String accCupdate = "";
-        System.out.println("Account Selected to Deposit: " + account);
-        String[] accountInfo = account.split("\\*");
-        String typeOfAcc = accountInfo[1];
-        String[] fullName = accountInfo[2].split("\\s");
-        String inAmount = accountInfo[3].replaceAll("[$,\\s]", "");
-        double oldamount = Double.parseDouble(inAmount);
+    public void setDepo(ActionEvent e) throws Exception {
+        try {
+            DecimalFormat df = new DecimalFormat("#,##0.00");
+            String account = list1.getSelectionModel().getSelectedItem().toString();
+            String accCupdate = "";
+            System.out.println("Account Selected to Deposit: " + account);
+            String[] accountInfo = account.split("\\*");
+            String typeOfAcc = accountInfo[1];
+            String[] fullName = accountInfo[2].split("\\s");
+            String inAmount = accountInfo[3].replaceAll("[$,\\s]", "");
+            double oldamount = Double.parseDouble(inAmount);
 
-        if (typeOfAcc.equals("Checking")){
-            String damount = depositAmount.getText();
-            double amount = Double.parseDouble(damount);
-            boolean isDirectB;
-            if(accountInfo.length == 5){
-                isDirectB = true;
-            }else{
-                isDirectB = false;
-            }
-            String newamount = String.valueOf(df.format(amount + oldamount));
-            System.out.println(amount);
-            Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0,0,0);
-            Account depositC = new Checking(user, amount, empty, false);
-            boolean depo = db.deposit(depositC, amount);
-            //accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
-            if(depo){
-                list.getItems().remove(account);
-                if(isDirectB){
-                    list.getItems().add( "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4] + "*direct deposit account*");
-                }else{
-                    list.getItems().add( "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
+            if (typeOfAcc.equals("Checking")) {
+                String damount = depositAmount.getText();
+                double amount = Double.parseDouble(damount);
+                boolean isDirectB;
+                if (accountInfo.length == 5) {
+                    isDirectB = true;
+                } else {
+                    isDirectB = false;
                 }
-                System.out.println(amount + " deposited to account");
-            }else{
-                System.out.println("Account does not exist");
-            }
-        }
-        else if(typeOfAcc.equals("Savings")){
-            String damount = depositAmount.getText();
-            double amount = Double.parseDouble(damount);
-            boolean isLoyalB;
-            if(accountInfo.length == 6){
-                isLoyalB = true;
-            }else{
-                isLoyalB = false;
-            }
-            String newamount = String.valueOf(df.format(amount + oldamount));
-            System.out.println(amount);
-            Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0,0,0);
-            Account depositS = new Savings(user, amount, empty, false);
-            boolean depo = db.deposit(depositS, amount);
-            //accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
-            if(depo){
-                list.getItems().remove(account);
-                if(isLoyalB){
-                    list.getItems().add( "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4] + "*special Savings account*");
-                }else{
-                    list.getItems().add( "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
+                String newamount = String.valueOf(df.format(amount + oldamount));
+                System.out.println(amount);
+                Profile user = new Profile(fullName[0], fullName[1]);
+                Date empty = new Date(0, 0, 0);
+                Account depositC = new Checking(user, amount, empty, false);
+                boolean depo = db.deposit(depositC, amount);
+                //accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+                if (depo) {
+                    list.getItems().remove(account);
+                    if (isDirectB) {
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4] + "*direct deposit account*");
+                    } else {
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
+                    }
+                    System.out.println(amount + " deposited to account");
+                } else {
+                    System.out.println("Account does not exist");
                 }
-            }else{
-                System.out.println("Account does not exist");
+            } else if (typeOfAcc.equals("Savings")) {
+                String damount = depositAmount.getText();
+                double amount = Double.parseDouble(damount);
+                boolean isLoyalB;
+                if (accountInfo.length == 6) {
+                    isLoyalB = true;
+                } else {
+                    isLoyalB = false;
+                }
+                String newamount = String.valueOf(df.format(amount + oldamount));
+                System.out.println(amount);
+                Profile user = new Profile(fullName[0], fullName[1]);
+                Date empty = new Date(0, 0, 0);
+                Account depositS = new Savings(user, amount, empty, false);
+                boolean depo = db.deposit(depositS, amount);
+                //accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+                if (depo) {
+                    list.getItems().remove(account);
+                    if (isLoyalB) {
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4] + "*special Savings account*");
+                    } else {
+                        list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
+                    }
+                } else {
+                    System.out.println("Account does not exist");
+                }
+            } else if (typeOfAcc.equals("Money Market")) {
+                String damount = depositAmount.getText();
+                double amount = Double.parseDouble(damount);
+
+                String newamount = String.valueOf(df.format(amount + oldamount));
+                System.out.println(amount);
+                Profile user = new Profile(fullName[0], fullName[1]);
+                Date empty = new Date(0, 0, 0);
+                Account depositM = new MoneyMarket(user, amount, empty);
+                boolean depo = db.deposit(depositM, amount);
+                accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
+                list.getItems().remove(account);
+                if (depo) {
+                    list.getItems().add(accCupdate);
+                    System.out.println(amount + " deposited to account");
+                } else {
+                    System.out.println("Account does not exist");
+                }
             }
+
+        } catch (Exception exception) {
+            // This try-catch is if someone tries to deposit to an account without selectig an account
+            System.out.println("No account selected");
         }
-        else if(typeOfAcc.equals("Money Market")){
-            String damount = depositAmount.getText();
-            double amount = Double.parseDouble(damount);
+    }
 
-            String newamount = String.valueOf(df.format(amount + oldamount));
-            System.out.println(amount);
-            Profile user = new Profile(fullName[0], fullName[1]);
-            Date empty = new Date(0,0,0);
-            Account depositM = new MoneyMarket(user, amount, empty);
-            boolean depo = db.deposit(depositM, amount);
-            accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
-            list.getItems().remove(account);
-            if(depo){
-                list.getItems().add(accCupdate);
-                System.out.println(amount + " deposited to account");
-            }else{
-                System.out.println("Account does not exist");
-            }
-        }
-
-    } catch (Exception exception){
-        // This try-catch is if someone tries to deposit to an account without selectig an account
-        System.out.println("No account selected");
-    }}
-
-    public void setWithdrawal(){
+    public void setWithdrawal() {
         // set up for withdrawals
         String account = list1.getSelectionModel().getSelectedItem().toString();
         String[] accPara = account.split("\\*");
@@ -245,73 +263,73 @@ public class Controller {
         StringBuilder oldamount = new StringBuilder();
         double amount = Double.parseDouble(withdrawalAmount.getText());
         DecimalFormat df = new DecimalFormat("#,##0.00");
-        for(int i = 0; i < parseAmount.length(); i++){
-            if(Character.isDigit(parseAmount.charAt(i)) || parseAmount.charAt(i) == '.'){
+        for (int i = 0; i < parseAmount.length(); i++) {
+            if (Character.isDigit(parseAmount.charAt(i)) || parseAmount.charAt(i) == '.') {
                 oldamount.append(parseAmount.charAt(i));
             }
         }
 
         // split into Money Market, Checking, and Savings
-        if(accPara[1].equals("Money Market")){
+        if (accPara[1].equals("Money Market")) {
             double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
             Profile user = new Profile(fName, lName);
-            Date empty = new Date(0,0,0);
+            Date empty = new Date(0, 0, 0);
             Account withM = new MoneyMarket(user, amount, empty);
             int with = db.withdrawal(withM, amount);
-            if(with == 0) {
+            if (with == 0) {
                 list.getItems().remove(account);
-                list.getItems().add( "*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
-            }else if(with == 1){
+                list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
+            } else if (with == 1) {
                 System.out.println("Insufficient funds");
-            }else{
+            } else {
                 System.out.println("Account does not exist.");
             }
-        }else if(accPara[1].equals("Checking")){
+        } else if (accPara[1].equals("Checking")) {
             double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
             boolean isDirectB;
-            if(accPara.length == 5){
-             isDirectB = true;
-            }else{
+            if (accPara.length == 5) {
+                isDirectB = true;
+            } else {
                 isDirectB = false;
             }
             Profile user = new Profile(fName, lName);
-            Date empty = new Date(0,0,0);
+            Date empty = new Date(0, 0, 0);
             Account withC = new Checking(user, amount, empty, isDirectB);
             int with = db.withdrawal(withC, amount);
-            if(with == 0) {
+            if (with == 0) {
                 list.getItems().remove(account);
-                if(isDirectB){
-                    list.getItems().add( "*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4] + "*direct deposit account*");
-                }else{
-                    list.getItems().add( "*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
+                if (isDirectB) {
+                    list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4] + "*direct deposit account*");
+                } else {
+                    list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
                 }
-            }else if(with == 1){
+            } else if (with == 1) {
                 System.out.println("Insufficient funds");
-            }else{
+            } else {
                 System.out.println("Account does not exist.");
             }
-        }else if(accPara[1].equals("Savings")){
+        } else if (accPara[1].equals("Savings")) {
             double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
             boolean isLoyalB;
-            if(accPara.length == 6){
+            if (accPara.length == 6) {
                 isLoyalB = true;
-            }else{
+            } else {
                 isLoyalB = false;
             }
             Profile user = new Profile(fName, lName);
-            Date empty = new Date(0,0,0);
+            Date empty = new Date(0, 0, 0);
             Account withC = new Savings(user, amount, empty, isLoyalB);
             int with = db.withdrawal(withC, amount);
-            if(with == 0) {
+            if (with == 0) {
                 list.getItems().remove(account);
-                if(isLoyalB){
-                    list.getItems().add( "*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4] + "*special Savings account*");
-                }else{
-                    list.getItems().add( "*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
+                if (isLoyalB) {
+                    list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4] + "*special Savings account*");
+                } else {
+                    list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + newAmount + "*" + accPara[4]);
                 }
-            }else if(with == 1){
+            } else if (with == 1) {
                 System.out.println("Insufficient funds");
-            }else{
+            } else {
                 System.out.println("Account does not exist.");
             }
         }
@@ -323,7 +341,7 @@ public class Controller {
         return isLoyalBool;
     }
 
-    public void setOpenAccount(){
+    public void setOpenAccount() {
         if (checking.isSelected()) {
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
@@ -455,7 +473,7 @@ public class Controller {
 
         }
 
-        if(list.getItems().isEmpty()){
+        if (list.getItems().isEmpty()) {
             closeAccount.setDisable(true);
         }
     }
@@ -464,7 +482,32 @@ public class Controller {
         list.getItems().removeAll();
     }
 
-    public void outputAcc(){
+    public void outputByDate() {
+        try {
+            File myObj = new File("outputDate.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            // write to file
+            PrintWriter writer = new PrintWriter("outputDate.txt", StandardCharsets.UTF_8);
+            writer.println("--Printing statements by Date Open --");
+            String[] resArr = db.printByDateOpen();
+            for (String s : resArr) {
+                writer.println(s);
+            }
+            writer.println("--end of printing--");
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void outputAcc() {
         try {
             File myObj = new File("outputAccount.txt");
             if (myObj.createNewFile()) {
@@ -621,7 +664,7 @@ public class Controller {
                         boolean added = db.add(accM);
 
                         // null withdrawals to make the correct number of withdrawals be associated to account
-                        for (int i=0; i < withdrawals; i++){
+                        for (int i = 0; i < withdrawals; i++) {
                             db.withdrawal(accM, 0);
                         }
 
@@ -642,6 +685,39 @@ public class Controller {
                 // e.printStackTrace();
             }
         }
+
+    }
+
+
+    // make popup window for not importing file
+    public static void display() {
+        Stage popupwindow = new Stage();
+
+        popupwindow.initModality(Modality.APPLICATION_MODAL);
+        popupwindow.setTitle("This is a pop up window");
+
+
+        Label label1 = new Label("Pop up window now displayed");
+
+
+        Button button1 = new Button("Close this pop up window");
+
+
+        button1.setOnAction(e -> popupwindow.close());
+
+
+        VBox layout = new VBox(10);
+
+
+        layout.getChildren().addAll(label1, button1);
+
+        layout.setAlignment(Pos.CENTER);
+
+        Scene scene1 = new Scene(layout, 300, 250);
+
+        popupwindow.setScene(scene1);
+
+        popupwindow.showAndWait();
 
     }
 }

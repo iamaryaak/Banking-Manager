@@ -220,20 +220,23 @@ public class AccountDatabase {
     /**
      * Prints the Statements based on the sorting of dates, including interest and fees
      */
-    public void printByDateOpen() {
+    public String[] printByDateOpen() {
+        String[] res = new String[size];
+        String accountInfo = "";
+        int index = 0;
         if (size == 0)
         {
-            System.out.println("Database is empty.");
+            return new String[]{"Database is empty."};
         }else {
             DecimalFormat df = new DecimalFormat("#,##0.00");
             sortByDateOpen();
-            System.out.println("--Printing statements by Date Open --");
+            //accountInfo = accountInfo + ("--Printing statements by Date Open --");
             for (int i = 0; i < size; i++) {
-                System.out.println("\n" + accounts[i].toString());
+                accountInfo = (accounts[i].toString() + "\n");
                 // get interest, fee, new balance
                 // get account type
                 double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
-                System.out.println("-interest: $ " + df.format(interest));
+                accountInfo = accountInfo + ("-interest: $ " + df.format(interest) + "\n");
                 double fee = accounts[i].monthlyFee();
 
                 // Create conditions to print out fees per account type
@@ -252,16 +255,18 @@ public class AccountDatabase {
                         fee = 0;
                     }
                 }
-                System.out.println("-fee: $ " + df.format(fee));
+                accountInfo = accountInfo + ("-fee: $ " + df.format(fee) + "\n");
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
                 accounts[i].setBalance(newBal);
-                System.out.println("-new balance: $ " + df.format(newBal));
+                accountInfo = accountInfo + ("-new balance: $ " + df.format(newBal) + "\n");
 
-                System.out.println();
-
+                // set and reset
+                res[index] = accountInfo;
+                index++;
+                accountInfo = "";
             }
-            System.out.println("--end of printing--");
         }
+        return res;
     }
 
     /**
