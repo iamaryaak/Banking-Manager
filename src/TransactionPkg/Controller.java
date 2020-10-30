@@ -515,6 +515,7 @@ public class Controller {
                     display(dateOpen);
                 }
             }
+
         }catch (InputMismatchException e) {
             displayInvalidOpenFields();
         } catch (NumberFormatException e) {
