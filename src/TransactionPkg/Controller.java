@@ -583,6 +583,8 @@ public class Controller {
             }
         } catch (NullPointerException q) {
             displayClose();
+            closeAccount.setDisable(true);
+            depoButton.setDisable(true);
         }
     }
 
