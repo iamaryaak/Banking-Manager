@@ -63,6 +63,9 @@ public class Controller {
     @FXML
     CheckBox loyal;
 
+    public Button withButton;
+    public Button depoButton;
+
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
@@ -105,6 +108,8 @@ public class Controller {
         loyal.setDisable(true);
         clear.setDisable(true);
         closeAccount.setDisable(true);
+        depoButton.setDisable(true);
+
     }
 
     /**
@@ -159,6 +164,7 @@ public class Controller {
 
     public void setDepo(ActionEvent e) throws Exception {
         try {
+
             DecimalFormat df = new DecimalFormat("#,##0.00");
             String account = list1.getSelectionModel().getSelectedItem().toString();
             String accCupdate = "";
@@ -242,8 +248,8 @@ public class Controller {
                 }
             }
 
-        } catch (Exception exception) {
-            // This try-catch is if someone tries to deposit to an account without selectig an account
+        } catch (NumberFormatException exception) {
+            // This try-catch is if someone tries to deposit to an account without selecting an account
             System.out.println("No account selected");
         }
     }
@@ -418,6 +424,7 @@ public class Controller {
         savings.setSelected(false);
         moneyMarket.setSelected(false);
         closeAccount.setDisable(false);
+        depoButton.setDisable(false);
     }
 
     public void handle() {
@@ -430,6 +437,9 @@ public class Controller {
         // handle account info
 
         String account = list.getSelectionModel().getSelectedItem().toString();
+        if(///){
+            display(new Date(1996,1,20));
+        }
         System.out.println("Account Selected to Remove: " + account);
         String[] accountInfo = account.split("\\*");
         String typeOfAcc = accountInfo[1];
@@ -474,6 +484,7 @@ public class Controller {
 
         if (list.getItems().isEmpty()) {
             closeAccount.setDisable(true);
+            depoButton.setDisable(true);
         }
     }
 
@@ -697,3 +708,16 @@ public class Controller {
 
     }
 }
+
+
+
+/*  ERROR CHECKLIST
+    1) Balance Text Field: needs to only accept numbers, popup if otherwise
+    2) First Name, Last Name, only characters
+    3) Date can only accept integers
+    4) Low Priority: Uncheck boxes if toggle is changed
+    5) Withdrawal try-catch * NumberFormatException
+    6) Close, deposit, withdrawal,
+
+
+ */
