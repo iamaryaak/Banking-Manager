@@ -514,6 +514,9 @@ public class Controller {
                     System.out.println(dateOpen.toString() + " is not a valid date!");
                     display(dateOpen);
                 }
+            }else{
+                displaySelection();
+                openAccount.setDisable(true);
             }
 
         }catch (InputMismatchException e) {
@@ -907,6 +910,12 @@ try{
         errorAlert.showAndWait();
     }
 
+    public static void displaySelection(){
+        Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+        errorAlert.setHeaderText("Warning");
+        errorAlert.setContentText("No Account Type Selected!");
+        errorAlert.showAndWait();
+    }
 
 
 }
