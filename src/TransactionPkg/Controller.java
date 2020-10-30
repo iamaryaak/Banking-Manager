@@ -293,6 +293,7 @@ public class Controller {
             // split into Money Market, Checking, and Savings
             if (accPara[1].equals("Money Market")) {
                 double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
+                df.format(newAmount);
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withM = new MoneyMarket(user, amount, empty);
