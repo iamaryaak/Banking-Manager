@@ -510,8 +510,18 @@ public class Controller {
             }
         }catch (InputMismatchException e) {
             displayInvalidOpenFields();
+            if (list.getItems().isEmpty()) {
+                closeAccount.setDisable(true);
+                depoButton.setDisable(true);
+                withButton.setDisable(true);
+            }
         } catch (NumberFormatException e) {
             displayInvalidDateFields();
+            if (list.getItems().isEmpty()) {
+                closeAccount.setDisable(true);
+                depoButton.setDisable(true);
+                withButton.setDisable(true);
+            }
         }
 
         // reset fields
