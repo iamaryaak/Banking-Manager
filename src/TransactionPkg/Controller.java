@@ -533,15 +533,19 @@ public class Controller {
         checking.setSelected(false);
         savings.setSelected(false);
         moneyMarket.setSelected(false);
+        direct.setDisable(true);
+        loyal.setDisable(true);
 
         if (list.getItems().isEmpty()) {
             closeAccount.setDisable(true);
             depoButton.setDisable(true);
             withButton.setDisable(true);
+            clear.setDisable(true);
         }else {
             closeAccount.setDisable(false);
             depoButton.setDisable(false);
             withButton.setDisable(false);
+            clear.setDisable(false);
         }
     }
 
@@ -596,6 +600,7 @@ public class Controller {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
                 withButton.setDisable(true);
+                clear.setDisable(true);
             }
         } catch (NullPointerException q) {
             displayClose();
@@ -603,12 +608,36 @@ public class Controller {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
                 withButton.setDisable(true);
+                clear.setDisable(false);
             }
         }
     }
 
     public void setClear() {
-        list.getItems().removeAll();
+        displayClear();
+        list.getItems().clear();
+        db.listClear();
+        System.out.println("Clear");
+
+        if (list.getItems().isEmpty()) {
+            closeAccount.setDisable(true);
+            depoButton.setDisable(true);
+            withButton.setDisable(true);
+            clear.setDisable(true);
+        }else {
+            closeAccount.setDisable(false);
+            depoButton.setDisable(false);
+            withButton.setDisable(false);
+            clear.setDisable(false);
+        }
+    }
+
+    public static void displayClear(){
+        Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+        errorAlert.setHeaderText("Are you sure?");
+        errorAlert.setContentText("This will remove all accounts in the database.");
+        errorAlert.showAndWait();
+
     }
 
     public void outputByDate() {
@@ -811,6 +840,7 @@ try{
                     closeAccount.setDisable(false);
                     withButton.setDisable(false);
                     depoButton.setDisable(false);
+                    clear.setDisable(false);
                 }
 
             } catch (NumberFormatException e) {

@@ -348,6 +348,22 @@ public class AccountDatabase {
         return returnable;
     }
 
+    public void listClear(){
+        for (int i = 0; i < size; i++) {
+            accounts[i] = new Account(null, 0, new Date(0,0,0)) {
+                @Override
+                public double monthlyInterest() {
+                    return 0;
+                }
+
+                @Override
+                public double monthlyFee() {
+                    return 0;
+                }
+            };
+        }
+        size = 0;
+    }
 }
 
 

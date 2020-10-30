@@ -1,0 +1,3 @@
+--Listing accounts in the database--
+Database is empty.
+--end of printing--
