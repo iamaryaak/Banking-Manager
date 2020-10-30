@@ -282,11 +282,11 @@ public class AccountDatabase {
             String addition = "";
             //System.out.println("--Printing statements by last name--");
             for (int i = 0; i < size; i++) {
-                addition = addition+ ("\n") + (accounts[i].toString());
+                addition = addition + (accounts[i].toString());
                 // get interest, fee, new balance
                 // get account type
                 double interest = (accounts[i].getBalance() * accounts[i].monthlyInterest());
-                addition = addition + ("-interest: $ " + df.format(interest));
+                addition = addition + ("\n-interest: $ " + df.format(interest)+"\n");
                 double fee = accounts[i].monthlyFee();
 
                 // Create conditions to print out fees per account type
@@ -305,10 +305,10 @@ public class AccountDatabase {
                         fee = 0;
                     }
                 }
-                addition = addition + ("-fee: $ " + df.format(fee));
+                addition = addition + ("-fee: $ " + df.format(fee) + "\n");
                 double newBal = (accounts[i].getBalance() * (1 + accounts[i].monthlyInterest()) - fee);
                 accounts[i].setBalance(newBal);
-                addition = addition + ("-new balance: $ " + df.format(newBal));
+                addition = addition + ("-new balance: $ " + df.format(newBal)) + "\n";
 
                 addition = addition + ("\n");
                 returnable[index] = addition;
@@ -323,20 +323,24 @@ public class AccountDatabase {
     /**
      * Prints the accounts in the database
      */
-    public void printAccounts() {
-
+    public String[] printAccounts() {
+        String[] returnable = new String[size];
+        String res = "";
         if (size == 0)
         {
-            System.out.println("Database is empty.");
+            return new String[]{"Database is empty."};
         }
 
         else {
-            System.out.println("--Listing accounts in the database--");
+            //System.out.println("--Listing accounts in the database--");
             for (int i = 0; i < size; i++) {
-                System.out.println(accounts[i].toString());
+                res = (accounts[i].toString() + "\n");
+                returnable[i] = res;
             }
-            System.out.println("--end of listing--");
+            //System.out.println("--end of listing--");
         }
+
+        return returnable;
     }
 
 }

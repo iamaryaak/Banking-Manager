@@ -464,11 +464,9 @@ public class Controller {
         list.getItems().removeAll();
     }
 
-    //     public void outputAcc() throws FileNotFoundException {
-
-    public void outputLastName() {
+    public void outputAcc(){
         try {
-            File myObj = new File("printStatementReg.txt");
+            File myObj = new File("outputAccount.txt");
             if (myObj.createNewFile()) {
                 System.out.println("File created: " + myObj.getName());
             } else {
@@ -476,7 +474,32 @@ public class Controller {
             }
 
             // write to file
-            PrintWriter writer = new PrintWriter("printStatementReg.txt", StandardCharsets.UTF_8);
+            PrintWriter writer = new PrintWriter("outputAccount.txt", StandardCharsets.UTF_8);
+            writer.println("--Listing accounts in the database--");
+            String[] resArr = db.printAccounts();
+            for (String s : resArr) {
+                writer.println(s);
+            }
+            writer.println("--end of printing--");
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public void outputLastName() {
+        try {
+            File myObj = new File("outputLastName.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            // write to file
+            PrintWriter writer = new PrintWriter("outputLastName.txt", StandardCharsets.UTF_8);
             writer.println("--Printing statements by last name--");
             String[] resArr = db.printByLastName();
             for (String s : resArr) {

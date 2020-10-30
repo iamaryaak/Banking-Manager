@@ -91,7 +91,7 @@
                   <Button fx:id="input" layoutX="37.0" layoutY="48.0" mnemonicParsing="false" onAction="#importFile" text="Import File" />
                   <MenuButton fx:id="pr" layoutX="145.0" layoutY="48.0" mnemonicParsing="false" text="Print">
                      <items>
-                        <MenuItem fx:id="prinAcc" mnemonicParsing="false" onAction="#outputLastName" text="Accounts" />
+                        <MenuItem fx:id="prinAcc" mnemonicParsing="false" onAction="#outputAcc" text="Accounts" />
                         <MenuItem fx:id="stateDate" mnemonicParsing="false" text="Statements by Date" />
                         <MenuItem fx:id="stateLname" mnemonicParsing="false" onAction="#outputLastName" text="Statements by Last Name" />
                      </items></MenuButton>

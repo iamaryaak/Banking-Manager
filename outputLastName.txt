@@ -1,0 +1,14 @@
+--Printing statements by last name--
+*Savings*A B* $500,000.00*3/2/2004
+-interest: $ 104.17
+-fee: $ 0.00
+-new balance: $ 500,104.17
+
+
+*Savings*A C* $500.00*2/3/2004
+-interest: $ 0.10
+-fee: $ 0.00
+-new balance: $ 500.10
+
+
+--end of printing--

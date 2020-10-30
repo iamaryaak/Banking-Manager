@@ -1,0 +1,6 @@
+--Listing accounts in the database--
+*Savings*A C* $500.00*2/3/2004
+
+*Savings*A B* $500,000.00*3/2/2004
+
+--end of printing--
