@@ -133,18 +133,22 @@ public class Controller {
             loyal.setDisable(true);
             direct.setDisable(false);
             openAccount.setDisable(false);
+            loyal.setSelected(false);
 
         } else if (savings.isSelected()) {
             tg.getSelectedToggle();
             loyal.setDisable(false);
             direct.setDisable(true);
             openAccount.setDisable(false);
+            direct.setSelected(false);
 
         } else if (moneyMarket.isSelected()) {
             tg.getSelectedToggle();
             direct.setDisable(true);
             loyal.setDisable(true);
             openAccount.setDisable(false);
+            direct.setSelected(false);
+            loyal.setSelected(false);
         }
 
     }
