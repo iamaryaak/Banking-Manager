@@ -344,10 +344,10 @@ public class Controller {
         return isLoyalBool;
     }
 
-    public boolean checkString(String str){
+    public boolean checkString(String str) {
         boolean res = true;
-        for(int i = 0; i < str.length(); i++){
-            if(!Character.isLetter(str.charAt(i))){
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isLetter(str.charAt(i))) {
                 res = false;
                 break;
             }
@@ -356,11 +356,11 @@ public class Controller {
         return res;
     }
 
-    public boolean checkBalance(String str){
+    public boolean checkBalance(String str) {
         boolean res = true;
         str = str.substring(1);
-        for(int i = 0; i < str.length(); i++){
-            if(!Character.isDigit(str.charAt(i))){
+        for (int i = 0; i < str.length(); i++) {
+            if (!Character.isDigit(str.charAt(i))) {
                 res = false;
                 break;
             }
@@ -368,10 +368,10 @@ public class Controller {
         return res;
     }
 
-    public boolean checkDate(String year, String month, String day){
+    public boolean checkDate(String year, String month, String day) {
         boolean res = true;
 
-        if(year.matches("^\\d+\\.\\d+") || month.matches("^\\d+\\.\\d+") || day.matches("^\\d+\\.\\d+")){
+        if (year.matches("^\\d+\\.\\d+") || month.matches("^\\d+\\.\\d+") || day.matches("^\\d+\\.\\d+")) {
             res = false;
         }
 
@@ -379,90 +379,90 @@ public class Controller {
     }
 
     public void setOpenAccount() {
-        try{
-        if (checking.isSelected()) {
-            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
-                throw new InputMismatchException();
-            }
-            if(checkDate(year.getText(), month.getText(), day.getText())){
-                throw new NumberFormatException();
-            }
-            Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
-            if (dateOpen.isValid()) {
-                Profile user = new Profile(firstName.getText(), lastName.getText());
-                Account accC = new Checking(user, Double.parseDouble(balance.getText()), dateOpen, directBool);
-                boolean added = db.add(accC);
-                if (added) {
-                    System.out.println("Account opened and added to the database.");
-                    list.getItems().add(accC.toString());
-                    //closeAccount.setDisable(false);
-                    //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
-                } else {
-                    System.out.println("Account is already in the database.");
+        try {
+            if (checking.isSelected()) {
+                if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
+                    throw new InputMismatchException();
                 }
-            } else {
-                System.out.println(dateOpen.toString() + " is not a valid date!");
-                display(dateOpen);
-            }
-
-        } else if (savings.isSelected()) {
-            //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
-            //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
-            //System.out.println("Balance " + balance.getText());
-            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
-                throw new InputMismatchException();
-            }
-            if(checkDate(year.getText(), month.getText(), day.getText())){
-                throw new NumberFormatException();
-            }
-            Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
-            if (dateOpen.isValid()) {
-                Profile user = new Profile(firstName.getText(), lastName.getText());
-                Account accS = new Savings(user, Double.parseDouble(balance.getText()), dateOpen, isLoyalBool);
-                boolean added = db.add(accS);
-                if (added) {
-                    list.getItems().add(accS.toString());
-                    System.out.println("Account opened and added to the database.");
-
-                } else {
-                    System.out.println("Account is already in the database.");
+                if (checkDate(year.getText(), month.getText(), day.getText())) {
+                    throw new NumberFormatException();
                 }
-            } else {
-                System.out.println(dateOpen.toString() + " is not a valid date!");
-                display(dateOpen);
-            }
-
-        } else if (moneyMarket.isSelected()) { // money Market is selected
-            //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
-            //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
-            //System.out.println("Balance " + balance.getText());
-            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
-                throw new InputMismatchException();
-            }
-            if(checkDate(year.getText(), month.getText(), day.getText())){
-                throw new NumberFormatException();
-            }
-            Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
-            if (dateOpen.isValid()) {
-                Profile user = new Profile(firstName.getText(), lastName.getText());
-                Account accM = new MoneyMarket(user, Double.parseDouble(balance.getText()), dateOpen);
-                boolean added = db.add(accM);
-                if (added) {
-                    list.getItems().add(accM.toString());
-                    System.out.println("Account opened and added to the database.");
-                    //closeAccount.setDisable(false);
-                    //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+                Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
+                if (dateOpen.isValid()) {
+                    Profile user = new Profile(firstName.getText(), lastName.getText());
+                    Account accC = new Checking(user, Double.parseDouble(balance.getText()), dateOpen, directBool);
+                    boolean added = db.add(accC);
+                    if (added) {
+                        System.out.println("Account opened and added to the database.");
+                        list.getItems().add(accC.toString());
+                        //closeAccount.setDisable(false);
+                        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+                    } else {
+                        System.out.println("Account is already in the database.");
+                    }
                 } else {
-                    System.out.println("Account is already in the database.");
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                    display(dateOpen);
                 }
-            } else {
-                System.out.println(dateOpen.toString() + " is not a valid date!");
-                display(dateOpen);
+
+            } else if (savings.isSelected()) {
+                //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+                //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
+                //System.out.println("Balance " + balance.getText());
+                if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
+                    throw new InputMismatchException();
+                }
+                if (checkDate(year.getText(), month.getText(), day.getText())) {
+                    throw new NumberFormatException();
+                }
+                Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
+                if (dateOpen.isValid()) {
+                    Profile user = new Profile(firstName.getText(), lastName.getText());
+                    Account accS = new Savings(user, Double.parseDouble(balance.getText()), dateOpen, isLoyalBool);
+                    boolean added = db.add(accS);
+                    if (added) {
+                        list.getItems().add(accS.toString());
+                        System.out.println("Account opened and added to the database.");
+
+                    } else {
+                        System.out.println("Account is already in the database.");
+                    }
+                } else {
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                    display(dateOpen);
+                }
+
+            } else if (moneyMarket.isSelected()) { // money Market is selected
+                //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
+                //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
+                //System.out.println("Balance " + balance.getText());
+                if (!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))) {
+                    throw new InputMismatchException();
+                }
+                if (checkDate(year.getText(), month.getText(), day.getText())) {
+                    throw new NumberFormatException();
+                }
+                Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
+                if (dateOpen.isValid()) {
+                    Profile user = new Profile(firstName.getText(), lastName.getText());
+                    Account accM = new MoneyMarket(user, Double.parseDouble(balance.getText()), dateOpen);
+                    boolean added = db.add(accM);
+                    if (added) {
+                        list.getItems().add(accM.toString());
+                        System.out.println("Account opened and added to the database.");
+                        //closeAccount.setDisable(false);
+                        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
+                    } else {
+                        System.out.println("Account is already in the database.");
+                    }
+                } else {
+                    System.out.println(dateOpen.toString() + " is not a valid date!");
+                    display(dateOpen);
+                }
             }
-        }
-        }catch(InputMismatchException e){
+        } catch (InputMismatchException e) {
             displayInvalidOpenFields();
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             displayInvalidDateFields();
         }
 
@@ -490,58 +490,58 @@ public class Controller {
 
     public void setCloseAccount(ActionEvent e) {
         // handle account info
-try {
-    String account = list.getSelectionModel().getSelectedItem().toString();
+        try {
+            String account = list.getSelectionModel().getSelectedItem().toString();
 
-    System.out.println("Account Selected to Remove: " + account);
-    String[] accountInfo = account.split("\\*");
-    String typeOfAcc = accountInfo[1];
-    String[] fullName = accountInfo[2].split("\\s");
+            System.out.println("Account Selected to Remove: " + account);
+            String[] accountInfo = account.split("\\*");
+            String typeOfAcc = accountInfo[1];
+            String[] fullName = accountInfo[2].split("\\s");
 
 
-    if (typeOfAcc.equals("Checking")) {
-        Profile user = new Profile(fullName[0], fullName[1]);
-        Date empty = new Date(0, 0, 0);
-        Account rC = new Checking(user, 0, empty, false);
-        boolean close = db.remove(rC);
-        if (close) {
-            list.getItems().remove(account);
-            System.out.println("Account closed and removed from database.");
-        } else {
-            System.out.println("Account does not exist.");
+            if (typeOfAcc.equals("Checking")) {
+                Profile user = new Profile(fullName[0], fullName[1]);
+                Date empty = new Date(0, 0, 0);
+                Account rC = new Checking(user, 0, empty, false);
+                boolean close = db.remove(rC);
+                if (close) {
+                    list.getItems().remove(account);
+                    System.out.println("Account closed and removed from database.");
+                } else {
+                    System.out.println("Account does not exist.");
+                }
+            } else if (typeOfAcc.equals("Savings")) {
+                Profile user = new Profile(fullName[0], fullName[1]);
+                Date empty = new Date(0, 0, 0);
+                Account rS = new Savings(user, 0, empty, false);
+                boolean close = db.remove(rS);
+                if (close) {
+                    list.getItems().remove(account);
+                    System.out.println("Account closed and removed from database.");
+                } else {
+                    System.out.println("Account does not exist.");
+                }
+            } else if (typeOfAcc.equals("Money Market")) {
+                Profile user = new Profile(fullName[0], fullName[1]);
+                Date empty = new Date(0, 0, 0);
+                Account rM = new MoneyMarket(user, 0, empty);
+                boolean close = db.remove(rM);
+                if (close) {
+                    list.getItems().remove(account);
+                    System.out.println("Account closed and removed from database.");
+                } else {
+                    System.out.println("Account does not exist.");
+                }
+
+            }
+
+            if (list.getItems().isEmpty()) {
+                closeAccount.setDisable(true);
+                depoButton.setDisable(true);
+            }
+        } catch (NullPointerException q) {
+            displayClose();
         }
-    } else if (typeOfAcc.equals("Savings")) {
-        Profile user = new Profile(fullName[0], fullName[1]);
-        Date empty = new Date(0, 0, 0);
-        Account rS = new Savings(user, 0, empty, false);
-        boolean close = db.remove(rS);
-        if (close) {
-            list.getItems().remove(account);
-            System.out.println("Account closed and removed from database.");
-        } else {
-            System.out.println("Account does not exist.");
-        }
-    } else if (typeOfAcc.equals("Money Market")) {
-        Profile user = new Profile(fullName[0], fullName[1]);
-        Date empty = new Date(0, 0, 0);
-        Account rM = new MoneyMarket(user, 0, empty);
-        boolean close = db.remove(rM);
-        if (close) {
-            list.getItems().remove(account);
-            System.out.println("Account closed and removed from database.");
-        } else {
-            System.out.println("Account does not exist.");
-        }
-
-    }
-
-    if (list.getItems().isEmpty()) {
-        closeAccount.setDisable(true);
-        depoButton.setDisable(true);
-    }
-}catch(NullPointerException q){
-    displayClose();
-}
     }
 
     public void setClear() {
@@ -764,14 +764,14 @@ try {
 
     }
 
-    public static void displayClose(){
+    public static void displayClose() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Account not selected");
         errorAlert.setContentText("Please select an account!");
         errorAlert.showAndWait();
     }
 
-    public static void displayInvalidOpenFields(){
+    public static void displayInvalidOpenFields() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Invalid Fields");
         errorAlert.setContentText("Some fields may have been left blank or inputted incorrectly, please fix them.");
@@ -785,8 +785,9 @@ try {
         errorAlert.showAndWait();
 
     }
+}
 
-<<<<<<< HEAD
+
 /*  ERROR CHECKLIST
     1) Balance Text Field: needs to only accept numbers, popup if otherwise
     2) First Name, Last Name, only characters
