@@ -257,7 +257,7 @@ public class Controller {
                 }
             }
 
-        } catch (NumberFormatException exception) {
+        } catch (NumberFormatException | NullPointerException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
         }
@@ -391,7 +391,7 @@ public class Controller {
     public boolean checkWithDepoVal(String str){
         boolean res = true;
         for(int i = 0; i < str.length(); i++){
-            if(!Character.isDigit(str.charAt(i)) || str.charAt(i) != '.'){
+            if(!Character.isDigit(str.charAt(i))){
                 res = false;
                 break;
             }
@@ -772,7 +772,11 @@ try{
                     }
                 }
 
-                closeAccount.setDisable(false);
+                if(!list.getItems().isEmpty()) {
+                    closeAccount.setDisable(false);
+                    withButton.setDisable(false);
+                    depoButton.setDisable(false);
+                }
 
             } catch (NumberFormatException e) {
                 // e.printStackTrace();
@@ -827,7 +831,7 @@ try{
     public static void displayInvalidWithdrawDepo(){
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Input not valid");
-        errorAlert.setContentText("Please enter correct monetary value!");
+        errorAlert.setContentText("Please enter a correct monetary value!");
         errorAlert.showAndWait();
     }
 
@@ -842,6 +846,7 @@ try{
     DONE    2) First Name, Last Name, only characters
     DONE    3) Date can only accept integers
             4) Low Priority: Uncheck boxes if toggle is changed
-        5) Withdrawal try-catch * NumberFormatException
+    DONE    5) Withdrawal try-catch * NumberFormatException
             6) Close, deposit, withdrawal
+            7) allow for decimals for withdrawl and deposit
  */
