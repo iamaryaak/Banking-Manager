@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Controller {
@@ -343,8 +344,49 @@ public class Controller {
         return isLoyalBool;
     }
 
+    public boolean checkString(String str){
+        boolean res = true;
+        for(int i = 0; i < str.length(); i++){
+            if(!Character.isLetter(str.charAt(i))){
+                res = false;
+                break;
+            }
+        }
+
+        return res;
+    }
+
+    public boolean checkBalance(String str){
+        boolean res = true;
+        str = str.substring(1);
+        for(int i = 0; i < str.length(); i++){
+            if(!Character.isDigit(str.charAt(i))){
+                res = false;
+                break;
+            }
+        }
+        return res;
+    }
+
+    public boolean checkDate(String year, String month, String day){
+        boolean res = true;
+
+        if(year.matches("^\\d+\\.\\d+") || month.matches("^\\d+\\.\\d+") || day.matches("^\\d+\\.\\d+")){
+            res = false;
+        }
+
+        return res;
+    }
+
     public void setOpenAccount() {
+        try{
         if (checking.isSelected()) {
+            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+                throw new InputMismatchException();
+            }
+            if(checkDate(year.getText(), month.getText(), day.getText())){
+                throw new NumberFormatException();
+            }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -367,7 +409,12 @@ public class Controller {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
-
+            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+                throw new InputMismatchException();
+            }
+            if(checkDate(year.getText(), month.getText(), day.getText())){
+                throw new NumberFormatException();
+            }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -389,7 +436,12 @@ public class Controller {
             //System.out.println("Opening Account for " + firstName.getText() + " " + lastName.getText());
             //System.out.println("Date " + month.getText() + " " + day.getText() + " " + year.getText());
             //System.out.println("Balance " + balance.getText());
-
+            if(!checkBalance(balance.getText()) || firstName.getText().equals("") || lastName.getText().equals("") || !(checkString(firstName.getText()) && checkString(lastName.getText()))){
+                throw new InputMismatchException();
+            }
+            if(checkDate(year.getText(), month.getText(), day.getText())){
+                throw new NumberFormatException();
+            }
             Date dateOpen = new Date(Integer.parseInt(year.getText()), Integer.parseInt(month.getText()), Integer.parseInt(day.getText()));
             if (dateOpen.isValid()) {
                 Profile user = new Profile(firstName.getText(), lastName.getText());
@@ -407,6 +459,11 @@ public class Controller {
                 System.out.println(dateOpen.toString() + " is not a valid date!");
                 display(dateOpen);
             }
+        }
+        }catch(InputMismatchException e){
+            displayInvalidOpenFields();
+        }catch(NumberFormatException e){
+            displayInvalidDateFields();
         }
 
         // reset fields
@@ -432,8 +489,6 @@ public class Controller {
     }
 
     public void setCloseAccount(ActionEvent e) {
-        //closeAccount.setDisable(false);
-        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
         // handle account info
 try {
     String account = list.getSelectionModel().getSelectedItem().toString();
@@ -715,10 +770,23 @@ try {
         errorAlert.setContentText("Please select an account!");
         errorAlert.showAndWait();
     }
-}
 
+    public static void displayInvalidOpenFields(){
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Invalid Fields");
+        errorAlert.setContentText("Some fields may have been left blank or inputted incorrectly, please fix them.");
+        errorAlert.showAndWait();
+    }
 
+    public static void displayInvalidDateFields() {
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Input not valid");
+        errorAlert.setContentText("Not a valid date! Please enter the date correctly.");
+        errorAlert.showAndWait();
 
+    }
+
+<<<<<<< HEAD
 /*  ERROR CHECKLIST
     1) Balance Text Field: needs to only accept numbers, popup if otherwise
     2) First Name, Last Name, only characters
@@ -726,6 +794,17 @@ try {
     4) Low Priority: Uncheck boxes if toggle is changed
     5) Withdrawal try-catch * NumberFormatException
     6) Close, deposit, withdrawal, no selection errors
+=======
+}
+>>>>>>> 9c4ef95c66e9cfe6201bd3de45f61aae61d255d4
 
 
+
+/*  ERROR CHECKLIST
+    DONE    1) Balance Text Field: needs to only accept numbers, popup if otherwise
+    DONE    2) First Name, Last Name, only characters
+    DONE    3) Date can only accept integers
+            4) Low Priority: Uncheck boxes if toggle is changed
+            5) Withdrawal try-catch * NumberFormatException
+            6) Close, deposit, withdrawal
  */
