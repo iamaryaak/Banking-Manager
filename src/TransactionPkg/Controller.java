@@ -177,6 +177,7 @@ public class Controller {
 
             if (typeOfAcc.equals("Checking")) {
                 String damount = depositAmount.getText();
+                damount = damount.replace(",", "");
                 if(!checkWithDepoVal(damount)){
                     throw new NumberFormatException();
                 }
@@ -188,7 +189,6 @@ public class Controller {
                     isDirectB = false;
                 }
                 String newamount = String.valueOf(df.format(amount + oldamount));
-                System.out.println(amount);
                 Profile user = new Profile(fullName[0], fullName[1]);
                 Date empty = new Date(0, 0, 0);
                 Account depositC = new Checking(user, amount, empty, false);
@@ -201,12 +201,12 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
                     }
-                    System.out.println(amount + " deposited to account");
                 } else {
-                    System.out.println("Account does not exist");
+                    displayAccNotExist();
                 }
             } else if (typeOfAcc.equals("Savings")) {
                 String damount = depositAmount.getText();
+                damount = damount.replace(",", "");
                 if(!checkWithDepoVal(damount)){
                     throw new NumberFormatException();
                 }
@@ -236,6 +236,7 @@ public class Controller {
                 }
             } else if (typeOfAcc.equals("Money Market")) {
                 String damount = depositAmount.getText();
+                damount = damount.replace(",", "");
                 if(!checkWithDepoVal(damount)){
                     throw new NumberFormatException();
                 }
@@ -256,7 +257,7 @@ public class Controller {
                     System.out.println("Account does not exist");
                 }
             }
-
+            depositAmount.clear();
         } catch (NumberFormatException | NullPointerException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
@@ -268,7 +269,9 @@ public class Controller {
             // set up for withdrawals
             String account = list1.getSelectionModel().getSelectedItem().toString();
 
-            if(!checkWithDepoVal(withdrawalAmount.getText())){
+            String wamount = withdrawalAmount.getText();
+            wamount = wamount.replace(",", "");
+            if(!checkWithDepoVal(wamount)){
                 throw new NumberFormatException();
             }
 
@@ -278,7 +281,8 @@ public class Controller {
             String lName = fullName[1];
             String parseAmount = accPara[3];
             StringBuilder oldamount = new StringBuilder();
-            double amount = Double.parseDouble(withdrawalAmount.getText());
+
+            double amount = Double.parseDouble(wamount);
             DecimalFormat df = new DecimalFormat("#,##0.00");
             for (int i = 0; i < parseAmount.length(); i++) {
                 if (Character.isDigit(parseAmount.charAt(i)) || parseAmount.charAt(i) == '.') {
@@ -350,11 +354,11 @@ public class Controller {
                     System.out.println("Account does not exist.");
                 }
             }
-        }catch (NumberFormatException exception) {
-            // This try-catch is if someone tries to withdraw from an account without selecting an account
+
+            withdrawalAmount.clear();
+        }catch (NumberFormatException | NullPointerException exception) {
+            // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
-        }catch (NullPointerException e){
-            displayInvalidOpenFields();
         }
 
     }
@@ -396,7 +400,6 @@ public class Controller {
                 break;
             }
         }
-
         return res;
     }
 
@@ -835,6 +838,13 @@ try{
         errorAlert.showAndWait();
     }
 
+    public static void displayAccNotExist(){
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setHeaderText("Account Not Found!");
+        errorAlert.setContentText("Account Does Not Exist! Try Again.");
+        errorAlert.showAndWait();
+    }
+
 
 
 }
@@ -847,6 +857,6 @@ try{
     DONE    3) Date can only accept integers
             4) Low Priority: Uncheck boxes if toggle is changed
     DONE    5) Withdrawal try-catch * NumberFormatException
-            6) Close, deposit, withdrawal
-            7) allow for decimals for withdrawl and deposit
+    DONE    6) Close, deposit, withdrawal
+    DONE    7) allow for decimals for withdrawl and deposit
  */
