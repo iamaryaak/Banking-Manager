@@ -36,6 +36,7 @@ public class Controller {
     public Button openAccount;
     public Button closeAccount;
     public Button clear;
+
     @FXML
     public Button closeApp1;
     @FXML
