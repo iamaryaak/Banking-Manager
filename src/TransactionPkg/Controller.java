@@ -293,14 +293,14 @@ public class Controller {
                 }
             }
 
-            double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
-            df.format(newAmount);
             // split into Money Market, Checking, and Savings
             if (accPara[1].equals("Money Market")) {
 
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withM = new MoneyMarket(user, amount, empty);
+                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
+                df.format(newAmount);
                 int with = db.withdrawal(withM, amount);
                 if (with == 0) {
                     list.getItems().remove(account);
@@ -320,6 +320,8 @@ public class Controller {
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withC = new Checking(user, amount, empty, isDirectB);
+                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
+                df.format(newAmount);
                 int with = db.withdrawal(withC, amount);
                 if (with == 0) {
                     list.getItems().remove(account);
@@ -343,6 +345,8 @@ public class Controller {
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withC = new Savings(user, amount, empty, isLoyalB);
+                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
+                df.format(newAmount);
                 int with = db.withdrawal(withC, amount);
                 if (with == 0) {
                     list.getItems().remove(account);
