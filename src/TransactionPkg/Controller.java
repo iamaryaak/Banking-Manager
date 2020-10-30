@@ -179,6 +179,7 @@ public class Controller {
                 String damount = depositAmount.getText();
                 damount = damount.replace(",", "");
                 if(!checkWithDepoVal(damount)){
+                    System.out.println(damount);
                     throw new NumberFormatException();
                 }
                 double amount = Double.parseDouble(damount);
@@ -261,6 +262,7 @@ public class Controller {
         } catch (NumberFormatException | NullPointerException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
+            depositAmount.clear();
         }
     }
 
@@ -272,6 +274,7 @@ public class Controller {
             String wamount = withdrawalAmount.getText();
             wamount = wamount.replace(",", "");
             if(!checkWithDepoVal(wamount)){
+                System.out.println(wamount);
                 throw new NumberFormatException();
             }
 
@@ -290,10 +293,11 @@ public class Controller {
                 }
             }
 
+            double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
+            df.format(newAmount);
             // split into Money Market, Checking, and Savings
             if (accPara[1].equals("Money Market")) {
-                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
-                df.format(newAmount);
+
                 Profile user = new Profile(fName, lName);
                 Date empty = new Date(0, 0, 0);
                 Account withM = new MoneyMarket(user, amount, empty);
@@ -307,7 +311,6 @@ public class Controller {
                     System.out.println("Account does not exist.");
                 }
             } else if (accPara[1].equals("Checking")) {
-                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
                 boolean isDirectB;
                 if (accPara.length == 5) {
                     isDirectB = true;
@@ -331,7 +334,6 @@ public class Controller {
                     System.out.println("Account does not exist.");
                 }
             } else if (accPara[1].equals("Savings")) {
-                double newAmount = Double.parseDouble(String.valueOf(oldamount)) - amount;
                 boolean isLoyalB;
                 if (accPara.length == 6) {
                     isLoyalB = true;
@@ -360,6 +362,7 @@ public class Controller {
         }catch (NumberFormatException | NullPointerException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
+            withdrawalAmount.clear();
         }
 
     }
@@ -385,7 +388,9 @@ public class Controller {
         boolean res = true;
         str = str.substring(1);
         for (int i = 0; i < str.length(); i++) {
-            if (!Character.isDigit(str.charAt(i))) {
+            if(str.charAt(i) == '.'){
+                // do nothing
+            }else if (!Character.isDigit(str.charAt(i))) {
                 res = false;
                 break;
             }
@@ -396,7 +401,9 @@ public class Controller {
     public boolean checkWithDepoVal(String str){
         boolean res = true;
         for(int i = 0; i < str.length(); i++){
-            if(!Character.isDigit(str.charAt(i))){
+            if(str.charAt(i) == '.'){
+                // do nothing
+            }else if(!Character.isDigit(str.charAt(i))){
                 res = false;
                 break;
             }
@@ -517,8 +524,6 @@ public class Controller {
         depoButton.setDisable(false);
         withButton.setDisable(false);
     }
-
-
 
     public void setCloseAccount(ActionEvent e) {
         // handle account info
