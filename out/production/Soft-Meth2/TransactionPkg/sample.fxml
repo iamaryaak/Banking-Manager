@@ -35,6 +35,8 @@
                   <TextField fx:id="firstName" layoutX="118.0" layoutY="30.0" onAction="#sayName" prefHeight="27.0" prefWidth="182.0" />
                   <TextField fx:id="lastName" layoutX="118.0" layoutY="69.0" prefHeight="27.0" prefWidth="182.0" />
                   <TextField fx:id="month" layoutX="118.0" layoutY="109.0" prefHeight="27.0" prefWidth="39.0" promptText="mm" />
+                  <TextField fx:id="day" layoutX="174.0" layoutY="109.0" prefHeight="27.0" prefWidth="39.0" promptText="dd" />
+                  <TextField fx:id="year" layoutX="232.0" layoutY="109.0" prefHeight="27.0" prefWidth="65.0" promptText="yyyy" />
                   <TextField fx:id="balance" layoutX="118.0" layoutY="148.0" prefHeight="27.0" prefWidth="182.0" />
                   <RadioButton fx:id="checking" layoutX="320.0" layoutY="35.0" mnemonicParsing="false" onAction="#selectAccount" text="Checking" />
                   <RadioButton fx:id="savings" layoutX="320.0" layoutY="74.0" mnemonicParsing="false" onAction="#selectAccount" text="Savings" />
@@ -45,12 +47,10 @@
                      <font>
                         <Font size="24.0" />
                      </font></Label>
-                  <TextField fx:id="day" layoutX="174.0" layoutY="109.0" prefHeight="27.0" prefWidth="39.0" promptText="dd" />
                   <Label layoutX="219.0" layoutY="107.0" prefHeight="17.0" prefWidth="10.0" text="/">
                      <font>
                         <Font size="24.0" />
                      </font></Label>
-                  <TextField fx:id="year" layoutX="232.0" layoutY="109.0" prefHeight="27.0" prefWidth="65.0" promptText="yyyy" />
                   <Button fx:id="openAccount" layoutX="320.0" layoutY="148.0" mnemonicParsing="false" onAction="#setOpenAccount" prefHeight="27.0" prefWidth="115.0" text="Open Account" />
                   <Button fx:id="closeAccount" layoutX="451.0" layoutY="148.0" mnemonicParsing="false" onAction="#setCloseAccount" prefHeight="27.0" prefWidth="115.0" text="Close Account" />
                   <Button fx:id="clear" layoutX="581.0" layoutY="148.0" mnemonicParsing="false" onAction="#setClear" prefHeight="27.0" prefWidth="115.0" text="Clear" />
