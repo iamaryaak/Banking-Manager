@@ -613,12 +613,6 @@ public class Controller {
     public void outputByDate() {
         try {
             File myObj = new File("outputDate.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-
             // write to file
             PrintWriter writer = new PrintWriter("outputDate.txt", StandardCharsets.UTF_8);
             writer.println("--Printing statements by Date Open --");
@@ -637,12 +631,6 @@ public class Controller {
     public void outputAcc() {
         try {
             File myObj = new File("outputAccount.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-
             // write to file
             PrintWriter writer = new PrintWriter("outputAccount.txt", StandardCharsets.UTF_8);
             writer.println("--Listing accounts in the database--");
@@ -661,11 +649,6 @@ public class Controller {
     public void outputLastName() {
         try {
             File myObj = new File("outputLastName.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
 
             // write to file
             PrintWriter writer = new PrintWriter("outputLastName.txt", StandardCharsets.UTF_8);
@@ -690,7 +673,8 @@ public class Controller {
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
         Stage stage = new Stage();
         File sourceFile = chooser.showOpenDialog(stage); //get the reference of the source file
-try{
+
+        try{
         Scanner sc = new Scanner(sourceFile);
         while (sc.hasNext()) {
 
