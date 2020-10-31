@@ -871,10 +871,7 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
-
 }
-
-
 
 /*  ERROR CHECKLIST
     DONE    1) Balance Text Field: needs to only accept numbers, popup if otherwise
