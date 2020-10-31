@@ -185,7 +185,6 @@ public class Controller {
                 Date empty = new Date(0, 0, 0);
                 Account depositC = new Checking(user, amount, empty, false);
                 boolean depo = db.deposit(depositC, amount);
-                //accCupdate = "*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4];
                 if (depo) {
                     list.getItems().remove(account);
                     if (isDirectB) {
