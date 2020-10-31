@@ -794,7 +794,7 @@ public class Controller {
                 // e.printStackTrace();
             }
         }
-}catch(NullPointerException e){
+            }catch(NullPointerException e){
                 displayImportFile();
             }
         }
