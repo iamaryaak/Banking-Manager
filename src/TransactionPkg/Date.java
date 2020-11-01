@@ -69,9 +69,12 @@ public class Date implements Comparable<Date> {
         // a multiple of 4 and not
         // multiple of 100.
         // OR year is multiple of 400.
-        return (((year % 4 == 0) &&
-                (year % 100 != 0)) ||
-                (year % 400 == 0));
+        int yearFour = 4;
+        int cent = 100;
+        int quadCent = 400;
+        return (((year % yearFour == 0) &&
+                (year % cent != 0)) ||
+                (year % quadCent == 0));
     }
 
     /**
@@ -83,27 +86,36 @@ public class Date implements Comparable<Date> {
         int y = this.year;
         int m = this.month;
         int d = this.day;
+        int uno = 1;
+        int monthMax = 12;
         // check if year is valid
         if (y > MAX_VALID_YR || y < MIN_VALID_YR)
             return false;
-        if (m < 1 || m > 12)
+        if (m < uno || m > monthMax)
             return false;
-        if (d < 1 || d > 31)
+        if (d < uno || d > monthMax)
             return false;
 
         // Handle February month
         // with leap year
-        if (m == 2)
+        int feb = 2;
+        int maxFeb = 29;
+        int minFeb = 28;
+        if (m == feb)
         {
             if (isLeap(y))
-                return (d <= 29);
+                return (d <= maxFeb);
             else
-                return (d <= 28);
+                return (d <= minFeb);
         }
 
-
-        if (m == 4 || m == 6 || m == 9 || m == 11)
-            return (d <= 30);
+        int four = 4;
+        int six = 6;
+        int nine = 9;
+        int thirty = 30;
+        int eleven = 11;
+        if (m == four || m == six || m == nine || m == eleven)
+            return (d <= thirty);
 
         return true;
 

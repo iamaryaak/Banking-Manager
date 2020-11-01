@@ -15,6 +15,10 @@ import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Handles the button and actions related to any text fields, buttons, etc.
+ * Calls methods from Account Database to handle User Inputs
+ */
 public class Controller {
 
     public TextField firstName;
@@ -72,27 +76,46 @@ public class Controller {
     AccountDatabase db = new AccountDatabase();
     ToggleGroup tg = new ToggleGroup();
 
-    // Binds the list from the first tab to the second
+    /**
+     * Binds the list from the first tab to the second
+     */
     public void setList2() {
         list2.itemsProperty().bind(list.itemsProperty());
     }
 
+    /**
+     * Binds list from 0th list to 1st list
+     */
     public void setList1() {
         list1.itemsProperty().bind(list.itemsProperty());
     }
 
+    /**
+     * unneeded method
+     */
     public void setPr() { }
 
+    /**
+     * When clicked, closes the app
+     * @param event mouse click on Close app
+     */
     @FXML
     public void setCloseApp1(ActionEvent event) {
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 
+    /**
+     * When clicked, closes the app
+     * @param event mouse click on Close app
+     */
     @FXML
     public void setCloseApp2(ActionEvent event) {
         ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
     }
 
+    /**
+     * Initialize the UI when it is created
+     */
     public void initialize() {
         setPr();
         setList1();
@@ -115,6 +138,9 @@ public class Controller {
         moneyMarket.setToggleGroup(tg);
     }
 
+    /**
+     * When account is selected certain buttons will gray out while others wont
+     */
     public void selectAccount() {
         setTg();
 
@@ -143,11 +169,20 @@ public class Controller {
 
     }
 
+    /**
+     * Gets full name from text fields after button is clicked
+     * @param actionEvent button click
+     */
     public void sayName(ActionEvent actionEvent) {
         String n = firstName.getText();
         String l = lastName.getText();
     }
 
+    /**
+     * Helper method = Set up direct deposit
+     * @param e button click
+     * @return directBool if it is a direct deposit account
+     */
     public boolean setDirectDepo(ActionEvent e) {
         list.getSelectionModel().getSelectedItem();
         directBool = direct.isSelected();
@@ -155,6 +190,11 @@ public class Controller {
         return directBool;
     }
 
+    /**
+     * deposit money into an existing account, has try catch for UI error
+     * @param e button click (Deposit)
+     * @throws Exception when someone deposits without selecting account
+     */
     public void setDepo(ActionEvent e) throws Exception {
         try {
 
@@ -254,6 +294,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Withdraw money from account after User selects it
+     */
     public void setWithdrawal() {
         try {
             // set up for withdrawals
@@ -356,11 +399,21 @@ public class Controller {
 
     }
 
+    /**
+     * Returns boolean if the savings account is loyal or not
+     * @param e button click
+     * @return isloyalBool if true or false based on the checkbox click
+     */
     public boolean setIsLoyal(ActionEvent e) {
         isLoyalBool = loyal.isSelected();
         return isLoyalBool;
     }
 
+    /**
+     * Check String for names and such
+     * @param str string that needs to be checked
+     * @return res if it is a valid string or not
+     */
     public boolean checkString(String str) {
         boolean res = true;
         for (int i = 0; i < str.length(); i++) {
@@ -373,6 +426,11 @@ public class Controller {
         return res;
     }
 
+    /**
+     * Check if balance has all numbers
+     * @param str string to be checked
+     * @return res if it is valid or not
+     */
     public boolean checkBalance(String str) {
         if(str.equals("")){
             return false;
@@ -390,6 +448,11 @@ public class Controller {
         return res;
     }
 
+    /**
+     * Check values from Deposit and Withdrawal
+     * @param str string to be checked
+     * @return res if they are valid or not
+     */
     public boolean checkWithDepoVal(String str){
         boolean res = true;
         for(int i = 0; i < str.length(); i++){
@@ -403,6 +466,13 @@ public class Controller {
         return res;
     }
 
+    /**
+     * Checks if data is valid (User Input)
+     * @param year string to be checked
+     * @param month stiring to be checked
+     * @param day string to be checked
+     * @return res if the date is valid
+     */
     public boolean checkDate(String year, String month, String day){
         boolean res = true;
         if(year.equals("") || month.equals("") || day.equals("")){
@@ -415,6 +485,9 @@ public class Controller {
         return res;
     }
 
+    /**
+     * Opens an account based on which account type is selected and User Inputs
+     */
     public void setOpenAccount() {
         try {
             if (checking.isSelected()) {
@@ -523,6 +596,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Closes account based on User Input based on button click
+     * @param e button click
+     */
     public void setCloseAccount(ActionEvent e) {
         // handle account info
         try {
@@ -583,6 +660,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Clear the account and clear the list (db)
+     */
     public void setClear() {
         displayClear();
         list.getItems().clear();
@@ -601,6 +681,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Clear the display on the UI
+     */
     public static void displayClear(){
         Alert errorAlert = new Alert(Alert.AlertType.WARNING);
         errorAlert.setHeaderText("Are you sure?");
@@ -609,6 +692,9 @@ public class Controller {
 
     }
 
+    /**
+     * Export data by date opened
+     */
     public void outputByDate() {
         try {
             File myObj = new File("outputDate.txt");
@@ -627,6 +713,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Export account by Listing all accounts
+     */
     public void outputAcc() {
         try {
             File myObj = new File("outputAccount.txt");
@@ -645,6 +734,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Export accounts by last name
+     */
     public void outputLastName() {
         try {
             File myObj = new File("outputLastName.txt");
@@ -664,6 +756,10 @@ public class Controller {
         }
     }
 
+    /**
+     * Import file when it is selected by user
+     * @throws FileNotFoundException if file not found then the popup appears
+     */
     public void importFile() throws FileNotFoundException {
 
         FileChooser chooser = new FileChooser();
@@ -798,7 +894,10 @@ public class Controller {
             }
         }
 
-    // make popup window for not importing file
+    /**
+     * Make popup for not inputting valid date
+      * @param date date inputted by the user
+     */
     public static void display(Date date) {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Input not valid");
@@ -807,6 +906,9 @@ public class Controller {
 
     }
 
+    /**
+     * Popup if account isn't selected
+     */
     public static void displayClose() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Account not selected");
@@ -814,6 +916,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * Popup if some fields are left blank
+     */
     public static void displayInvalidOpenFields() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Invalid Fields");
@@ -821,6 +926,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * Popup if the date isn't valid
+     */
     public static void displayInvalidDateFields() {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Input not valid");
@@ -829,6 +937,9 @@ public class Controller {
 
     }
 
+    /**
+     * Pop up if correct file isn't imported
+     */
     public static void displayImportFile(){
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Invalid File");
@@ -836,6 +947,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * PopUp if the wrong value is inputted
+     */
     public static void displayInvalidWithdrawDepo(){
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Input not valid");
@@ -843,6 +957,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * Popup for account does not exist
+     */
     public static void displayAccNotExist(){
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
         errorAlert.setHeaderText("Account Not Found!");
@@ -850,6 +967,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * Popup for no account type selected.
+     */
     public static void displaySelection(){
         Alert errorAlert = new Alert(Alert.AlertType.WARNING);
         errorAlert.setHeaderText("Warning");
@@ -857,6 +977,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * Popup for insufficient funds
+     */
     public static void displayInsufficientFunds(){
         Alert errorAlert = new Alert(Alert.AlertType.WARNING);
         errorAlert.setHeaderText("Warning");
@@ -864,6 +987,9 @@ public class Controller {
         errorAlert.showAndWait();
     }
 
+    /**
+     * Popup for adding new accounts to the database
+     */
     public static void displayAccountAlready(){
         Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
         errorAlert.setHeaderText("Account Already Exists!");
@@ -872,13 +998,3 @@ public class Controller {
     }
 
 }
-
-/*  ERROR CHECKLIST
-    DONE    1) Balance Text Field: needs to only accept numbers, popup if otherwise
-    DONE    2) First Name, Last Name, only characters
-    DONE    3) Date can only accept integers
-            4) Low Priority: Uncheck boxes if toggle is changed
-    DONE    5) Withdrawal try-catch * NumberFormatException
-    DONE    6) Close, deposit, withdrawal
-    DONE    7) allow for decimals for withdrawl and deposit
- */
