@@ -963,7 +963,7 @@ public class Controller {
 
         }catch(NullPointerException e){
             textArea1.appendText("No file imported.\n");
-
+            displayImportFile();
             }
         }
 
