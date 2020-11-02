@@ -1,4 +1,10 @@
 --Listing accounts in the database--
-*Checking*J B* $600.00*5/5/2005
+*Savings*Jane Doe* $500.00*11/1/2019
+
+*Savings*John Doe* $500.00*1/1/2010*special Savings account*
+
+*Money Market*Mary Johnson* $456.78*7/10/2014*0 withdrawals*
+
+*Money Market*Charlie Brown* $600.33*6/2/2015*12 withdrawals*
 
 --end of printing--

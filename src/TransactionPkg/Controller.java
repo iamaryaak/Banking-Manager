@@ -504,8 +504,6 @@ public class Controller {
                     boolean added = db.add(accC);
                     if (added) {
                         list.getItems().add(accC.toString());
-                        //closeAccount.setDisable(false);
-                        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                     } else {
                         displayAccountAlready();
                     }
@@ -618,7 +616,7 @@ public class Controller {
                 if (close) {
                     list.getItems().remove(account);
                 } else {
-                    //System.out.println("Account does not exist.");
+                    // Account does not exist
                 }
             } else if (typeOfAcc.equals("Savings")) {
                 Profile user = new Profile(fullName[0], fullName[1]);
@@ -628,7 +626,7 @@ public class Controller {
                 if (close) {
                     list.getItems().remove(account);
                 } else {
-                    //System.out.println("Account does not exist.");
+                    // Account does not exist
                 }
             } else if (typeOfAcc.equals("Money Market")) {
                 Profile user = new Profile(fullName[0], fullName[1]);
@@ -638,7 +636,7 @@ public class Controller {
                 if (close) {
                     list.getItems().remove(account);
                 } else {
-                    //System.out.println("Account does not exist.");
+                    // Account does not exist
                 }
 
             }
@@ -808,10 +806,10 @@ public class Controller {
                         if (added) {
                             list2.getItems().add(accC.toString());
                         } else {
-                            //System.out.println("Account is already in the database.");
+                            // Account is already in the database
                         }
                     } else {
-                        //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        // Date is not valid
                     }
 
                 } else if (inputArr[0].equals("S")) {
@@ -837,10 +835,10 @@ public class Controller {
                         if (added) {
                             list2.getItems().add(accS.toString());
                         } else {
-                           // System.out.println("Account is already in the database.");
+                           // Account is already in the database
                         }
                     } else {
-                        //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        // Not a valid date
                     }
 
                 } else if (inputArr[0].equals("M")) {
@@ -871,10 +869,10 @@ public class Controller {
                         if (added) {
                             list2.getItems().add(accM.toString());
                         } else {
-                            //System.out.println("Account is already in the database.");
+                            // Account already in the database
                         }
                     } else {
-                        //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        // Not a valid date
                     }
                 }
 
