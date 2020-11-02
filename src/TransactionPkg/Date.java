@@ -63,18 +63,20 @@ public class Date implements Comparable<Date> {
      * @param year Year in question, to check validity
      * @return boolean if it is a valid leap year or not
      */
+    /**
+     * Helper Method - Check if data is valid given the day, month, and year
+     * @param year Year in question, to check validity
+     * @return boolean if it is a valid leap year or not
+     */
     public boolean isLeap(int year)
     {
         // Return true if year is
         // a multiple of 4 and not
         // multiple of 100.
         // OR year is multiple of 400.
-        int yearFour = 4;
-        int cent = 100;
-        int quadCent = 400;
-        return (((year % yearFour == 0) &&
-                (year % cent != 0)) ||
-                (year % quadCent == 0));
+        return (((year % 4 == 0) &&
+                (year % 100 != 0)) ||
+                (year % 400 == 0));
     }
 
     /**
@@ -86,36 +88,27 @@ public class Date implements Comparable<Date> {
         int y = this.year;
         int m = this.month;
         int d = this.day;
-        int uno = 1;
-        int monthMax = 12;
         // check if year is valid
         if (y > MAX_VALID_YR || y < MIN_VALID_YR)
             return false;
-        if (m < uno || m > monthMax)
+        if (m < 1 || m > 12)
             return false;
-        if (d < uno || d > monthMax)
+        if (d < 1 || d > 31)
             return false;
 
         // Handle February month
         // with leap year
-        int feb = 2;
-        int maxFeb = 29;
-        int minFeb = 28;
-        if (m == feb)
+        if (m == 2)
         {
             if (isLeap(y))
-                return (d <= maxFeb);
+                return (d <= 29);
             else
-                return (d <= minFeb);
+                return (d <= 28);
         }
 
-        int four = 4;
-        int six = 6;
-        int nine = 9;
-        int thirty = 30;
-        int eleven = 11;
-        if (m == four || m == six || m == nine || m == eleven)
-            return (d <= thirty);
+
+        if (m == 4 || m == 6 || m == 9 || m == 11)
+            return (d <= 30);
 
         return true;
 

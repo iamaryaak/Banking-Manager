@@ -619,6 +619,7 @@ public class Controller {
                     list.getItems().remove(account);
                 } else {
                     //System.out.println("Account does not exist.");
+                    displayAccNotExist();
                 }
             } else if (typeOfAcc.equals("Savings")) {
                 Profile user = new Profile(fullName[0], fullName[1]);
@@ -629,6 +630,7 @@ public class Controller {
                     list.getItems().remove(account);
                 } else {
                     //System.out.println("Account does not exist.");
+                    displayAccNotExist();
                 }
             } else if (typeOfAcc.equals("Money Market")) {
                 Profile user = new Profile(fullName[0], fullName[1]);
@@ -639,6 +641,7 @@ public class Controller {
                     list.getItems().remove(account);
                 } else {
                     //System.out.println("Account does not exist.");
+                    displayAccNotExist();
                 }
 
             }
@@ -772,12 +775,11 @@ public class Controller {
         try{
         Scanner sc = new Scanner(sourceFile);
         while (sc.hasNext()) {
-
             String s = sc.nextLine();
-
             String[] inputArr = s.split(",");
             try {
                 if (inputArr[0].equals("C")) {
+
                     if (inputArr.length != 6) {
                         throw new NumberFormatException();
                     }
@@ -809,12 +811,15 @@ public class Controller {
                             list2.getItems().add(accC.toString());
                         } else {
                             //System.out.println("Account is already in the database.");
+                            displayAccountAlready();
                         }
                     } else {
                         //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        displayInvalidDateFields();
                     }
 
                 } else if (inputArr[0].equals("S")) {
+
                     if (inputArr.length != 6) {
                         throw new NumberFormatException();
                     }
@@ -837,13 +842,16 @@ public class Controller {
                         if (added) {
                             list2.getItems().add(accS.toString());
                         } else {
-                           // System.out.println("Account is already in the database.");
+                            //System.out.println("Account is already in the database.");
+                            displayAccountAlready();
                         }
                     } else {
                         //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        displayInvalidDateFields();
                     }
 
                 } else if (inputArr[0].equals("M")) {
+
                     if (inputArr.length != 6) {
                         throw new NumberFormatException();
                     }
@@ -872,9 +880,11 @@ public class Controller {
                             list2.getItems().add(accM.toString());
                         } else {
                             //System.out.println("Account is already in the database.");
+                            displayAccountAlready();
                         }
                     } else {
                         //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        displayInvalidDateFields();
                     }
                 }
 
@@ -887,6 +897,7 @@ public class Controller {
 
             } catch (NumberFormatException e) {
                 // e.printStackTrace();
+                displayInvalidOpenFields();
             }
         }
             }catch(NullPointerException e){
