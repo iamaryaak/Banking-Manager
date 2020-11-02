@@ -1,3 +1,7 @@
+/**
+ * @authors Arya Kulkarni and Jesse Barbieri
+ */
+
 package TransactionPkg;
 
 import javafx.event.ActionEvent;
@@ -27,6 +31,9 @@ public class Controller {
     public TextField day;
     public TextField year;
     public TextField balance;
+
+    @FXML
+    private static TextArea textArea1;
 
     @FXML
     ListView<String> list = new ListView<>();
@@ -232,6 +239,7 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
                     }
+                    //textArea1.appendText("Deposit confirmed");
                 } else {
                     displayAccNotExist();
                 }
@@ -262,6 +270,8 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + (newamount) + "*" + accountInfo[4]);
                     }
+                   // textArea1.appendText("Deposit confirmed");
+
                 } else {
                     displayAccNotExist();
                 }
@@ -282,6 +292,8 @@ public class Controller {
                 list.getItems().remove(account);
                 if (depo) {
                     list.getItems().add(accCupdate);
+                  //  textArea1.appendText("Deposit confirmed");
+
                 } else {
                     displayAccNotExist();
                 }
@@ -336,6 +348,7 @@ public class Controller {
                 if (with == 0) {
                     list.getItems().remove(account);
                     list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
+                   // textArea1.appendText("Withdrawal confirmed");
                 } else if (with == 1) {
                     displayInsufficientFunds();
                 } else {
@@ -360,6 +373,8 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                     }
+                    //textArea1.appendText("Withdrawal confirmed");
+
                 } else if (with == 1) {
                     displayInsufficientFunds();
                 } else {
@@ -384,6 +399,8 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                     }
+                   // textArea1.appendText("Withdrawal confirmed");
+
                 } else if (with == 1) {
                     displayInsufficientFunds();
 
@@ -507,6 +524,11 @@ public class Controller {
                     Account accC = new Checking(user, Double.parseDouble(balance.getText()), dateOpen, directBool);
                     boolean added = db.add(accC);
                     if (added) {
+                        try {
+                            textArea1.appendText(accC.toString());
+                        }catch(NullPointerException e){
+                            System.out.println(e.getMessage());
+                        }
                         list.getItems().add(accC.toString());
                     } else {
                         displayAccountAlready();
@@ -529,6 +551,7 @@ public class Controller {
                     boolean added = db.add(accS);
                     if (added) {
                         list.getItems().add(accS.toString());
+                        //textArea1.appendText(accS.toString());
                     } else {
                         displayAccountAlready();
                     }
@@ -551,6 +574,7 @@ public class Controller {
                     boolean added = db.add(accM);
                     if (added) {
                         list.getItems().add(accM.toString());
+                      //  textArea1.appendText(accM.toString());
                     } else {
                         displayAccountAlready();
                     }
@@ -619,6 +643,7 @@ public class Controller {
                 boolean close = db.remove(rC);
                 if (close) {
                     list.getItems().remove(account);
+                   // textArea1.appendText("Account removed.");
                 } else {
                     //System.out.println("Account does not exist.");
                     displayAccNotExist();
@@ -631,6 +656,7 @@ public class Controller {
                 boolean close = db.remove(rS);
                 if (close) {
                     list.getItems().remove(account);
+                   // textArea1.appendText("Account removed.");
                 } else {
                     //System.out.println("Account does not exist.");
                     displayAccNotExist();
@@ -643,6 +669,7 @@ public class Controller {
                 boolean close = db.remove(rM);
                 if (close) {
                     list.getItems().remove(account);
+                    //appendText("Account removed.");
                 } else {
                     //System.out.println("Account does not exist.");
                     displayAccNotExist();
@@ -674,6 +701,7 @@ public class Controller {
     public void setClear() {
         displayClear();
         list.getItems().clear();
+        //appendText("Database has been cleared.");
         db.listClear();
 
         if (list.getItems().isEmpty()) {
@@ -716,6 +744,7 @@ public class Controller {
             writer.println("--end of printing--");
             writer.close();
             displayFileCreated();
+            //textArea1.appendText("File created to output accounts by Date Opened");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -737,7 +766,7 @@ public class Controller {
             writer.println("--end of printing--");
             writer.close();
             displayFileCreated();
-
+            //textArea1.appendText("File created to output accounts");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -760,6 +789,7 @@ public class Controller {
             writer.println("--end of printing--");
             writer.close();
             displayFileCreated();
+            //textArea1.appendText("File created to output accounts by Last Name");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -901,14 +931,16 @@ public class Controller {
                     depoButton.setDisable(false);
                     clear.setDisable(false);
                 }
-
+                //textArea1.appendText("File Imported and accounts have been added");
             } catch (NumberFormatException e) {
                 // e.printStackTrace();
                 displayInvalidOpenFields();
             }
         }
-            }catch(NullPointerException e){
-                displayImportFile();
+
+
+        }catch(NullPointerException e){
+
             }
         }
 
