@@ -705,7 +705,7 @@ public class Controller {
             }
         } catch (NullPointerException q) {
             displayClose();
-            textArea1.appendText("Account not Selected");
+            textArea1.appendText("Account not selected\n");
             if (list.getItems().isEmpty()) {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
