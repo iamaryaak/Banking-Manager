@@ -504,8 +504,6 @@ public class Controller {
                     boolean added = db.add(accC);
                     if (added) {
                         list.getItems().add(accC.toString());
-                        //closeAccount.setDisable(false);
-                        //closeAccount.disableProperty().bind(list.getSelectionModel().selectedItemProperty().isNull());
                     } else {
                         displayAccountAlready();
                     }
@@ -620,6 +618,7 @@ public class Controller {
                 } else {
                     //System.out.println("Account does not exist.");
                     displayAccNotExist();
+
                 }
             } else if (typeOfAcc.equals("Savings")) {
                 Profile user = new Profile(fullName[0], fullName[1]);
@@ -631,6 +630,7 @@ public class Controller {
                 } else {
                     //System.out.println("Account does not exist.");
                     displayAccNotExist();
+
                 }
             } else if (typeOfAcc.equals("Money Market")) {
                 Profile user = new Profile(fullName[0], fullName[1]);
@@ -642,6 +642,7 @@ public class Controller {
                 } else {
                     //System.out.println("Account does not exist.");
                     displayAccNotExist();
+
                 }
 
             }
@@ -710,7 +711,7 @@ public class Controller {
             }
             writer.println("--end of printing--");
             writer.close();
-
+            displayFileCreated();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -731,6 +732,7 @@ public class Controller {
             }
             writer.println("--end of printing--");
             writer.close();
+            displayFileCreated();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -753,7 +755,7 @@ public class Controller {
             }
             writer.println("--end of printing--");
             writer.close();
-
+            displayFileCreated();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -848,6 +850,7 @@ public class Controller {
                     } else {
                         //System.out.println(dateOpen.toString() + " is not a valid date!");
                         displayInvalidDateFields();
+
                     }
 
                 } else if (inputArr[0].equals("M")) {
@@ -1005,6 +1008,13 @@ public class Controller {
         Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
         errorAlert.setHeaderText("Account Already Exists!");
         errorAlert.setContentText("You Can Only Add New Accounts To The Database");
+        errorAlert.showAndWait();
+    }
+
+    public static void displayFileCreated(){
+        Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
+        errorAlert.setHeaderText("File status");
+        errorAlert.setContentText("File has been created!");
         errorAlert.showAndWait();
     }
 
