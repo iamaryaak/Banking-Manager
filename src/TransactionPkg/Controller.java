@@ -538,12 +538,7 @@ public class Controller {
                     Account accC = new Checking(user, Double.parseDouble(balance.getText()), dateOpen, directBool);
                     boolean added = db.add(accC);
                     if (added) {
-                        try {
-                            //System.out.println(textArea1.getText());
-                            textArea1.setText(accC.toString());
-                        }catch(NullPointerException e){
-                            System.out.println(e.getMessage());
-                        }
+                            textArea1.appendText(accC.toString() + "\n");
                         list.getItems().add(accC.toString());
                     } else {
                         displayAccountAlready();
@@ -568,7 +563,7 @@ public class Controller {
                     boolean added = db.add(accS);
                     if (added) {
                         list.getItems().add(accS.toString());
-                        textArea1.appendText(accS.toString());
+                        textArea1.appendText(accS.toString() + "\n");
                     } else {
                         displayAccountAlready();
                         textArea1.appendText("Account is already in the database.\n");
@@ -593,7 +588,7 @@ public class Controller {
                     boolean added = db.add(accM);
                     if (added) {
                         list.getItems().add(accM.toString());
-                      textArea1.appendText(accM.toString());
+                      textArea1.appendText(accM.toString() + "\n");
                     } else {
                         displayAccountAlready();
                         textArea1.appendText("Account is already in the database.\n");
