@@ -1,6 +1,0 @@
---Listing accounts in the database--
-*Savings*Arya Kulkarni* $48,000.50*1/1/2001
-
-*Money Market*Arya Kulkarni* $41,999.50*1/1/2001*3 withdrawals*
-
---end of printing--
