@@ -1,3 +1,7 @@
+/**
+ * @authors Arya Kulkarni and Jesse Barbieri
+ */
+
 package TransactionPkg;
 
 import javafx.application.Application;
