@@ -206,7 +206,7 @@ public class Controller {
         try {
 
             DecimalFormat df = new DecimalFormat("#,##0.00");
-            String account = list1.getSelectionModel().getSelectedItem().toString();
+            String account = list1.getSelectionModel().getSelectedItem();
             String accCupdate = "";
             String[] accountInfo = account.split("\\*");
             String typeOfAcc = accountInfo[1];
@@ -952,7 +952,6 @@ public class Controller {
                         depoButton.setDisable(false);
                         clear.setDisable(false);
                     }
-                    textArea1.appendText("Account Imported\n");
                 } catch (NumberFormatException e) {
                     textArea1.appendText("File could not be imported.\n");
                     displayInvalidOpenFields();
