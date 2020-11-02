@@ -33,7 +33,7 @@ public class Controller {
     public TextField balance;
 
     @FXML
-    private static TextArea textArea1;
+    public TextArea textArea1 = new TextArea();
 
     @FXML
     ListView<String> list = new ListView<>();
@@ -239,9 +239,10 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + newamount + "*" + accountInfo[4]);
                     }
-                    //textArea1.appendText("Deposit confirmed");
+                    textArea1.appendText("Deposit confirmed\n");
                 } else {
                     displayAccNotExist();
+                    textArea1.appendText("Account does not exist\n");
                 }
             } else if (typeOfAcc.equals("Savings")) {
                 String damount = depositAmount.getText();
@@ -270,10 +271,11 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accountInfo[1] + "*" + accountInfo[2] + "*" + " $" + (newamount) + "*" + accountInfo[4]);
                     }
-                   // textArea1.appendText("Deposit confirmed");
+                   textArea1.appendText("Deposit confirmed\n");
 
                 } else {
                     displayAccNotExist();
+                    textArea1.appendText("Account does not exist\n");
                 }
             } else if (typeOfAcc.equals("Money Market")) {
                 String damount = depositAmount.getText();
@@ -292,19 +294,22 @@ public class Controller {
                 list.getItems().remove(account);
                 if (depo) {
                     list.getItems().add(accCupdate);
-                  //  textArea1.appendText("Deposit confirmed");
+                  textArea1.appendText("Deposit confirmed\n");
 
                 } else {
                     displayAccNotExist();
+                    textArea1.appendText("Account does not exist\n");
                 }
             }
             depositAmount.clear();
         } catch (NumberFormatException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
+            textArea1.appendText("Please enter correct monetary value\n");
             depositAmount.clear();
         }catch(NullPointerException exception){
             displayAccNotSelected();
+            textArea1.appendText("Account does not exist\n");
         }
     }
 
@@ -348,11 +353,13 @@ public class Controller {
                 if (with == 0) {
                     list.getItems().remove(account);
                     list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
-                   // textArea1.appendText("Withdrawal confirmed");
+                   textArea1.appendText("Withdrawal confirmed\n");
                 } else if (with == 1) {
                     displayInsufficientFunds();
+                    textArea1.appendText("Insufficient Funds\n");
                 } else {
                     displayAccNotExist();
+                    textArea1.appendText("Account does not exist\n");
                 }
             } else if (accPara[1].equals("Checking")) {
                 boolean isDirectB;
@@ -373,12 +380,15 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                     }
-                    //textArea1.appendText("Withdrawal confirmed");
+                    textArea1.appendText("Withdrawal confirmed\n");
 
                 } else if (with == 1) {
                     displayInsufficientFunds();
+                    textArea1.appendText("Insufficient Funds!\n");
                 } else {
                     displayAccNotExist();
+                    textArea1.appendText("Account does not exist\n");
+
                 }
             } else if (accPara[1].equals("Savings")) {
                 boolean isLoyalB;
@@ -399,13 +409,15 @@ public class Controller {
                     } else {
                         list.getItems().add("*" + accPara[1] + "*" + accPara[2] + "*" + " $" + df.format(newAmount) + "*" + accPara[4]);
                     }
-                   // textArea1.appendText("Withdrawal confirmed");
+                   textArea1.appendText("Withdrawal confirmed\n");
 
                 } else if (with == 1) {
                     displayInsufficientFunds();
+                    textArea1.appendText("Insufficient Funds!\n");
 
                 } else {
                     displayAccNotExist();
+                    textArea1.appendText("Account does not exist\n");
                 }
             }
 
@@ -413,9 +425,11 @@ public class Controller {
         }catch (NumberFormatException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
+            textArea1.appendText("Please Enter correct monetary value\n");
             withdrawalAmount.clear();
         }catch ( NullPointerException exception){
             displayAccNotSelected();
+            textArea1.appendText("Account not Selected!\n");
         }
 
     }
@@ -525,16 +539,19 @@ public class Controller {
                     boolean added = db.add(accC);
                     if (added) {
                         try {
-                            textArea1.appendText(accC.toString());
+                            //System.out.println(textArea1.getText());
+                            textArea1.setText(accC.toString());
                         }catch(NullPointerException e){
                             System.out.println(e.getMessage());
                         }
                         list.getItems().add(accC.toString());
                     } else {
                         displayAccountAlready();
+                        textArea1.appendText("Account already in the database.\n");
                     }
                 } else {
                     display(dateOpen);
+                    textArea1.appendText("Date is invalid\n");
                 }
 
             } else if (savings.isSelected()) {
@@ -551,12 +568,14 @@ public class Controller {
                     boolean added = db.add(accS);
                     if (added) {
                         list.getItems().add(accS.toString());
-                        //textArea1.appendText(accS.toString());
+                        textArea1.appendText(accS.toString());
                     } else {
                         displayAccountAlready();
+                        textArea1.appendText("Account is already in the database.\n");
                     }
                 } else {
                     display(dateOpen);
+                    textArea1.appendText("Date is invalid.\n");
                 }
 
             } else if (moneyMarket.isSelected()) { // money Market is selected
@@ -574,22 +593,27 @@ public class Controller {
                     boolean added = db.add(accM);
                     if (added) {
                         list.getItems().add(accM.toString());
-                      //  textArea1.appendText(accM.toString());
+                      textArea1.appendText(accM.toString());
                     } else {
                         displayAccountAlready();
+                        textArea1.appendText("Account is already in the database.\n");
                     }
                 }else {
+                    textArea1.appendText("Invalid date\n");
                     display(dateOpen);
                 }
             }else{
                 displaySelection();
+                textArea1.appendText("Account not selected!\n");
                 openAccount.setDisable(true);
             }
 
         }catch (InputMismatchException e) {
             displayInvalidOpenFields();
+            textArea1.appendText("Invalid Date!\n");
         } catch (NumberFormatException e) {
             displayInvalidDateFields();
+            textArea1.appendText("Invalid Date!\n");
         }
 
         // reset fields
@@ -643,9 +667,9 @@ public class Controller {
                 boolean close = db.remove(rC);
                 if (close) {
                     list.getItems().remove(account);
-                   // textArea1.appendText("Account removed.");
+                   textArea1.appendText("Account removed.\n");
                 } else {
-                    //System.out.println("Account does not exist.");
+                    textArea1.appendText("Account does not exist.\n");
                     displayAccNotExist();
 
                 }
@@ -656,9 +680,9 @@ public class Controller {
                 boolean close = db.remove(rS);
                 if (close) {
                     list.getItems().remove(account);
-                   // textArea1.appendText("Account removed.");
+                   textArea1.appendText("Account removed.\n");
                 } else {
-                    //System.out.println("Account does not exist.");
+                    textArea1.appendText("Account does not exist.\n");
                     displayAccNotExist();
 
                 }
@@ -669,9 +693,9 @@ public class Controller {
                 boolean close = db.remove(rM);
                 if (close) {
                     list.getItems().remove(account);
-                    //appendText("Account removed.");
+                    textArea1.appendText("Account removed.\n");
                 } else {
-                    //System.out.println("Account does not exist.");
+                    textArea1.appendText("Account does not exist.\n");
                     displayAccNotExist();
 
                 }
@@ -686,6 +710,7 @@ public class Controller {
             }
         } catch (NullPointerException q) {
             displayClose();
+            textArea1.appendText("Account not Selected");
             if (list.getItems().isEmpty()) {
                 closeAccount.setDisable(true);
                 depoButton.setDisable(true);
@@ -701,7 +726,7 @@ public class Controller {
     public void setClear() {
         displayClear();
         list.getItems().clear();
-        //appendText("Database has been cleared.");
+        textArea1.appendText("Database has been cleared.\n");
         db.listClear();
 
         if (list.getItems().isEmpty()) {
@@ -744,7 +769,7 @@ public class Controller {
             writer.println("--end of printing--");
             writer.close();
             displayFileCreated();
-            //textArea1.appendText("File created to output accounts by Date Opened");
+            textArea1.appendText("File created to output accounts by Date Opened\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -766,7 +791,7 @@ public class Controller {
             writer.println("--end of printing--");
             writer.close();
             displayFileCreated();
-            //textArea1.appendText("File created to output accounts");
+            textArea1.appendText("File created to output accounts\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -789,7 +814,7 @@ public class Controller {
             writer.println("--end of printing--");
             writer.close();
             displayFileCreated();
-            //textArea1.appendText("File created to output accounts by Last Name");
+            textArea1.appendText("File created to output accounts by Last Name\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -845,12 +870,13 @@ public class Controller {
                         boolean added = db.add(accC);
                         if (added) {
                             list2.getItems().add(accC.toString());
+                            textArea1.appendText(accC.toString()+"\n");
                         } else {
-                            //System.out.println("Account is already in the database.");
+                            textArea1.appendText("Account is already in the database.\n");
                             displayAccountAlready();
                         }
                     } else {
-                        //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        textArea1.appendText(dateOpen.toString() + " is not a valid date!\n");
                         displayInvalidDateFields();
                     }
 
@@ -877,12 +903,13 @@ public class Controller {
                         boolean added = db.add(accS);
                         if (added) {
                             list2.getItems().add(accS.toString());
+                            textArea1.appendText(accS.toString() + "\n");
                         } else {
-                            //System.out.println("Account is already in the database.");
+                            textArea1.appendText("Account is already in the database.\n");
                             displayAccountAlready();
                         }
                     } else {
-                        //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        textArea1.appendText(dateOpen.toString() + " is not a valid date!\n");
                         displayInvalidDateFields();
 
                     }
@@ -915,12 +942,13 @@ public class Controller {
 
                         if (added) {
                             list2.getItems().add(accM.toString());
+                            textArea1.appendText(accM.toString() + "\n");
                         } else {
-                            //System.out.println("Account is already in the database.");
+                            textArea1.appendText("Account is already in the database.\n");
                             displayAccountAlready();
                         }
                     } else {
-                        //System.out.println(dateOpen.toString() + " is not a valid date!");
+                        textArea1.appendText(dateOpen.toString() + " is not a valid date!\n");
                         displayInvalidDateFields();
                     }
                 }
@@ -931,15 +959,15 @@ public class Controller {
                     depoButton.setDisable(false);
                     clear.setDisable(false);
                 }
-                //textArea1.appendText("File Imported and accounts have been added");
+                textArea1.appendText("Account Imported\n");
             } catch (NumberFormatException e) {
-                // e.printStackTrace();
+                textArea1.appendText("File could not be imported.\n");
                 displayInvalidOpenFields();
             }
         }
 
-
         }catch(NullPointerException e){
+            textArea1.appendText("No file imported.\n");
 
             }
         }
