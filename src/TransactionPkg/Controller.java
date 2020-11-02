@@ -287,10 +287,12 @@ public class Controller {
                 }
             }
             depositAmount.clear();
-        } catch (NumberFormatException | NullPointerException exception) {
+        } catch (NumberFormatException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
             depositAmount.clear();
+        }catch(NullPointerException exception){
+            displayAccNotSelected();
         }
     }
 
@@ -391,10 +393,12 @@ public class Controller {
             }
 
             withdrawalAmount.clear();
-        }catch (NumberFormatException | NullPointerException exception) {
+        }catch (NumberFormatException exception) {
             // This try-catch is if someone tries to deposit to an account without selecting an account
             displayInvalidWithdrawDepo();
             withdrawalAmount.clear();
+        }catch ( NullPointerException exception){
+            displayAccNotSelected();
         }
 
     }
@@ -1015,6 +1019,13 @@ public class Controller {
         Alert errorAlert = new Alert(Alert.AlertType.INFORMATION);
         errorAlert.setHeaderText("File status");
         errorAlert.setContentText("File has been created!");
+        errorAlert.showAndWait();
+    }
+
+    public static void displayAccNotSelected(){
+        Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+        errorAlert.setHeaderText("Account status");
+        errorAlert.setContentText("Please select an account!");
         errorAlert.showAndWait();
     }
 
