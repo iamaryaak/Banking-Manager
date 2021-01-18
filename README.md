@@ -1,4 +1,4 @@
-# Banking Manager
+# Banking-Manager
 
 __Technologies used:__ Java, Scene Builder, JavaFX, IntelliJ, Git/Github
 
